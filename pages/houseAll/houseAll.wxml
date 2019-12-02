@@ -1,0 +1,27 @@
+<wxs module="filters" src="../../utils/sourceFilter.wxs"></wxs>
+<radio-group class="response" bindchange="radioChange">
+  <view class="cu-list menu menu-avatar margin-top-xs">
+    <label class="cu-item shadow" wx:for="{{houseList}}" wx:key="{{item.id}}" bindtap="" data-id="{{item.id}}">
+        <view class="cu-avatar xl" style="{{'background-image:url(' + item.thumbnail_url + ');'}}"></view>
+        <view class='content justify-between'>
+          <view class='text-black defaultFlex'>
+            <view class="text-cut" >{{item.name}}</view>
+          </view>
+          <view class='text-gray text-sm house-address margin-top-xs'>{{item.address}}</view>
+          <view class='instanceCount margin-top-xs flex justify-between align-center'>
+            <view class="flex sourceLogo align-center">
+              <block wx:for="{{item.bind_source}}" wx:key="*this" wx:for-item="source">
+                <image src="{{filters.sourceFilter(source)}}" class=""></image>
+              </block>
+            </view>
+            <view class="text-rs">共<text class='text-magi'>{{item.instance_count}}</text>套</view>
+          
+          </view>
+        </view>
+        
+        <view class="action ">
+          <radio class="magi house-all-radio" value="{{item.id}}" checked="{{item.checked}}"></radio>
+        </view>
+    </label>
+  </view>
+</radio-group>

@@ -1,0 +1,7 @@
+{
+  "usingComponents": {},
+  "navigationBarTitleText": "民宿房源",
+  "enablePullDownRefresh": true,
+  "backgroundColor": "#f9f9f9",
+  "backgroundTextStyle": "dark"
+}

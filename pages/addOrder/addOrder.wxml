@@ -1,0 +1,32 @@
+<form bindsubmit="formSubmit">
+  <view class="cu-form-group margin-top">
+    <view class="title">入住时间：</view>
+    <picker mode="date" value="{{startDate}}" bindchange="startDateChange" name="checkin_date">
+      <view class="picker">{{startDate}}</view>
+    </picker>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">离店时间：</view>
+    <picker mode="date" value="{{endDate}}" start="{{start}}" bindchange="endDateChange" name="checkout_date">
+      <view class="picker">{{endDate}}</view>
+    </picker>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">房客姓名：</view>
+    <input placeholder="请输入房客姓名" name="guest_name"></input>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">手机号：</view>
+    <input placeholder="请输入手机号" name="guest_mobile" type="number" maxlength="11"></input>
+  </view>
+  <input value="{{houseId}}" name="house_id" hidden></input>
+  <!-- <view class="cu-form-group margin-top">
+    <view class="title">订单来源：</view>
+    <input placeholder="两字短标题" name="input"></input>
+  </view> -->
+  <view class="canui-foor-fixed">
+    <view class="flex justify-between order-btn-box">
+      <button class="cu-btn bg-magi" form-type="submit">确定</button>
+    </view>
+  </view>
+</form>

@@ -1,0 +1,282 @@
+<wxs module="filters" src="../../utils/sourceFilter.wxs"></wxs>
+<view class="flex justify-between align-center text-default  house-vie-top padding padding-bottom-xs">
+  <view class="flex align-center house-vie-img text-xl" bindtap="toAll">
+    <image src="/images/house-all.png" mode="widthFix" class="margin-right-xs"></image>
+    全部房源
+  </view>
+  <view class="text-26 text-magigray"><text class="text-default">{{cardCur+1}}</text>/{{houseList.length}}</view>
+</view>
+
+<swiper class="card-swiper" duration="500" bindanimationfinish="cardSwiper" circular="true" current="{{cardCur}}">
+  <swiper-item wx:for="{{houseList}}" wx:key="*this" class="{{cardCur==index?'cur':''}}" item-id="{{item.id}}">
+    <view class="swiper-item padding-top-lg padding-left-lg padding-right padding-bottom-sm flex flex-direction bg-white shadow">
+      <view class="flex">
+        <image src="{{item.thumbnail_url}}" mode="aspectFill" class="house-vie-avatar margin-right-sm"></image>
+        <view class="flex flex-direction justify-between house-vie-content">
+          <view class="text-26"><view class="text-cut" >{{item.name}}</view></view>
+          <view class="text-22 text-magigray"><view class="text-cut" >{{item.address}}</view></view>
+          <view class="flex sourceLogo align-center">
+            <block wx:for="{{item.bind_source}}" wx:key="*this" wx:for-item="source">
+              <image src="{{filters.sourceFilter(source)}}" class="margin-right-xs"></image>
+            </block>
+          </view>
+        </view>
+      </view>
+      <view class="flex justify-end text-sm margin-top-sm">
+        <view class="house-vie-btn text-center house-vie-btn-line {{swiperIndex == 1?'bg-read':''}}" data-target="swiper"  data-id="1" bindtap="tabSelect">修改房态/价格</view>
+        <view class="house-vie-btn text-center house-vie-btn-line margin-left-xs {{swiperIndex == 0?'bg-read':''}}" data-target="swiper"  data-id="0" bindtap="tabSelect">价格竞争力</view>
+      </view>
+    </view>
+  </swiper-item>
+</swiper>
+
+<view hidden="{{swiperIndex == 1}}">
+  <block wx:if="{{houseList[cardCur].city_flag == 0 && houseList[cardCur].tujia_flag == 0 && showchart}}">
+    <view class="margin-tb-sm house-vie-list padding bg-white">
+      <view class="flex justify-between house-vie-list-top">
+        <view class="flex align-center house-vie-list-title text-xl text-default">
+          <image src="/images/housevie-01.png" mode="widthFix" class="margin-right-xs"></image>
+          民宿日均价对比
+        </view>
+        <view class="rs-capsule text-xs flex">
+          <view 
+            class="rs-capsule-item text-magi {{monthIndex == index?'bg-magi':''}}" 
+            bindtap="tabSelect" 
+            data-target="month" 
+            data-id="{{index}}"
+            wx:for="{{art}}"
+            wx:key="*this"
+          >
+            {{item.month + '月'}}
+          </view>
+          <!-- <view class="rs-capsule-item text-magi {{monthIndex == 1?'bg-magi':''}}" bindtap="tabSelect" data-target="month" data-id="1">11月</view>
+          <view class="rs-capsule-item text-magi {{monthIndex == 2?'bg-magi':''}}" bindtap="tabSelect" data-target="month" data-id="2">12月</view> -->
+        </view>
+      </view>
+      <view class="padding-top padding-bottom">
+        <view class="text-df flex house-vie-capsule text-center">
+          <picker class="house-vie-capsule-item flex-sub text-rs" bindchange="pickerChange" value="{{index}}" range="{{cityArr}}" data-target="city" range-key="key">
+            <view class="picker flex align-center justify-center">
+              <!-- {{!!cityIndex?cityArr[cityIndex]:'位置'}} -->
+              {{cityArr[cityIndex].key}}
+              <!-- {{citydataArr[cityIndex]}} -->
+              <text class="icon-usefullfill text-xs margin-left-xs"></text>
+            </view>
+          </picker>
+          <picker class="house-vie-capsule-item flex-sub text-rs" bindchange="pickerChange" value="{{index}}" range="{{rangehouseList}}" data-target="house" range-key="key">
+            <view class="picker flex align-center justify-center">
+              {{!!houseIndex?rangehouseList[houseIndex].key:'户型'}}
+              <text class="icon-usefullfill text-xs margin-left-xs"></text>
+            </view>
+          </picker>
+          <picker class="house-vie-capsule-item flex-sub text-rs" bindchange="pickerChange" value="{{index}}" range="{{typeList}}" data-target="type">
+            <view class="picker flex align-center justify-center">
+              {{!!typeIndex?typeList[typeIndex]:'房源类型'}}
+              <text class="icon-usefullfill text-xs margin-left-xs"></text>
+            </view>
+          </picker>
+        </view>
+        <view class="flex justify-end padding-top padding-bottom-xs">
+          <view class="house-vie-chart-title text-magigray text-xs flex align-center">
+            <image src="/images/chart-main.png" mode="widthFix" class="margin-right-xs"></image>
+            我的
+          </view>
+          <view class="house-vie-chart-title text-magigray text-xs flex align-center magi margin-left">
+            <!-- <view class="house-vie-chart-icon round shadow flex justify-center align-center margin-right-xs"><view class="round"></view></view> -->
+            <image src="/images/chart-other.png" mode="widthFix" class="margin-right-xs"></image>
+            同行民宿
+          </view>
+        </view>
+        <view class="chartContainer">
+          <ec-canvas class="chartContainer-chart" id="houseChart" canvas-id="houseChart" ec="{{ houseLine }}"></ec-canvas>
+        </view>
+
+      </view>
+      
+    </view>
+
+    <view class="house-vie-list padding bg-white margin-bottom-xl">
+      <view class="flex justify-between house-vie-list-top">
+        <view class="flex align-center house-vie-list-title text-xl text-default">
+          <image src="/images/housevie-02.png" mode="widthFix" class="margin-right-xs"></image>
+          酒店日均价对比
+        </view>
+      </view>
+      <view class="house-vie-comingsoon flex align-center justify-center flex-direction margin-top">
+        <image src="/images/comingSoon.png" mode="widthFix"></image>
+        <view class="text-sm text-magigray margin-top-xl">即将开放，敬请期待～</view>
+      </view>
+    </view>
+  </block>
+  <view class="house-vie-empty flex align-center justify-center flex-direction" wx:else>
+    <image src="/images/housevieEmpty.png" mode="widthFix"></image>
+    <view class="text-sm text-magigray margin-top-xl">此地区暂未开放，敬请期待～</view>
+  </view>
+</view>
+<view hidden="{{swiperIndex == 0 }}">
+  <view class="flex margin calendar-tab text-center">
+    <view class="flex-sub {{calendarIndex==0?'bg-magi':''}}" bindtap='tabSelect' data-id="0" data-target="calendar">房态日历</view>
+    <view class="flex-sub {{calendarIndex==1?'bg-magi':''}}" bindtap='tabSelect' data-id="1" data-target="calendar">价格日历</view>
+  </view>
+  <view class="flex calendar-house-tips text-sm align-center padding-lr padding-bottom">
+    <view class="text-magigray flex align-center margin-right-xl">
+      <image src="/images/calendarClose1.png" mode="widthFix" class="calendarClose1 margin-right-xs"></image>
+      已关房
+    </view>
+    <view class="text-bad flex align-center ">
+      <image src="/images/calendarError.png" mode="widthFix" class="calendarError margin-right-xs"></image>
+      房态不一致
+    </view>
+  </view>
+  <!-- 日历年月 -->
+  <view class='padding text-lg bg-white'>
+    <view class="flex align-center text-magi">
+      {{year + '年' + month + '月'}}
+      <view class="flex flex-direction margin-left-xs text-sm calendar-picker-icon">
+        <text class="icon-fold calendar-flod"></text>
+        <text class="icon-unfold calendar-unflod"></text>
+      </view>
+    </view>
+  </view>
+  <!-- 日历主体 -->
+  <view class='calendar padding-bottom-xl margin-bottom-xl' hidden="{{calendarIndex==1}}">
+    <view class='flex text-center solid-bottom calendar-week padding-bottom text-magigray'>
+      <view wx:for='{{date}}' wx:key='*this' wx:for-item="l" class="flex-sub">{{l}}</view>
+    </view>
+
+    <view class='flex flex-wrap'>
+      <block wx:for="{{houseCalendar}}" wx:key='*this' wx:for-index="cla">
+        <view class="calendar-item flex flex-direction text-rs justify-between {{(item.day && item.date < today) || item.status == 0?'close':''}} {{selectDate==item.date?'bg-magi':''}} {{item.day && item.date == confirmdate2?'confirmdate2':''}}" style="width: {{(100/7) + '%'}}" bindtap="{{item.day && (item.date > today||item.date == today)?'selectDate':''}}" data-date="{{item.date}}" data-count="{{index}}" data-index="{{cla}}">
+          <view class="calendar-item-day flex align-center justify-between text-df {{item.date == selectDate?'bg-magi':item.day == '今'?'text-magi':''}}" data-year='{{item.year}}' data-month='{{item.month}}' data-day='{{item.day}}'>
+            {{item.day}}
+            <view class="flex calendar-house-tips">
+              <image src="/images/calendarClose.png" mode="widthFix" class="calendarClose1" wx:if="{{item.status == 0}}"></image>
+              <image src="/images/calendarError.png" mode="widthFix" class="calendarError" wx:if="{{item.warning}}"></image>
+            </view>
+          </view>
+          <view class="text-xs response  flex flex-direction" wx:if="{{item.source_calendar.length > 0}}">
+            <view class="date-weight {{detail.source=='01'?'tujiaItem':detail.source=='02'?'aibiyingItem':detail.source=='04'?'xiaozhuItem':detail.source=='05'?'zhenguoItem':detail.source=='06'?'muniaoItem':''}} {{(item.day && item.date < today) || item.status == 0?'oldItem':''}}" wx:for="{{item.source_calendar}}" wx:for-item="detail"  wx:key='*this'>
+              {{detail.source=='01'?'途家' : detail.source=='02'?'爱彼迎' : detail.source=='04'?'小猪' : detail.source=='05'?'榛果' :''}}
+            </view>
+            
+          </view>
+        </view>
+      </block>
+    </view>
+
+  </view>
+  <!-- 日历主体 -->
+  <view class='calendar padding-bottom-lg' hidden="{{calendarIndex==0}}">
+    <view class='flex text-center solid-bottom calendar-week padding-bottom text-magigray'>
+      <view wx:for='{{date}}' wx:key='*this' wx:for-item="l" class="flex-sub">{{l}}</view>
+    </view>
+
+    <view class='flex flex-wrap'>
+      <block wx:for="{{calendar}}" wx:key='*this' wx:for-index="cla">
+        <view class="solid-right solid-bottom calendar-item flex flex-direction justify-between {{item.day && item.date < today?'c7':''}} {{selectDate==item.date?'bg-magi':''}} {{item.day && item.date == confirmdate2?'confirmdate2':''}}" style="width: {{(100/7) + '%'}}" bindtap="{{item.day && (item.date > today||item.date == today)?'selectDate':''}}" data-date="{{item.date}}" data-count="{{index}}" data-index="{{cla}}">
+          <view class="calendar-item-day {{item.date == selectDate?'bg-magi':item.day == '今'?'text-magi':''}}" data-year='{{item.year}}' data-month='{{item.month}}' data-day='{{item.day}}'>
+            {{item.day}}
+          </view>
+          <view class="text-xs response  flex flex-direction" wx:if="{{item.data.length > 0}}">
+            <view class="date-weight text-cut {{detail.source=='01'?'tujiaItem':detail.source=='02'?'aibiyingItem':detail.source=='04'?'xiaozhuItem':detail.source=='05'?'zhenguoItem':detail.source=='06'?'muniaoItem':''}} {{item.day && item.date < today?'oldItem':''}}" wx:for="{{item.data}}" wx:for-item="detail"  wx:key='*this'>
+              {{detail.source=='01'?'途:'+ detail.price : detail.source=='02'?'爱:'+ detail.price : detail.source=='04'?'猪:'+ detail.price : detail.source=='05'?'榛:'+ detail.price : detail.source=='06'?'木:'+ detail.price:''}}
+            </view>
+            
+          </view>
+        </view>
+      </block>
+    </view>
+
+  </view>
+</view>
+
+
+<!-- 平台改价modal -->
+<view class="cu-modal bottom-modal {{modalShow?'show':''}}">
+  <view class="cu-dialog" style="padding-bottom: {{isIphoneX ? '68rpx' : '0rpx'}};">
+    <view class="cu-bar bg-white">
+      <view class=" action text-magigray text-left cor8" bindtap="hideModal">取消</view>
+      <view class="title">{{selectDate}}</view>
+      <button class="action text-magi text-right confirmbtn" bindtap="modalConfirm">确认</button>
+    </view>
+    <view class="flex f25 cor8 text-center padding-top padding-bottom solid-bottom">
+      <view class="flex-sub">平台</view>
+      <view class="flex-sub"><text>之前价格</text></view>
+      <view class="flex-sub text-right padding-right">修改价</view>
+    </view>
+    <checkbox-group bindchange="checkboxChange" name="sources">
+      <view class="cu-list menu">
+        <view class="cu-item" wx:for="{{houseDetail}}" wx:key="*this">
+          <view class="flex align-center flex-start">
+            <checkbox value="{{item.source}}" checked="{{item.checked}}" data-index="{{index}}" disabled="{{item.login_status != '00'}}" bindtap="checkTap"  data-account_id="{{item.account_id}}" data-checked="{{item.checked}}" />
+            <view class="flex align-center">
+              <image src="{{filters.sourceFilter(item.source)}}" class="margin-left platIcon"></image>
+              <text class="platname">{{item.source == '01'?'途家':item.source == '02'?'爱彼迎':item.source == '04'?'小猪':item.source == '05'?'榛果':item.source == '06'?'木鸟':''}}</text>
+              <text class="text-magigray text-22 margin-left-xs" wx:if="{{item.login_status !='00'}}">(您的账号已离线)</text>
+            </view>
+          </view>
+          <view class="content">
+            <view class="platname justify-center flex-sub text-center" wx:if="{{!!item.oldprice}}">
+              {{item.oldprice + '元'}}
+            </view>
+          </view>
+          <view class="flex flex-end">
+            <block wx:if="{{item.login_status =='00'}}">
+              <input type="number" maxlength="9" disabled="{{!item.checked || checkedLength > 1}}" name="{{item.source}}" class="text-right text-magi text-lg margin-right-xs priceinp " value="{{item.price}}" bindinput="bindSonInput" data-index="{{index}}"></input>
+              <text class="text-df {{checkedLength > 1 || !item.checked?'c7':''}}">元</text>
+            </block>
+            <block wx:else>
+              <button class="cu-btn line-magi text-sm padding-left-sm padding-right-sm rebtn" data-id="{{item.account_id}}" data-source="{{item.source}}" bindtap="relog">去绑定</button>
+            </block>
+          </view>
+        </view>
+      </view>
+    </checkbox-group>
+    <view class="text-22 text-magigray padding-left text-left  margin-top-sm {{houseDetail.length>1?'':'margin-bottom'}}">* 如果修改价格，可能会打开房态，建议谨慎操作</view>
+    <view class="padding-bottom-lg padding-top-lg flex justify-center text-34 align-center" wx:if="{{houseDetail.length > 1}}">
+      <view class="{{checkedLength > 1?'text-rs':'text-magigray'}}">统一修改价：</view>
+        <input type="number" maxlength="9" disabled="{{checkedLength <= 1}}" name="oneprice" value="{{oneprice}}" bindinput="bindOnePrice" class="tPirce text-magi margin-right-xs  padding-left-xs"></input>
+        <text class="self-end {{checkedLength > 1?'text-rs':'text-magigray'}}">元</text>
+    </view>
+
+  </view>
+</view>
+
+<!-- 价格修改结果弹窗 -->
+<view class="cu-modal {{modalName=='uploadError'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white solid-bottom">
+      <view class="content">提示</view>
+    </view>
+    <view class="padding-lg  padding-top text-26">
+      <view class="flex align-center text-bad">
+        <view>价格同步失败： </view>
+        <view class="flex sourceLogo align-center">
+          <block wx:for="{{falsePlat}}" wx:key="*this" wx:for-item="source">
+            <image src="{{source==01?'/images/tujia@3x.png':source==02?'/images/aibiying@3x.png':source==04?'/images/xiaozhu@3x.png':source==05?'/images/zhenguo@3x.png':source==06?'/images/muniao@3x.png':''}}" class=""></image>
+          </block>
+
+        </view>
+
+      </view>
+      <view class="text-xs text-left text-magigray margin-top-xs margin-bottom">* 建议您重新修改价格</view>
+      <view class="flex align-center text-best">
+        <view>价格同步成功： </view>
+        <view class="flex sourceLogo align-center">
+          <block wx:for="{{truePlat}}" wx:key="*this" wx:for-item="source">
+            <image src="{{filters.sourceFilter(source)}}" class=""></image>
+          </block>
+
+        </view>
+
+
+      </view>
+    </view>
+    <view class="cu-bar bg-white addModal justify-center">
+      <view class="action" style="width:100%;">
+        <!-- <button class="cu-btn line-magi" bindtap='closeModal'>取消</button> -->
+        <button class="cu-btn bg-magi" bindtap='closeModal'>确定</button>
+      </view>
+    </view>
+  </view>
+</view>

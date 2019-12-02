@@ -1,0 +1,117 @@
+/* pages/main/main.wxss */
+.mainTop{
+  height: 320rpx;
+  background:url('https://magicdn.oss-cn-beijing.aliyuncs.com/pms/miniapp/static/mainTopBg.png') no-repeat;
+  background-size:100% 100%;
+  
+}
+.touxiang{
+   width:160rpx;
+  height:160rpx;
+ overflow: hidden;
+}
+.wh100{
+  width:100%;
+  height: 100%;
+}
+.tel{
+  font-size: 38rpx;
+  color:#fff;
+}
+.myPlat{
+   width:690rpx;
+   height: 160rpx;
+   border-radius: 30rpx;
+   margin:0 auto;
+   margin-top:-80rpx;
+}
+.toolicon {
+  width: 90rpx;
+  height: 90rpx;
+  background:  linear-gradient(to bottom, rgba(242, 248, 255, 1), rgba(225, 238, 255, 1));
+}
+.toolicon2{
+   width: 70rpx;
+  height: 70rpx;
+  background:  linear-gradient(to bottom, rgba(242, 248, 255, 1), rgba(225, 238, 255, 1));
+}
+.toolicongray{
+   width: 70rpx;
+  height: 70rpx;
+  background: rgb(244,244,244);
+}
+.myPlat image{
+  width: 50rpx;
+  height: 44rpx;
+}
+.tooliconimg{
+  width:36rpx;
+  height: 36rpx;
+}
+.tooliconimg2{
+   width:38rpx;
+  height: 36rpx;
+}
+.toolitem{
+  width:33.3%;
+  position:relative;
+}
+.f14{
+  /* width:50rpx; */
+  height:24rpx;
+  line-height: 24rpx;
+  font-size: 14rpx;
+  background: rgb(179,179,179) !important;
+  border-radius: 15rpx;
+  position: absolute;
+  bottom:0rpx;
+  right:-30rpx;
+ padding:0 6rpx;
+}
+.br4{
+  border-radius: 4rpx!important;
+}
+.btnContact{
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 80%;
+  height: 80%;
+  opacity: 0;
+}
+.layout{
+  margin: 40rpx 30rpx 50rpx;
+}
+.cu-dialog.con{
+width:600rpx;
+background:none;
+border-radius:0rpx;
+
+}
+.closeing{
+  width:40rpx;
+  height: 40rpx;
+  position: absolute;
+  top:40rpx;
+  right: 40rpx;
+  z-index: 10000;
+}
+.noSet{
+ position:relative;
+display:block;
+margin-left:auto;
+margin-right:auto;
+padding-left:14px;
+padding-right:14px;
+box-sizing:border-box;
+font-size:18px;
+text-align:center;
+text-decoration:none;
+line-height:2.55555556;
+border-radius:5px;
+-webkit-tap-highlight-color:transparent;
+overflow:hidden;
+color:#fff;
+background-color:#0060e4;
+
+}

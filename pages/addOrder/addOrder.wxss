@@ -1,0 +1,4 @@
+/* pages/addOrder/addOrder.wxss */
+.cu-form-group .title{
+  width: 180rpx;
+}

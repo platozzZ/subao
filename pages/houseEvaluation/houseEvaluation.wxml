@@ -1,0 +1,117 @@
+<view class="contaner">
+  <view class="topnav response" style="height: {{imgHeight + 'px'}}">
+    <image src="https://magicdn.oss-cn-beijing.aliyuncs.com/pms/miniapp/static/zonghebg.png" class="topbg" mode="widthFix" bindload="bgLoad"></image>
+    <view class="flex align-center padding-left padding-right" style="height: 200px;">
+      <view class="">
+        <view class="flex">
+          <view class="f70">{{art.whole_score}}</view>
+          <view class="f40">分</view>
+          <image src="/images/wenhao.png" class="wenhao" bindtap="underscore"></image>
+        </view>
+        <view class="pinggudes margin-top-sm">
+          房源综合评估：
+          <text>{{art.whole_level==3?'极好':art.whole_level==2?'优秀':art.whole_level==1?'良好':art.whole_level==0?'较差':''}}</text>
+        </view>
+        <view class="pinggutime text-xs">
+          最新评估时间：{{art.latest_assess_time}}
+        </view>
+      </view>
+      <view class="flex-sub margin-left ">
+        <view class="chartContainer">
+          <ec-canvas class="chartContainer-chart" id="mainChart" canvas-id="mainChart" ec="{{ ecLine }}"></ec-canvas>
+        </view>
+
+      </view>
+    </view>  
+  </view>
+  <view class="padding" style="margin-top: {{'-' + (imgHeight - 200) + 'px'}};">
+    <view class="pinggubot">
+      <view class="flex padding solid-bottom">
+        <!-- <view> -->
+          <image src="{{art.thumbnail_url}}" class="houseimg"></image>
+        <!-- </view> -->
+        <view class="flex flex-direction justify-between">
+          <view class="housetitle text-cut">
+            {{art.name}}
+          </view>
+          <view class="houseaddress text-cut text-magigray">
+            {{art.address}}
+          </view>
+          <view class="flex">
+            <block wx:for="{{art.sources}}" wx:key="*this">
+              <image src="/images/airbnb.png" class="platform" wx:if="{{item==02}}"></image>
+              <image src="/images/xiaozhu.png" class="platform" wx:if="{{item==04}}"></image>
+              <image src="/images/zhenguo.png" class="platform" wx:if="{{item==05}}"></image>
+              <image src="/images/muniao.png" class="platform" wx:if="{{item==06}}"></image>
+              <image src="/images/tujia.png" class="platform" wx:if="{{item==01}}"></image>
+            </block>
+
+          </view>
+        </view>
+      </view>
+      <view class="padding">
+        <view class="text-lg result margin-bottom-sm">评估结果</view>
+        <view class="flex justify-between margin-bottom-lg">
+          <view class="toolicon1 br50 flex flex-direction justify-center align-center">
+            <image src="/images/z-weizhi.png" class="z-weizhi"></image>
+            <view class="text-22 f206">位置</view>
+            <view class="badge {{art.location_level==3?'badge1':art.location_level==2?'badge2':art.location_level==1?'badge3':art.location_level==0?'badge4':''}} text-center">{{art.location_level==3?'极好':art.location_level==2?'优秀':art.location_level==1?'良好':art.location_level==0?'较差':''}}</view>
+
+          </view>
+          <view class="toolicon1 br50 flex flex-direction align-center justify-center">
+            <image src="/images/z-zhuangxiu.png" class="z-zhuangxiu"></image>
+            <view class="text-22 f206">装修</view>
+            <view class="badge {{art.fitment_level==3?'badge1':art.fitment_level==2?'badge2':art.fitment_level==1?'badge3':art.fitment_level==0?'badge4':''}} text-center">{{art.fitment_level==3?'极好':art.fitment_level==2?'优秀':art.fitment_level==1?'良好':art.fitment_level==0?'较差':''}}</view>
+
+          </view>
+          <view class="toolicon1 br50 flex flex-direction align-center justify-center">
+            <image src="/images/z-jiage.png" class="z-jiage"></image>
+            <view class="text-22 f206">价格</view>
+            <view class="badge {{art.price_level==3?'badge1':art.price_level==2?'badge2':art.price_level==1?'badge3':art.price_level==0?'badge4':''}} text-center">{{art.price_level==3?'极好':art.price_level==2?'优秀':art.price_level==1?'良好':art.price_level==0?'较差':''}}</view>
+
+          </view>
+          <view class="toolicon1 br50 flex flex-direction align-center justify-center">
+            <image src="/images/z-keyuan.png" class="z-keyuan"></image>
+            <view class="text-22 f206">客源</view>
+            <view class="badge {{art.customer_level==3?'badge1':art.customer_level==2?'badge2':art.customer_level==1?'badge3':art.customer_level==0?'badge4':''}} text-center">{{art.customer_level==3?'极好':art.customer_level==2?'优秀':art.customer_level==1?'良好':art.customer_level==0?'较差':''}}</view>
+
+          </view>
+        </view>
+        <button class="cu-btn flex line-magi" style="height:90rpx;line-height:90rpx;" bindtap="todetail">查看房源评估详情</button>
+        <!-- <view class="todetail text-magi text-center" bindtap="todetail">
+          查看房源评估详情
+
+        </view> -->
+
+      </view>
+    </view>
+  </view>
+  
+  <view class="cu-bar text-default">
+    <view class="action text-lg">提升房源收益工具</view>
+  </view>
+  
+  <view class="cu-list menu">
+    <view class="cu-item padding-tb" wx:for="{{tools}}" data-index="{{index}}" wx:key="*this">
+      <view class="cu-avatar round toolicon margin-right-sm">
+        <view class="flex align-center justify-center">
+          <image src="{{item.icon}}" class="tooliconimg"></image>
+        </view>
+      </view>
+      <view class="content">
+          <view class="text-rs text-df flex align-center">
+            {{item.title}}
+            <view class="cu-tag bg-free new-free margin-left-xs" wx:if="{{item.isFree}}">限时免费</view>
+          </view>
+          <view class="flex new-tag">
+            <view class="cu-tag text-22" style="color:{{sitem.color}}" wx:for="{{item.des}}" wx:for-item="sitem">{{sitem.title}}</view>
+          </view>
+      </view>
+      <view class="action" data-index="{{index}}" bindtap="{{isLogin?'toolTap':''}}">
+        <view class="kaifang {{!item.disabled?'bg-magi':'d6'}}">{{item.disabled?'即将开放':item.btntext}}</view>
+        <button class="cu-btn line-transparent" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!isLogin}}" data-target="updateHouse"></button>
+      </view>
+    </view>
+
+  </view>
+</view>

@@ -1,0 +1,188 @@
+.box{
+  padding-bottom: 164rpx;
+  padding-top: 0;
+}
+.cu-bar.fixed, .nav.fixed{
+  box-shadow: none;
+}
+.box.haveNew{
+  padding-top: 100rpx; /** 230rpx **/
+}
+.house-tab .flex-sub{
+  height: 80rpx;
+  line-height: 80rpx; 
+  /* border-top: 1rpx solid #0060e4; */
+  border: 1rpx solid #0060e4;
+  color: #0060e4;
+}
+.house-tab .flex-sub.cur{
+  color: #fff;
+  background: #0060e4;
+}
+.house-tab .flex-sub:first-child{
+  border-top-left-radius: 4rpx;
+  border-bottom-left-radius: 4rpx;
+  border-right: 0;
+}
+.house-tab .flex-sub:last-child{
+  border-top-right-radius: 4rpx;
+  border-bottom-right-radius: 4rpx;
+  border-left: 0;
+}
+.houseTips-text{
+  color: rgb(173,173,173);
+  line-height: 40rpx;
+}
+
+.cu-list.menu-avatar>.cu-item{
+  height: auto;
+  padding: 30rpx;
+}
+.cu-list.menu-avatar>.cu-item>checkbox{
+  margin-right: 20rpx;
+}
+.cu-list.menu-avatar>.cu-item>.cu-avatar{
+  position: initial;
+  margin-right: 20rpx;
+}
+.cu-list.menu>.cu-item .content {
+  font-size: 28rpx;
+  display: flex;
+  flex-direction: column;
+  min-height: 230rpx;
+  width: calc(100vw - 250rpx);
+}
+checkbox-group .cu-list.menu>.cu-item .content {
+  width: calc(100vw - 326rpx);
+}
+.defaultFlex .text-cut{
+  font-size: 26rpx;
+  flex: 1;
+}
+.count{
+  /* width: 110rpx;
+  text-align: right; */
+  margin-left: 30rpx;
+}
+.assess{
+  font-size: 30rpx;
+}
+.cu-list.menu>.cu-item .content .house-address{
+  flex: 1;
+  line-height: 36rpx;
+}
+.cu-avatar.xl{
+  width: 170rpx;
+  height: 230rpx;
+}
+
+.cu-item-logo{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.instanceCount{
+  font-size: 22rpx;
+  line-height: 30rpx;
+}
+.sourceLogo image{
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 10rpx;
+}
+
+.house-bottom .cu-btn{
+  height: 50rpx;
+  line-height: 50rpx;
+  padding: 0 20rpx;
+  font-size: 24rpx;
+}
+.cu-item-logo image{
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 10rpx;
+}
+.modal-input{
+  display: flex;
+  align-items: center;
+  text-align: left;
+  padding: 0 20rpx;
+  border: 1rpx solid rgb(206,206,206);
+  border-radius: 4rpx;
+  margin: 0 auto;
+  background: rgb(249 ,249 ,249);
+  height: 70rpx;
+}
+
+.modal-input input{
+  flex: 1;
+}
+
+.cu-list>.cu-item .move {
+  width: 200rpx;
+}
+.cu-list>.cu-item.move-cur {
+  transform: translateX(-200rpx);
+}
+.cu-list>.cu-item .move button {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:100%;
+}
+.mask{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1001;
+}
+.emptyContainer{
+  top: 350rpx;
+}
+.cu-dialog.assess{
+  width: 520rpx;
+  height: 610rpx;
+  background: rgba(255,255,255,0)
+}
+.cu-dialog.assess .bg-img{
+  width: 100%;
+  height: 100%;
+}
+
+checkbox .wx-checkbox-input::before{
+  display: block;
+  content: ''
+}
+checkbox .wx-checkbox-input{
+  width: 38rpx;
+  height: 38rpx;
+}
+.checkbox checkbox .wx-checkbox-input.wx-checkbox-input-checked{
+  border-color:  #0060e4
+}
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
+  font-size: 36rpx;
+}
+checkbox[checked]::before {
+  content: ""!important;
+}
+checkbox::before{
+  transition: none
+}
+
+.house-cardtab{
+  border-radius: 30rpx;
+  box-shadow: 0 5rpx 6rpx rgba(0,0,0,.1)
+}
+.house-img{
+  width: 90rpx;
+  height: 90rpx;
+  background:  linear-gradient(to bottom, rgba(242, 248, 255, 1), rgba(225, 238, 255, 1));
+}
+.house-img image{
+  width: 42rpx;
+  height: auto;
+}

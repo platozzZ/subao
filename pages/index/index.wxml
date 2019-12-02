@@ -1,0 +1,153 @@
+<view wx:if="{{showContainer}}">
+<view class="container solid-top">
+  <view class="houseState flex">
+    <view class="houseState-left">
+      <!-- <view class="year" style="background-image:url(/images/calendar.png);"> -->
+      <view class="year bg-white">
+        <image src="../../images/calendar.png" class="year-image"></image>
+        <view class="year-text">{{year}}</view>
+      </view>
+      <view class="houseState-left-item bg-white flex align-center" wx:for="{{houseList}}" wx:key="*this" style="{{'height:' + item.instance_count * 56 + 'px'}}">
+        <view class="text-ellipsis" style="{{'-webkit-line-clamp:' + item.instance_count * 2}}">{{item.name}}</view>
+      </view>
+    </view>
+    <scroll-view scroll-x class="houseState-scroll" scroll-left="{{scrollLeft}}">
+      <view class="houseState-scroll-container flex header">
+        <view class="houseState-scroll-topitem flex flex-direction align-center justify-center" wx:for="{{datesList[curIndex].days}}" wx:key="{{item.key}}">
+          <view class="houseState-scroll-date">{{item.month + '月' + item.day + '日'}}</view>
+          <view class="houseState-scroll-week"><view class="today {{item.date == today?'bg-magi':''}}">{{item.week}}</view> </view>
+        </view>
+      </view>
+
+      <view 
+        class="houseState-scroll-cell flex {{'scrollCells_' + l}}" 
+        wx:for="{{newArray}}" 
+        wx:key="{{item.house_id + l}}" 
+        wx:for-index="l"
+      >
+        <view 
+          wx:for="{{item.calendars}}" 
+          wx:key="{{calendar.date}}" 
+          wx:for-item="calendar" 
+          wx:for-index="ll" 
+          data-target="cells" 
+          data-data="{{calendar.source_calendar}}"
+          data-date="{{calendar.date}}" 
+          data-houseid="{{item.house_id}}" 
+          data-count ="{{item.count}}" 
+          data-id="{{calendar.order_ids[item.count]}}"
+          data-index="{{ll}}"
+          class="houseState-scroll-item {{curData == calendar.date + '' + item.house_id + ll + item.count?'cur':''}} {{calendar.status==0?'cancelled':''}}  {{'scrollCell_' + ll}}"
+          bindtap="showModal"
+        >
+          <view 
+            wx:if="{{calendar.order}}"
+            class="houseScroll-order {{calendar.order[item.count].orderStatus ==5?'accepted':calendar.order[item.count].orderStatus ==4||calendar.order[item.count].orderStatus ==1||calendar.order[item.count].orderStatus ==3?'stayin':calendar.order[item.count].orderStatus ==999?'supplement':''}}"
+          >
+            <view class="orderSource text-cut">{{calendar.order[item.count].orderSource}}</view>
+            <view class="guestName text-cut">{{calendar.order[item.count].guestName}}</view>
+            <image src="/images/error.png" mode="widthFix" class="error" wx:if="{{calendar.warning}}"></image>
+          </view>
+          
+          <image src="/images/houseLock.png" mode="widthFix" class="lock" wx:if="{{calendar.status == 0}}"></image>
+
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  
+
+
+
+
+</view>
+
+<view class="cu-bar foot bg-magigray">
+  <view class="index-bottom flex padding-top padding-bottom justify-around">
+    <button class="cu-btn line-magi" bindtap="preWeek" disabled="{{preWeek}}"><text class="icon-back"></text></button>
+    <button class="cu-btn bg-magi" bindtap="syncHouse" disabled="{{mask}}">同步房态</button>
+    <button class="cu-btn bg-magi" bindtap="toToday" data-day="{{today}}">回到今天</button>
+    <button class="cu-btn line-magi" bindtap="nextWeek" disabled="{{nextWeek}}"><text class="icon-right"></text></button>
+  </view>
+</view>
+
+<view class="cu-modal {{showChangeModal?'show':''}}" style="z-index: 999999;">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white solid-bottom">
+      <view class="content">提示</view>
+    </view>
+    <view class="padding-xl">
+      <view>确定修改房态吗？</view>
+    </view>
+    <view class="cu-bar bg-white addModal justify-center">
+      <view class="action">
+        <button class="cu-btn line-magi" bindtap='cancelChangeModal' data-source="{{switchValue.source}}">取消</button>
+        <button class="cu-btn bg-magi margin-left" bindtap='sourceUpdate'>确定</button>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="cu-modal bottom-modal {{modalName=='cells'?'show':''}}">
+  <view class='bottom-modal-flex'>
+    <view class='hide-modal' bindtap="hideModal"></view>
+    <view class="cu-dialog index solid-bottom" style='z-index:1111;'>
+      <view class="cu-list menu index padding">
+        <view class="cu-item">
+          <view class="content">
+            <view class="text-black index-modalTitle">房态</view>
+            <view class="index-modalCell" wx:for="{{modalData}}" wx:key="*this">
+              <text wx:if="{{item.source=='01'}}">途家：</text>
+              <text wx:if="{{item.source=='02'}}">爱彼迎：</text>
+              <text wx:if="{{item.source=='04'}}">小猪：</text>
+              <text wx:if="{{item.source=='05'}}">榛果：</text>
+              <text wx:if="{{item.source=='06'}}">木鸟：</text>
+              <text> </text>
+              <text class="text-gray" wx:if="{{item.status==0}}">关闭</text> 
+              <text class="text-gray" wx:if="{{item.status==1}}">打开</text> 
+            </view>
+          </view>
+          <view class="action">
+            <view><button class='cu-btn bg-magi' bindtap="showModal" data-target="house">房态管理</button></view>
+            <view><button class='cu-btn line-magi' bindtap="toAddorder" wx:if="{{!orderId}}">添加订单</button></view>
+            <view><button class='cu-btn line-magi' bindtap="toDetail" wx:if="{{!!orderId}}">查看详情</button></view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+</view>
+<view class="cu-modal bottom-modal {{modalName=='house'?'show':''}}">
+  <view class='bottom-modal-flex'>
+    <view class='hide-modal' bindtap="hideModal"></view>
+    <view class="cu-dialog index solid-bottom" style='z-index:1111;'>
+      <view class='cu-bar bg-white'>
+        <view class='action'>房态管理</view>
+      </view>
+      <view class="cu-list menu index padding">
+        <view class="cu-item" wx:for="{{modalData}}" wx:key="*this">
+          <view class="content">
+            <view class="text-black index-modalTitle" wx:if="{{item.source=='01'}}">途家</view>
+            <view class="text-black index-modalTitle" wx:if="{{item.source=='02'}}">爱彼迎</view>
+            <view class="text-black index-modalTitle" wx:if="{{item.source=='04'}}">小猪</view>
+            <view class="text-black index-modalTitle" wx:if="{{item.source=='05'}}">榛果</view>
+            <view class="text-black index-modalTitle" wx:if="{{item.source=='06'}}">木鸟</view>
+          </view>
+          <view class="action">
+            <switch class="magi radius {{item.status==1?'checked':''}}" checked="{{item.status==1?true:false}}" name="status" value="{{item.source == '01'?'switchTujias':item.source == '02'?'switchAirbnbs':item.source == '04'?'switchXiaozhu':item.source == '05'?'switchZhenguo':'switchMuniao'}}"  bindchange="{{item.source == '01'?'switchTujias':item.source == '02'?'switchAirbnbs':item.source == '04'?'switchXiaozhu':item.source == '04'?'switchZhenguo': 'switchMuniao'}}" data-source="{{item.source}}"></switch>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+</view>
+
+<view class="emptyContainer" wx:if="{{emptyContainer}}">
+  <view>{{emptyText}}</view>
+  <button class='cu-btn bg-magi' bindtap="toBind">{{btnText}}</button>
+</view>
+
+<cu-custom></cu-custom>
+<is-login wx:if="{{!isLogin}}"></is-login>

@@ -1,0 +1,35 @@
+@import "../newIndex/newIndex.wxss";
+
+.lookcon{
+  padding-top:155rpx;
+}
+.fixtop{
+  position: fixed;
+  top:0rpx;
+  left:0rpx;
+  z-index:1000;
+  box-shadow: 0rpx 5rpx 6rpx 0rpx rgba(0,0,0,0.1);
+
+}
+.house-tab .flex-sub{
+  height: 80rpx;
+  line-height: 80rpx; 
+  border: 1rpx solid #0060e4;
+  color: #0060e4;
+}
+.house-tab .flex-sub.cur{
+  color: #fff;
+  background: #0060e4;
+}
+.house-tab .flex-sub:first-child{
+  border-top-left-radius: 4rpx;
+  border-bottom-left-radius: 4rpx;
+  border-right: 0;
+}
+.house-tab .flex-sub:last-child{
+  border-top-right-radius: 4rpx;
+  border-bottom-right-radius: 4rpx;
+  border-left: 0;
+}
+
+

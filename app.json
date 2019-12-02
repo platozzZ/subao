@@ -1,0 +1,108 @@
+{
+    "pages": [
+      "pages/home/home",
+      "pages/newIndex/newIndex",
+      "pages/index/index",
+      "pages/house/house",
+      "pages/order/order",
+      "pages/main/main",
+      "pages/calendar/calendar",
+      "pages/demo/demo",
+      "pages/houseEvaluation/houseEvaluation",
+      "pages/understandScore/understandScore",
+      "pages/houseAssess/houseAssess",
+      "pages/result/result",
+      "pages/houseVie/houseVie",
+      "pages/houseAll/houseAll",
+
+      "pages/updateHouse/updateHouse",
+      "pages/updateMore/updateMore",
+      "pages/updateSelect/updateSelect",
+      "pages/updateList/updateList",
+      "pages/uploadStep1/uploadStep1",
+      "pages/uploadStep01/uploadStep01",
+      "pages/uploadStep2/uploadStep2",
+      "pages/uploadStep3/uploadStep3",
+      "pages/uploadStep4/uploadStep4",
+      "pages/uploadStep5/uploadStep5",
+      "pages/uploadStep6/uploadStep6",
+      "pages/uploadStep7/uploadStep7",
+      "pages/uploadStep8/uploadStep8",
+      "pages/uploadStep9/uploadStep9",
+      
+      "pages/lookMoreArticle/lookMoreArticle",
+      "pages/experienceShare/experienceShare",
+      "pages/presetTime/presetTime",
+      "pages/reception/reception",
+      "pages/houseType/houseType",
+      "pages/resetPolicy/resetPolicy",
+
+      "pages/progress/progress",
+      "pages/addOrder/addOrder",
+      "pages/orderDetail/orderDetail",
+      "pages/account/account",
+      "pages/accountPhone/accountPhone",
+      "pages/accountBind/accountBind",
+      "pages/accountBind1/accountBind1",
+      "pages/accountBindTujia/accountBindTujia",
+      "pages/accountBinding/accountBinding",
+      "pages/accountPaste/accountPaste",
+      "pages/houseDetail/houseDetail",
+      "pages/readHouse/readHouse",
+      "pages/newHouse/newHouse",
+      "pages/relationHouse/relationHouse"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "宿宝",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "color": "#92979c",
+        "selectedColor": "#0060e4",
+        "borderStyle": "white",
+        "list": [
+            {
+              "pagePath": "pages/newIndex/newIndex",
+              "text": "首页",
+              "iconPath": "images/index.png",
+              "selectedIconPath": "images/index_cur.png"
+            },
+            {
+                "pagePath": "pages/calendar/calendar",
+                "text": "日历",
+                "iconPath": "images/calendar.png",
+                "selectedIconPath": "images/calendar_cur.png"
+            },
+            {
+                "pagePath": "pages/order/order",
+                "text": "订单",
+                "iconPath": "images/order.png",
+                "selectedIconPath": "images/order_cur.png"
+            },
+            {
+              "pagePath": "pages/house/house",
+              "text": "房源",
+              "iconPath": "images/house.png",
+              "selectedIconPath": "images/house_cur.png"
+            },
+            {
+                "pagePath": "pages/main/main",
+                "text": "我的",
+                "iconPath": "images/main.png",
+                "selectedIconPath": "images/main_cur.png"
+            }
+        ]
+    },
+    "networkTimeout": {
+        "request": 20000,
+        "downloadFile": 15000
+    },
+    "usingComponents": {
+      "cu-custom": "/components/cu-custom/cu-custom",
+      "is-login": "/components/isLogin/isLogin"
+    },
+    
+    "sitemapLocation": "sitemap.json"
+}

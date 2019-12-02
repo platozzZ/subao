@@ -1,0 +1,168 @@
+<form bindsubmit="formSubmit">
+  <view class="box cu-list menu">
+    <view class="cu-item margin-top justify-between" url="../housetype/housetype">
+      <view class="action text-df">最少预定天数</view>
+      <view class="">
+        <view class="stepper flex">
+          <!-- 减号 -->
+          <view class="stepperHanel " data-target="min" bindtap="{{art.days_min > 1?'bindMinus':''}}">
+            <image src="/images/minus.png" wx:if="{{art.days_min > 1}}"></image>
+            <image src="/images/minusno.png" wx:else></image>
+          </view>
+          <!-- 数值 -->
+          <view class="stepperHanel stepperNum" >{{art.days_min?art.days_min : ''}}</view>
+          <!-- 加号 -->
+          <view class="stepperHanel" data-target="min" bindtap="bindPlus">
+            <image src="/images/plus.png"></image>
+          </view>
+        </view>
+        <input name="days_min" value="{{art.days_min}}" hidden></input>
+      </view>
+    </view>
+    <view class="cu-item">
+      <view class="action text-df">最多预定天数</view>
+      <view class="content flex flex-direction {{art.days_max > 0?'maxDate':''}}">
+        <radio-group class="radioGroup block flex align-center justify-end" bindchange="dateChange" name="">
+          <label class="flex align-center">
+            <radio class="magi" value="0" checked="{{art.days_max == 0}}"></radio>
+            <text>不限</text>
+          </label>
+          <label class="flex align-center margin-left-lg">
+            <radio class="magi" value="1" checked="{{art.days_max > 0}}"></radio>
+            <text>限制</text>
+          </label>
+        </radio-group>
+        <view class="maxStepper flex justify-end" wx:if="{{art.days_max > 0}}">
+          <view class="stepper flex align-center" style="">
+            <!-- 减号 -->
+            <view class="stepperHanel flex align-center" data-target="max" bindtap="{{art.days_max > 1?'bindMinus':''}}">
+              <image src="/images/minus.png" wx:if="{{art.days_max > 1}}"></image>
+              <image src="/images/minusno.png" wx:else></image>
+            </view>
+            <!-- 数值 -->
+            <view class="stepperHanel stepperNum flex align-center" >
+              <text>{{art.days_max}}</text>
+            </view>
+            <!-- 加号 -->
+            <view class="stepperHanel flex align-center" data-target="max" bindtap="bindPlus">
+              <image src="/images/plus.png"></image>
+            </view>
+          </view>
+        </view>
+        <input name="days_max" value="{{art.days_max}}" hidden></input>
+      </view>
+    </view>
+    <navigator class="cu-item arrow" url="../presetTime/presetTime?name={{art.preset_time_now}}">
+      <view class="action text-df">当天预定时间</view>
+      <view class="content">{{!art.preset_time_now?'请选择':art.preset_time_now}}</view>
+      <input name="preset_time_now" value="{{art.preset_time_now}}" hidden></input>
+    </navigator>
+    <view class="cu-item margin-top arrow">
+      <view class="action text-df">最早入住时间</view>
+      <view class="content">
+        <picker bindchange="pickChange" value="{{isArr[isIndex]}}" range="{{isArr}}" data-target="is" name="live_time_min">
+          <view class="picker">
+            {{isIndex > 0 || isIndex == 0?isArr[isIndex]:'请选择'}}
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="cu-item arrow">
+      <view class="action text-df">最晚入住时间</view>
+      <view class="content">
+        <picker bindchange="pickChange" value="{{ieArr[ieIndex]}}" range="{{ieArr}}" data-target="ie" name="live_time_max">
+          <view class="picker">
+            {{ieIndex > 0 || ieIndex == 0?ieArr[ieIndex]:'请选择'}}
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="cu-item arrow">
+      <view class="action text-df">最晚退房时间</view>
+      <view class="content">
+        <picker bindchange="pickChange" value="{{oeArr[oeIndex]}}" range="{{oeArr}}" data-target="oe" name="checkout_time_max">
+          <view class="picker">
+            {{oeIndex > 0 || oeIndex == 0?oeArr[oeIndex]:'请选择'}}
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="cu-item arrow">
+      <view class="action text-df">卫生打扫</view>
+      <view class="content">
+        <picker bindchange="pickChange" value="{{wsArr[wsIndex]}}" range="{{wsArr}}" data-target="ws" name="cleaning_type">
+          <view class="picker">
+            {{wsIndex > 0 || wsIndex == 0?wsArr[wsIndex]:'请选择'}}
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="cu-item arrow">
+      <view class="action text-df">被单更换</view>
+      <view class="content">
+        <picker bindchange="pickChange" value="{{bdArr[bdIndex]}}" range="{{bdArr}}" data-target="bd" name="sheet_replace">
+          <view class="picker">
+            {{bdIndex > 0 || bdIndex == 0?bdArr[bdIndex]:'请选择'}}
+          </view>
+        </picker>
+      </view>
+    </view>
+    <navigator class="cu-item arrow" url="../reception/reception?name={{!art.reception_require?'请选择':art.reception_require}}">
+      <view class="action text-df">接待要求</view>
+      <view class="content text-cut">{{!art.reception_require?'请选择':art.reception_require}}</view>
+      <input name="reception_require" value="{{art.reception_require}}" hidden></input>
+    </navigator>
+    <view class="cu-bar margin-top"><view class="action">给预定房客留言</view></view>
+    <view class="cu-item">
+      <!-- <textarea name="leave_message" maxlength="500" placeholder="非必填，500字以内" class="textarea" value="{{art.leave_message}}"></textarea> -->
+
+      <textarea wx:if='{{!multiShow}}' class="textarea" placeholder="非必填，500字以内" value='{{art.leave_message}}' maxlength='500' bindinput='textareaInput' bindblur="ifshowArea" data-show="yes" focus="true" ></textarea>
+      <view wx:if="{{multiShow}}" class="textarea" style='color:{{!art.leave_message?"#999":"#353535"}};' data-show="no" bindtap="ifshowArea">{{!art.leave_message?'非必填，500字以内':art.leave_message}}</view>
+      <input name="leave_message" value="{{art.leave_message}}" hidden maxlength="500"></input>
+    </view>
+    
+
+
+
+
+  </view>  
+
+  <view class="cu-bar foot bg-magigray">
+    <view class="response flex padding">
+      <button class="cu-btn line-magi" form-type="submit" data-target="hold">保存</button>
+      <button class="cu-btn bg-magi margin-left" form-type="submit" data-target="next">下一步</button>
+    </view>
+  </view>
+</form>
+
+
+<!-- 房屋户型 -->
+<view class="cu-modal bottom-modal {{modalName=='housetype'?'show':''}}" bindtap="hideModal">
+  <view class="cu-dialog" catchtap>
+    <view class="cu-bar bg-white">
+      <view class="action text-magigray" bindtap="hideModal">取消</view>
+      <view class="title">房屋户型</view>
+      <view class="action text-magi" bindtap="hideModal">确定</view>
+    </view>
+    <view class="cu-list menu">
+      <view class="cu-item" wx:for="{{houseTypeList}}" wx:key="*this">
+        <view class="content">{{item.name}}</view>
+        <view class="action">
+          <view class="stepper flex">
+            <!-- 减号 -->
+            <view class="stepperHanel " data-index="{{index}}" bindtap="{{item.num > 0?'bindMinus':''}}">
+              <image src="/images/minus.png" wx:if="{{item.num > 0}}"></image>
+              <image src="/images/minusno.png" wx:else></image>
+            </view>
+            <!-- 数值 -->
+            <view class="stepperHanel stepperNum" >{{item.num}}</view>
+            <!-- 加号 -->
+            <view class="stepperHanel" data-index="{{index}}" bindtap="bindPlus">
+              <image src="/images/plus.png"></image>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

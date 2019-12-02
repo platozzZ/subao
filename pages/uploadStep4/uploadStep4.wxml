@@ -1,0 +1,67 @@
+<form bindsubmit="formSubmit">
+  <view class="box">
+    <view class="cu-bar">
+      <view class="action">特色亮点</view>
+    </view>
+    <view class="cu-form-group">
+    <!-- <textarea name="lightspot" value="{{art.lightspot}}" maxlength="1000" bindinput="textareaAInput" data-target="lightspot" placeholder="可描述下房屋的风格，家居配套等特色, 30-1000字"></textarea> -->
+
+      <textarea wx:if='{{!lightspotShow}}' class="textarea" placeholder="可描述下房屋的风格，家居配套等特色, 30-1000字" value='{{art.lightspot}}' maxlength='1000' bindinput='textareaAInput' bindblur="ifshowArea" data-show="yes" focus="true" data-target="lightspot"></textarea>
+      
+      <view wx:if="{{lightspotShow}}" class="textarea" style='color:{{!art.lightspot?"#999":"#353535"}};' data-show="no" bindtap="ifshowArea" data-target="lightspot">{{!art.lightspot?'可描述下房屋的风格，家居配套等特色, 30-1000字':art.lightspot}}</view>
+
+      <input name="lightspot" value="{{art.lightspot}}" hidden maxlength="1000"></input>
+      
+      <view class="textareaTips">{{art.lightspot.length?art.lightspot.length:'0'}}/1000</view>
+    </view>
+    <view class="cu-bar">
+      <view class="action">交通位置</view>
+    </view>
+    <view class="cu-form-group">
+      <!-- <textarea name="traffic_location" value="{{art.traffic_location}}" maxlength="500" bindinput="textareaAInput" data-target="traffic_location" placeholder="可描述下小区的交通环境，乘车路线等，非必填，30-500字"></textarea> -->
+
+      <textarea wx:if='{{!traffic_locationShow}}' class="textarea" placeholder="可描述下小区的交通环境，乘车路线等，非必填，30-500字" value='{{art.traffic_location}}' maxlength='500' bindinput='textareaAInput' bindblur="ifshowArea" data-show="yes" focus="true" data-target="traffic_location"></textarea>
+
+      <view wx:if="{{traffic_locationShow}}" class="textarea" style='color:{{!art.traffic_location?"#999":"#353535"}};' data-show="no" bindtap="ifshowArea" data-target="traffic_location">{{!art.traffic_location?'可描述下小区的交通环境，乘车路线等，非必填，30-500字':art.traffic_location}}</view>
+
+      <input name="traffic_location" value="{{art.traffic_location}}" hidden maxlength="500"></input>
+
+      <view class="textareaTips">{{art.traffic_location.length?art.traffic_location.length:'0'}}/500</view>
+    </view>
+    <view class="cu-bar">
+      <view class="action">周边设施</view>
+    </view>
+    <view class="cu-form-group">
+      <!-- <textarea name="nearby_sth" value="{{art.nearby_sth}}" maxlength="500" bindinput="textareaAInput" data-target="nearby_sth" placeholder="可描述下小区周边环境设施，如景点、地标等，非必填，30-500字"></textarea> -->
+
+      <textarea wx:if='{{!nearby_sthShow}}' class="textarea" placeholder="可描述下小区周边环境设施，如景点、地标等，非必填，30-500字" value='{{art.nearby_sth}}' maxlength='500' bindinput='textareaAInput' bindblur="ifshowArea" data-show="yes" focus="true" data-target="nearby_sth"></textarea>
+
+      <view wx:if="{{nearby_sthShow}}" class="textarea" style='color:{{!art.nearby_sth?"#999":"#353535"}};' data-show="no" bindtap="ifshowArea" data-target="nearby_sth">{{!art.nearby_sth?'可描述下小区周边环境设施，如景点、地标等，非必填，30-500字':art.nearby_sth}}</view>
+
+      <input name="nearby_sth" value="{{art.nearby_sth}}" hidden maxlength="500"></input>
+
+      <view class="textareaTips">{{art.nearby_sth.length?art.nearby_sth.length:'0'}}/500</view>
+    </view>
+    <view class="cu-bar">
+      <view class="action">其他</view>
+    </view>
+    <view class="cu-form-group">
+      <!-- <textarea name="other_sth" value="{{art.other_sth}}" maxlength="500" bindinput="textareaAInput" data-target="other_sth" placeholder="其它房屋说明，非必填，30-500字"></textarea> -->
+
+      <textarea wx:if='{{!other_sthShow}}' class="textarea" placeholder="其它房屋说明，非必填，30-500字" value='{{art.other_sth}}' maxlength='500' bindinput='textareaAInput' bindblur="ifshowArea" data-show="yes" focus="true" data-target="other_sth"></textarea>
+
+      <view wx:if="{{other_sthShow}}" class="textarea" style='color:{{!art.other_sth?"#999":"#353535"}};' data-show="no" bindtap="ifshowArea" data-target="other_sth">{{!art.other_sth?'其它房屋说明，非必填，30-500字':art.other_sth}}</view>
+
+      <input name="other_sth" value="{{art.other_sth}}" hidden maxlength="500"></input>
+
+      <view class="textareaTips">{{art.other_sth.length?art.other_sth.length:'0'}}/500</view>
+    </view>
+  </view>
+
+  <view class="cu-bar foot bg-magigray">
+    <view class="response flex padding">
+      <button class="cu-btn line-magi" form-type="submit" data-target="hold">保存</button>
+      <button class="cu-btn bg-magi margin-left" form-type="submit" data-target="next">下一步</button>
+    </view>
+  </view>
+</form>

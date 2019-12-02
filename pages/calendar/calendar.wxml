@@ -1,0 +1,107 @@
+<view class="container solid-top flex">
+  <view class="calendar-left">
+    <view class="calendar-left-item bg-white solid-right solid-bottom year flex flex-direction justify-center aligin-center text-center">
+      <view class="year-top">
+        <image src="/images/calendars.png" mode="widthFix"></image>
+        <view class="year-text text-xs text-199 text-center">{{dateList.year}}</view>
+      </view>
+      <view class="text-22 text-199 margin-top-xs">可查看十天</view>
+    </view>
+    <view class="calendar-left-item bg-white flex align-center justify-center text-sm text-magi padding-sm padding-right-xs solid-right solid-bottom" wx:for="{{houseList}}" wx:key="*this" bindtap="toVie" data-id="{{item.id}}">
+      <view class="text-ellipsis">{{item.name}}</view>
+      <text class="icon-right"></text>
+    </view>
+  </view>
+  <scroll-view scroll-x class="calendar-scroll">
+    <view class="calendar-scroll-cells calendar-scroll-top flex">
+      <view class="calendar-scroll-item flex flex-direction align-center justify-center bg-white solid-right solid-bottom" wx:for="{{dateList.days}}" wx:key="{{item.key}}">
+        <view class="calendar-scroll-date text-sm margin-bottom-xs">{{item.month + '月' + item.day + '日'}}</view>
+        <view class="calendar-scroll-week text-199 text-center text-sm"><view class="today {{item.date == today?'bg-magi':''}}">{{item.week}}</view> </view>
+      </view>
+    </view>
+    <view 
+      wx:for="{{newArray}}" 
+      wx:key="*this" 
+      wx:for-index="l"
+      class="calendar-scroll-cells flex" 
+    >
+      <view 
+        wx:for="{{item.calendars}}" 
+        wx:key="*this" 
+        wx:for-item="calendar" 
+        wx:for-index="ll" 
+        data-target="cells" 
+        data-date="{{calendar.date}}"
+        data-id="{{calendar.house_id}}"
+        data-sources="{{calendar.source_calendar}}"
+        bindtap="showModal"
+        class="calendar-scroll-item bg-white solid-right solid-bottom flex flex-direction justify-between {{curData == calendar.house_id + calendar.date ?'cur':''}} {{calendar.status == 0?'calendar-scroll-item-close':''}}"
+      >
+        <view class="flex justify-end calendar-scroll-item-img margin-top-xs">
+          <image src="/images/calendarError.png" mode="aspectFit" class="calendarError margin-right-xs" wx:if="{{calendar.warning}}"></image>
+          <image src="/images/calendarClose.png" mode="aspectFit" class="calendarClose margin-right-xs" wx:if="{{calendar.status == 0}}"></image>
+        </view>
+        <view class="flex align-center justify-between" wx:if="{{calendar.order_sources.length > 0}}">
+          <view class="text-sm text-magi padding-bottom-xs">{{'已订' + calendar.order_sources.length + '/' + item.instance_count}}</view>
+          <view class="triangle-bottomright"></view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+<view class="cu-bar foot bg-magigray padding response">
+  <button class="cu-btn bg-magi " bindtap="syncHouse" disabled="{{mask}}">同步房态</button>
+</view>
+
+<view class="cu-modal {{modalTips?'show':''}}" style="z-index: 999999;">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white solid-bottom">
+      <view class="content">提示</view>
+    </view>
+    <view class="padding-xl">
+      <view>确定修改房态吗？</view>
+    </view>
+    <view class="cu-bar bg-white addModal justify-center">
+      <view class="action">
+        <button class="cu-btn line-magi" bindtap='hideModalTips' data-source="{{switchValue.source}}">取消</button>
+        <button class="cu-btn bg-magi margin-left" bindtap='sourceUpdate'>确定</button>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="cu-modal bottom-modal {{modalName=='cells'?'show':''}} flex flex-direction">
+  <view class='bottom-modal-flex'>
+    <view class='hide-modal' bindtap="hideModal"></view>
+    <view class="cu-dialog index solid-bottom" style='z-index:1111;'>
+      <form bindsubmit="modalConfirm">
+        <view class="bottom-modal-container">
+          <view class="cu-list menu">
+            <view class="cu-item text-888 text-sm">
+              <text>平台</text>
+              <view class="text-default text-lg">{{curDate}}</view>
+              <text>房态管理</text>
+            </view>
+            <view class="cu-item" wx:for="{{modalData}}" wx:key="*this">
+              <view class="text-rs text-lg">
+                {{sourceObj[item.source].source_text}}
+                <text class="text-22 text-199" wx:if="{{item.account_status != '00'}}">（您的账号已离线）</text>
+              </view>
+              <switch class="magi radius {{item.status==1?'checked':''}}" checked="{{item.status==1}}" name="status" value="{{item.status}}" data-source="{{item.source}}" bindchange="switchChange" wx:if="{{item.account_status == '00'}}"></switch>
+              <button class="cu-btn line-magi" bindtap="toAccount" wx:else>去绑定</button>
+            </view>
+          </view>
+        </view>
+      </form>
+    </view>
+  </view>
+</view>
+
+
+<view class="emptyContainer" wx:if="{{emptyContainer}}">
+  <view>{{emptyText}}</view>
+  <button class='cu-btn bg-magi' bindtap="toBind">{{btnText}}</button>
+</view>
+
+<cu-custom></cu-custom>
+<is-login wx:if="{{!isLogin}}"></is-login>

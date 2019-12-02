@@ -1,0 +1,92 @@
+<view class="box">
+  <view class="cu-list menu ">
+    <navigator class="cu-item arrow" url="../uploadStep1/uploadStep1?type=0&id={{houseId}}&origin=0&item={{item}}">
+      <view class="content">
+        <text>选择平台</text>
+      </view>
+      <view class="action text-df">
+        <text class="text-228">已完成</text>
+      </view>
+    </navigator>
+    <navigator class="cu-item arrow" url="../uploadStep2/uploadStep2?type=0&id={{houseId}}">
+      <view class="content">
+        <text>房屋地址</text>
+      </view>
+      <view class="action text-df">
+        <text class="text-173" wx:if="{{art.address_status == 0}}">待完善</text>
+        <text class="text-228" wx:else>已完成</text>
+      </view>
+    </navigator>
+    <navigator class="cu-item arrow" url="../uploadStep3/uploadStep3?type=0&id={{houseId}}">
+      <view class="content">
+        <text>房屋详情</text>
+      </view>
+      <view class="action text-df">
+        <text class="text-173" wx:if="{{art.detail_status == 0}}">待完善</text>
+        <text class="text-228" wx:else>已完成</text>
+      </view>
+    </navigator>
+    <navigator class="cu-item arrow" url="../uploadStep4/uploadStep4?type=0&id={{houseId}}">
+      <view class="content">
+        <text>房屋描述</text>
+      </view>
+      <view class="action text-df">
+        <text class="text-173" wx:if="{{art.desc_status == 0}}">待完善</text>
+        <text class="text-228" wx:else>已完成</text>
+      </view>
+    </navigator>
+    <navigator class="cu-item arrow" url="../uploadStep5/uploadStep5?type=0&id={{houseId}}">
+      <view class="content">
+        <text>设施服务</text>
+      </view>
+      <view class="action text-df">
+        <text class="text-173" wx:if="{{art.facility_status == 0}}">待完善</text>
+        <text class="text-228" wx:else>已完成</text>
+      </view>
+    </navigator>
+    <navigator class="cu-item arrow" url="../uploadStep6/uploadStep6?type=0&id={{houseId}}">
+      <view class="content">
+        <text>房客要求</text>
+      </view>
+      <view class="action text-df">
+        <text class="text-173" wx:if="{{art.require_status == 0}}">待完善</text>
+        <text class="text-228" wx:else>已完成</text>
+      </view>
+    </navigator>
+    <navigator class="cu-item arrow" url="../uploadStep7/uploadStep7?type=0&id={{houseId}}">
+      <view class="content">
+        <text>费用价格</text>
+      </view>
+      <view class="action text-df">
+        <text class="text-173" wx:if="{{art.price_status == 0}}">待完善</text>
+        <text class="text-228" wx:else>已完成</text>
+      </view>
+    </navigator>
+    <navigator class="cu-item arrow" url="../uploadStep8/uploadStep8?type=0&id={{houseId}}">
+      <view class="content">
+        <text>房屋照片</text>
+      </view>
+      <view class="action text-df">
+        <text class="text-173" wx:if="{{art.pic_status == 0}}">待完善</text>
+        <text class="text-228" wx:else>已完成</text>
+      </view>
+    </navigator>
+    <navigator class="cu-item arrow" url="../uploadStep9/uploadStep9?type=0&id={{houseId}}">
+      <view class="content">
+        <text>房屋资质</text>
+      </view>
+      <view class="action text-df">
+        <text class="text-173" wx:if="{{art.cert_status == 0}}">待完善</text>
+        <text class="text-228" wx:else>已完成</text>
+      </view>
+    </navigator>
+    
+    
+  </view>
+</view>  
+<view class="canui-foor-fixed bg-magigray">
+    <view class="flex justify-between order-btn-box padding">
+        <button class="cu-btn bg-magi" bindtap="toProgress" wx:if="{{art.house_status == 1}}">查看进度</button>
+        <button class="cu-btn bg-magi" bindtap="commitHouse" wx:else>提交</button>
+    </view>
+</view>

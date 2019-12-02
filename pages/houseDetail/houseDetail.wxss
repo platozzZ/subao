@@ -1,0 +1,55 @@
+@import "../relationHouse/relationHouse.wxss";
+.fixed{
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgb(249,249,249);
+  z-index: 1;
+}
+.modal-input input{
+  flex: 1;
+}
+.nav .cu-item{
+  position: relative;
+}
+.nav .cu-item.cur{
+    border: 0;
+}
+.nav .cu-item.cur::after {
+    content: "";
+    position: absolute;
+    bottom: 1px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+            transform: translateX(-50%);
+    width: 100%;
+    /* height: 1px;
+    background: #014099; */
+    border-bottom: 1px solid #0060e4;
+    -webkit-animation: test ease 1 0.6s;
+            animation: test ease 1 0.6s;
+}
+@-webkit-keyframes test {
+    0% {
+        width: 80%;
+    }
+    50% {
+        width: 50%;
+    }
+    100% {
+        width: 100%;
+    }
+}
+@keyframes test {
+    0% {
+        width: 80%;
+    }
+    50% {
+        width: 50%;
+    }
+    100% {
+        width: 100%;
+    }
+}

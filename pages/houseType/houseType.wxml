@@ -1,0 +1,49 @@
+<radio-group bindchange="radioChange">
+  <block wx:for="{{housetype}}">
+    <view class="cu-bar">
+      <view class="action">{{item.title}}</view>
+    </view>
+    <view class="cu-list menu">
+      <label class="cu-item" wx:for="{{item.list}}" wx:key="*this" wx:for-item="l">
+        <view class="content">
+          {{l.name}}
+        </view>
+        <view class="action">
+          <radio class="magi" value="{{l.name}}" checked="{{l.checked}}"></radio>
+        </view>
+      </label>
+
+    </view>
+
+  </block>
+</radio-group>
+
+<!-- <view class="container">
+
+  <view class="feiyong">
+   <view wx:for="{{housetype}}">
+   
+ 
+    <view class="yaotitle">
+      {{item.title}}
+    </view>
+    <view class="feicon boxz pl30 ">
+      <view class="conitem pr pr30 flex" style="border-top:1rpx solid #e5e5e5;{{smallindex==0?'border:none;':''}}" wx:for="{{item.list}}" wx:key="*index"   wx:for-index="smallindex" data-check="{{item.check}}" data-name="{{item.name}}">
+        <view class="cor0 f28">{{item.name}}</view>
+
+          <image src="../../images/and/selectin.png" class="newradio" wx:if="{{item.check}}" data-index="{{index}}" data-smallindex="{{smallindex}}" bindtap="typeselect"></image>
+        <image src="../../images/and/noselect.png" class="newradio" data-index="{{index}}" data-smallindex="{{smallindex}}"wx:else bindtap="typeselect"></image>
+
+      </view>
+
+    </view>
+
+    <view>
+
+    </view>
+
+  </view>
+
+  </view>
+
+</view> -->

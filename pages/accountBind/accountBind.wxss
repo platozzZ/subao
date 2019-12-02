@@ -1,0 +1,174 @@
+/* @import '../login/login.wxss'; */
+@import '../account/account.wxss';
+@import '../accountPhone/accountPhone.wxss';
+.login-tabs{ 
+  font-size: 44rpx; 
+  color: rgb(159,159,159); 
+  display: flex; 
+  padding: 50rpx 0; 
+} 
+.login-tab{ 
+  padding: 0 30rpx; 
+  position: relative; 
+} 
+.login-tab button{ 
+  opacity: 0; 
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%; 
+} 
+.login-tab.cur{ 
+  color: rgb(43,43,43) 
+} 
+.borderLeft{ 
+  border-left: 1px solid rgb(159,159,159); 
+} 
+.login-inputs{ 
+  margin: 50rpx 30rpx; 
+  border: 1rpx solid rgb(206,206,206); 
+  border-radius: 4rpx; 
+  background: rgb(241,241,241); 
+  display: flex; 
+  align-items: center; 
+  height: 80rpx; 
+  line-height: 80rpx; 
+} 
+.login-inputs:first-child{ 
+  margin-top: 20rpx; 
+} 
+.login-icon{ 
+  width: 25rpx; 
+  height: 30rpx; 
+  margin: 0 20rpx; 
+} 
+.login-inputs input{ 
+  flex: 1; 
+  height: 80rpx; 
+  font-size: 28rpx; 
+} 
+.btn-magi{ 
+  margin: 60rpx 30rpx 10rpx; 
+  border-radius: 4rpx;  
+  font-size: 30rpx; 
+  width: calc(100% - 60rpx); 
+  height: 90rpx; 
+} 
+.forgetPwd{ 
+  color: rgb(153,153,153); 
+  font-size: 24rpx; 
+  text-align: right; 
+  padding: 10rpx 30rpx; 
+} 
+navigator{ 
+    text-decoration: underline; 
+} 
+.codeBorder{ 
+  width: 2rpx; 
+  height: 26rpx; 
+  background: rgb(136,136,136); 
+  margin-left: 20rpx; 
+} 
+.codeBtn{ 
+  font-size: 30rpx; 
+  color: #0060e4; 
+  padding: 0 20rpx; 
+} 
+.codeBtn.disabled{ 
+  color: rgb(136,136,136); 
+} 
+.eyes{ 
+  width: 40rpx; 
+  height: 100%; 
+  margin: 0 20rpx; 
+  position: relative; 
+  display: flex; 
+  align-items: center; 
+} 
+.eyes-image{ 
+  width: 40rpx; 
+  height: 24rpx; 
+} 
+ 
+.login-inputs.yaoqingma{ 
+  border: 0; 
+  background: rgb(249,249,249); 
+ 
+} 
+.yaoqingma-left{ 
+  flex: 1; 
+  border: 1rpx solid rgb(206,206,206); 
+  border-radius: 4rpx; 
+  background: rgb(241,241,241); 
+  display: flex; 
+  align-items: center; 
+  height: 80rpx; 
+  line-height: 80rpx; 
+} 
+.yaoqingma-left .login-icon{ 
+  width: 30rpx; 
+  height: 24rpx; 
+} 
+.yaoqingma-btn{ 
+  /* width: 200rpx; */ 
+  margin-left: 20rpx; 
+  line-height: 80rpx; 
+  height: 80rpx; 
+} 
+.cu-bar.foot.pichd{ 
+  box-shadow: none 
+} 
+.cu-bar.foot.pichd image{ 
+  width: 100%; 
+}
+.account-input{
+  margin-top: 30rpx;
+}
+.account-input image{
+  width: 26rpx;
+  height: auto;
+  margin: 0 20rpx;
+}
+.account-bindtips{
+  color: #999;
+}
+
+.account-detail-scroll{
+  flex: 1;
+  height: calc(100vh - 630rpx);
+}
+.menu-icon{
+  width: 12px;
+  height: 7px;
+  border-top: 1px solid #888888;
+  border-bottom: 1px solid #888888;
+  background-color: #888888;
+  padding: 2px 0;
+  background-clip: content-box;
+}
+.account-title{
+  font-size: 30rpx;
+  color: #888888;
+  padding: 90rpx 0 30rpx;
+}
+.account-title view{
+  margin: 0 10rpx;
+}
+.account-step{
+  margin: 0 30rpx;
+  background: rgb(237,237,237);
+  padding: 40rpx 20rpx 40rpx 50rpx;
+}
+.account-step-cell{
+  color: rgb(92,92,92);
+  padding-bottom: 50rpx;
+}
+.account-step-cell:last-child{
+  padding: 0;
+}
+.account-step-cell image{
+  width: 42rpx;
+  height: 42rpx;
+  margin-right: 20rpx;
+}

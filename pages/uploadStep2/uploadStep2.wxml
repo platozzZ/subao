@@ -1,0 +1,59 @@
+<form bindsubmit="formSubmit">
+  <view class="box">
+    <view class="box cu-list menu  margin-top">
+      <view class="cu-item arrow">
+        <view class="action text-df">城市</view>
+        <view class="content">
+          <picker mode="region" bindchange="pickChange" value="{{region}}" custom-item="{{customItem}}">
+            <view class="picker">
+              {{!!region[0]||!!region[1]||!!region[2]?region[0] + ',' + region[1] + ',' + region[2]: '请选择'}}
+              <!-- {{region[0]}}, {{region[1]}}, {{region[2]}} -->
+              <input name="province" value="{{region[0]}}" hidden></input>
+              <input name="city" value="{{region[1]}}" hidden></input>
+              <input name="area" value="{{region[2]}}" hidden></input>
+            </view>
+          </picker>
+        </view>
+      </view>
+    </view>
+    <view class="cu-bar"><view class="action">具体地址</view></view>
+    <view class="cu-list menu">
+      <view class="cu-item">
+        <view class="content">
+          <input placeholder="具体到街道" name="address" value="{{art.address}}"></input>
+        </view>
+      </view>
+    </view>
+    <view class="cu-bar"><view class="action">小区名称</view></view>
+    <view class="cu-list menu">
+      <view class="cu-item">
+        <view class="content">
+          <input placeholder="小区名称" name="district" value="{{art.district}}"></input>
+        </view>
+      </view>
+    </view>
+    <view class="cu-bar"><view class="action">补充说明</view></view>
+    <view class="cu-list menu">
+      <view class="cu-item">
+        <view class="content">
+          <input placeholder="非必填，不可与地址重复" name="address_add" value="{{art.address_add}}"></input>
+        </view>
+      </view>
+    </view>
+    <view class="cu-bar"><view class="action">门牌号</view></view>
+    <view class="cu-list menu">
+      <view class="cu-item">
+        <view class="content">
+          <input placeholder="非必填，房客预定成功后可见" name="house_number" value="{{art.house_number}}"></input>
+        </view>
+      </view>
+    </view>
+    
+  </view>
+  <view class="cu-bar foot bg-magigray">
+    <view class="response flex padding">
+      <button class="cu-btn line-magi" form-type="submit" data-target="hold">保存</button>
+      <button class="cu-btn bg-magi margin-left" form-type="submit" data-target="next">下一步</button>
+    </view>
+  </view>
+</form>

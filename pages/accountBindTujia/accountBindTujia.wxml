@@ -1,0 +1,86 @@
+<form bindsubmit="formSubmit">
+  <view class="account-container padding">
+    <view class="padding-top-lg">手机号: {{account}}</view>
+    <view class="account-input flex align-center" wx:if="{{loginType == 1}}">
+      <image src="/images/yanzhengma.png" mode="widthFix"></image>
+      <input name="code" placeholder="请输入验证码" maxlength="11"></input>
+      <!-- <view class="text-magi padding-left-sm solid-left">获取验证码</view> -->
+      <view class="padding-left-sm solid-left {{reg?'text-magigray':'text-magi'}} " bindtap="{{reg?'':'showModal'}}">
+        <text wx:if="{{!reg}}">获取验证码</text>
+        <text wx:else>{{second + 's'}}</text>
+      </view>
+    </view>
+    <view class="account-input flex align-center" wx:else>
+      <image src="/images/mima.png" mode="widthFix"></image>
+      <input name="password" maxlength='16' placeholder="请输入密码" maxlength="16" bindinput="pwdValue" value="{{pwdValue}}"></input>
+    </view>
+    <input placeholder='' name="account_id" hidden value='{{accountId}}'></input>
+    <input placeholder='' name="verify_code" hidden value='{{verifyValue}}'></input>
+    <input placeholder='' name="login_type" hidden value='{{loginType}}'></input>
+
+    <button class='cu-btn bg-magi response' form-type="submit">登录并绑定</button>
+    <view class="margin-top text-sm account-bindtips">* 首次绑定平台账号需要几分钟时间，请耐心等待...</view>
+  </view>
+</form>
+<view class="account-title flex justify-center align-center">
+  <view class="menu-icon"></view>
+  <view>绑定流程</view>
+  <view class="menu-icon"></view>
+</view>
+<view class="account-step">
+  <view class="account-step-cell flex align-end">
+    <view> 
+      <image src="/images/step01.png"></image>
+    </view>
+    <view class="text-26">{{loginType == 1?'获取并填写验证码（时间会较长，请耐心等待）':'输入密码'}}</view>
+  </view>
+  <view class="account-step-cell flex align-end">
+    <view> 
+      <image src="/images/step02.png"></image>
+    </view>
+    <view class="text-26">点击“登录并绑定”</view>
+  </view>
+  <view class="account-step-cell flex align-end">
+    <view> 
+      <image src="/images/step03.png"></image>
+    </view>
+    <view class="text-26">绑定成功！</view>
+  </view>
+  <!-- <view class="account-step-cell flex align-end">
+    <view> 
+      <image src="/images/step04.png"></image>
+    </view>
+    <view>登录成功！</view>
+  </view> -->
+</view>
+
+<!-- 图片验证码 -->
+<view class="cu-modal {{modalName == 'image'?'show':''}}" >
+  <form bindsubmit="codeSubmit">
+    <view class="cu-dialog">
+      <view class="cu-bar bg-white solid-bottom">
+        <view class="content">输入验证码</view>
+      </view>
+      <view class="padding-lg">
+        <view class='verifyImage' bindtap="getVerifyImage">
+          <image src="{{codeUrl}}" mode='widthFix'></image>
+        </view>
+        <view class='verifyImage text-magi' bindtap="getVerifyImage">
+          <text class="icon-refresh"></text>换一张
+        </view>
+        <view class='modal-input'>
+          <input placeholder='请输入验证码' name="verify_code" bindinput='verifyValue' value='{{verifyValue}}'></input>
+        </view>
+        <input name="account_id" hidden value='{{accountId}}'></input>
+        <input name="password" hidden value='{{pwdValue}}' wx:if="{{loginType == 0}}"></input>
+        <input name="login_type" hidden value='{{loginType}}'></input>
+      </view>
+      <view class="cu-bar bg-white addModal justify-center">
+        <view class="action">
+          <button class="cu-btn line-magi" bindtap='hideModal'>取消</button>
+          <button class="cu-btn bg-magi margin-left" form-type="submit">确定</button>
+        </view>
+      </view>
+    </view>
+  </form>
+</view>

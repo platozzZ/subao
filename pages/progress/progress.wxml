@@ -1,0 +1,32 @@
+<wxs module="filters" src="../../utils/sourceFilter.wxs"></wxs>
+<view class="cu-bar"><view class="action">平台上传进度</view></view>
+<view class="cu-list menu">
+  <view class="cu-item card shadow" wx:for="{{sources}}" wx:key="*this">
+    <image class="cu-avatar" src="{{filters.sourceFilter(item.source)}}"></image>
+    <view class="content">
+      {{item.source == '01'?'途家':item.source == '02'?'爱彼迎':item.source == '04'?'小猪':item.source == '05'?'榛果':'木鸟'}} 
+    </view>
+    <view class="action flex algin-center">
+      <block wx:if="{{item.status == '2'}}">
+        <view class="text-green">上传完成</view>
+        <image src="/images/prgYes.png" class="prgImg" mode="widthFix"></image>
+      </block>
+      <block wx:else>
+        <view class="text-173">上传中</view>
+        <image src="/images/prgIng.png" class="prgImg" mode="widthFix"></image>
+      </block>
+    </view>
+  </view>
+  <!-- <view class="cu-item card shadow">
+    <image class="cu-avatar" src="/images/airbnb.png"></image>
+    <view class="content">
+      爱彼迎 
+    </view>
+    <view class="action flex algin-center">
+      <block>
+        <view class="text-173">上传中</view>
+        <image src="/images/prgIng.png" class="prgImg" mode="widthFix"></image>
+      </block>
+    </view>
+  </view> -->
+</view>

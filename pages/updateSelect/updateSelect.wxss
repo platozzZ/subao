@@ -1,0 +1,16 @@
+
+/* @import '../accountPaste/accountPaste.wxss'; */
+
+page{
+  background: #fff;
+}
+.fle{
+  padding-top:60rpx;
+}
+.fle image{
+  border-radius: 4rpx;
+  height: 268rpx;
+ 
+}
+
+

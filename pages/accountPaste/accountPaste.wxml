@@ -1,0 +1,54 @@
+<view class="fle flex-direction account-detail-container">
+
+  <view class="formContainer">
+    <form bindsubmit="confirm">
+      <view class="flex justify-center">
+        <textarea type="text" class="link padding-tb-sm padding-lr" placeholder-class='b2' name="remote_house_url" placeholder="请在此处粘贴房源链接"  maxlength="1000"></textarea>
+      </view>
+      <view class="response flex padding-left padding-right">
+        <button class="cu-btn bg-magi" form-type="submit">确定</button>
+      </view>
+    </form> 
+  </view>
+  <scroll-view class="account-detail-scroll" scroll-y style="height:calc(100vh - 430rpx)">
+    <view class="account-title flex justify-center align-center">
+      <view class="menu-icon"></view>
+      <view>房源链接获取方式</view>
+      <view class="menu-icon"></view>
+    </view>
+    <view class="account-step">
+      <view class="account-step-cell flex align-end">
+        <view>
+          <image src="/images/step01.png"></image>
+        </view>
+        <view>{{source== 01?'打开途家APP':source== 02?'打开爱彼迎APP':source== 04?'打开小猪APP':source== 05?'打开美团民宿APP':''}}</view>
+      </view>
+      <view class="account-step-cell flex align-end">
+        <view>
+          <image src="/images/step02.png"></image>
+        </view>
+        <view>{{source == 01?'切换为房客':source == 02?'切换为旅行模式':source == 04?'进入房源预览（若有多套请任选一个）':source== 05?'进入房源预览（若有多套请任选一个）':''}}</view>
+      </view>
+      <view class="account-step-cell flex align-end">
+        <view>
+          <image src="/images/step03.png"></image>
+        </view>
+        <view>{{source == 01 || source == 02?'找到您的房源（若有多套请任选一个）':source == 04 || source == 05?'点击分享，选择短信':''}}</view>
+      </view> 
+      <view class="account-step-cell flex align-end">
+        <view>
+          <image src="/images/step04.png"></image>
+        </view>
+        <view>{{source == 01 || source == 02 ?'点击分享，选择短信':source == 04 || source == 05 ?'复制短信内容中的链接':''}}</view>
+      </view>
+      <view class="account-step-cell flex align-end" wx:if="{{source == 01  || source == 02}}">
+        <view>
+          <image src="/images/step05.png"></image>
+        </view>
+        <view>{{source == 01 || source == 02 ?'复制短信内容中的链接':''}}</view>
+      </view>
+    </view> 
+    <view class="account-detail-tips padding-top">* 通过此方式读取并关联的房源，您可以使用房源评估工具，价格竞争力工具，查看房态；不能进行房态管理及修改价格</view>
+  </scroll-view>
+</view>
+<cu-custom></cu-custom>

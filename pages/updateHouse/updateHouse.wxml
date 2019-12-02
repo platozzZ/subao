@@ -1,0 +1,37 @@
+<wxs module="filters" src="../../utils/sourceFilter.wxs"></wxs>
+<view class="houseContainer flex flex-direction">
+  <view style="width: 100%;height: {{imgHeight}}px;min-height: 280rpx;">
+    <image src="{{selectIndex==0?'https://magicdn.oss-cn-beijing.aliyuncs.com/pms/miniapp/static/newHouseBanner1.png':'https://magicdn.oss-cn-beijing.aliyuncs.com/pms/miniapp/static/newHouseBanner2.png'}}" mode="widthFix" class="houseImg" bindload="imageLoad" style=""></image>
+  </view>
+  <view class="cu-bar solid-bottom houseTitle"><view class="action">房屋列表</view></view>
+  <view class="houseContent" style="height: calc(100vh - {{imgHeight}}px - 250rpx)">
+    <view class="houseEmpty flex flex-direction" wx:if="{{houseList.length == 0}}">
+      <image src="https://magicdn.oss-cn-beijing.aliyuncs.com/pms/miniapp/static/updateEmpty.png"></image>
+      <view>您还未上传房源</view>
+    </view>
+    <scroll-view scroll-y  class="houseScroll" wx:else>
+      <view class="cu-list menu">
+        <view class="cu-item arrow" wx:for="{{houseList}}" wx:key="*this" bindtap="toStep" data-item="{{item}}" data-id="{{item.id}}" data-order="{{item.order_status}}">
+          <view class="content flex text-cut">
+            <text class="text-cut text-df">{{item.house_name}}</text>
+            <view class="flex align-center" wx:if="{{item.order_status == 1}}">
+              <block wx:for="{{item.sources}}" wx:key="*this" wx:for-item="source">
+                <image src="{{filters.sourceFilter(source)}}" class="sourceIcon margin-left-xs"></image>
+              </block>
+            </view>
+          </view>
+          <view class="action margin-left-sm" wx:if="{{selectIndex == 0}}">
+            <view class="text-magigray text-df" wx:if="{{item.house_status == 0}}">继续上传</view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="houseBottom bg-magigray">
+      <view class="flex justify-between order-btn-box padding">
+          <button class='cu-btn bg-magi' bindtap="toList">{{selectIndex==0?'上传房源':'上传'}}</button>
+      </view>
+  </view>
+
+</view>

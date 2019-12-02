@@ -1,0 +1,262 @@
+@import "/style/icon.wxss";
+@import "/style/colorui.wxss";
+@import "/style/cui-icon.wxss";
+page{
+  color: #2b2b2b;
+  background: #f9f9f9;
+}
+.text-default{
+  color: #2b2b2b;
+}
+.text-magi,
+.line-magi,
+.lines-magi {
+	color: #0060e4;
+}
+.text-ellipsis{
+  position: relative;
+  display: -webkit-box;
+  overflow: hidden;
+  white-space: normal!important;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+/* .text-ellipsis::after {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  content: "...";
+  font-size: 80%;
+  padding-left: 6rpx;
+  background: #fff;
+  padding-right: 6rpx;
+} */
+.text-magierr{
+  color: #ff4200;
+}
+.bg-gradual-magi{
+  background-image:linear-gradient(45deg, #0060e4, #247af1);
+  color: #fff;
+}
+.bg-gradual-index{
+  background:linear-gradient(to top, #4656f8, #00b8ff);
+}
+.bg-magi {
+    background-color: #0060e4;
+    color: #ffffff;
+}
+.bg-read{
+  background-color: #ffc230;
+}
+.bg-magigray2{
+  background: rgb(237,237,237);
+  color: rgb(104, 103, 103);
+}
+
+.bg-magigray {
+  background: #f9f9f9;
+  color: #666;
+}
+.bg-206{
+  background: #cecece
+}
+.cu-btn.bg-magi[disabled] {
+  background: #0060e4;
+  color: #fff;
+}
+.cu-btn.button-hover {
+  transform: translate(0, 0);
+}
+switch.magi[checked] .wx-switch-input, checkbox.magi[checked] .wx-checkbox-input,
+radio.magi[checked] .wx-radio-input {
+  border-color: #0060e4 !important;
+}
+switch.magi[checked] .wx-switch-input.wx-switch-input-checked,
+checkbox.magi[checked] .wx-checkbox-input, radio.magi[checked] .wx-radio-input {
+  background-color: #0060e4 !important;
+  color: #fff !important;
+}
+
+checkbox::before{
+  transition: all 0.1s ease-in-out 0s;
+}
+checkbox[checked] .wx-checkbox-input,checkbox.magi[checked] .wx-checkbox-input{
+  border-color: #0060e4 !important;
+  background-color: #fff !important;
+  color: #0060e4 !important;
+}
+checkbox[checked]::before{
+  content: "\E645"!important;
+  color: #0060e4!important;
+}
+radio.magi[checked] .wx-radio-input {
+  background-color: #0060e4 !important;
+  color: #fff !important;
+}
+checkbox[disabled]::before{
+  display: none;
+}
+checkbox .wx-checkbox-input{
+  width: 46rpx;
+  height: 46rpx;
+}
+checkbox .checkDisabled{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.canui-foor-fixed{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+}
+.order-btn-box .cu-btn{
+    flex: 1;
+    height: 90rpx;
+    border-radius: 0px;
+}
+.order-btn-box .cu-btn::after {
+    display: none;
+    border-radius: 0px;
+}
+.login-input-cell{
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    margin: 30px 0;
+    font-size: 14px;
+    padding: 0 20px;
+}
+.label{
+    margin-right: 10px;
+}
+.input{
+    background: #fff;
+    flex: 1;
+    border-radius: 5px;
+    padding: 0 10px;
+}
+.input input{
+  height: 40px;
+  line-height: 40px;
+}
+.canui-xzwz{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:1;
+  white-space: nowrap;
+}
+
+.cu-item.arrow.navigator-hover{
+  background: rgba(255, 255, 255, .6)
+}
+
+.box{
+    padding-bottom: 144rpx;
+}
+.emptyContainer{
+  position: fixed;
+  top: 250rpx;
+  left: 0;
+  text-align: center;
+  width: 100%;
+  color: rgb(153 ,153 ,153 );
+  font-size: 24rpx;
+}
+.emptyContainer image{
+  width: 180rpx;
+  height: 150rpx;
+  margin-bottom: 50rpx;
+}
+.cu-btn{
+  border-radius: 4rpx;
+}
+.cu-btn::after, .action .cu-btn::after{
+  border-radius: 4rpx!important;
+}
+.cu-btn[class*="line"]::after{
+  border-width: 2rpx;
+}
+.cu-dialog{
+  /* width: 500rpx; */
+  border-radius: 4rpx;
+  background: #fff;
+}
+.cu-dialog .cu-bar .action{
+  width: 100%;
+  padding: 0 40rpx;
+  margin: 0;
+}
+.cu-dialog .cu-bar .action .cu-btn{
+  flex: 1;
+  border-radius: 4rpx;
+  height: 70rpx;
+  margin-bottom: 40rpx;
+}
+.defaultFlex{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.text-888{
+  color: #888;
+}
+.text-magigray,
+.line-magigray,
+.lines-magigray {
+	color: rgb(159, 159, 159);
+}
+.text-rs{
+  color: #5c5c5c;
+}
+.text-22{
+  font-size: 22rpx;
+}
+.text-26{
+  font-size: 26rpx;
+}
+.text-best{
+  color: #00cb19;
+}
+.text-well{
+  color: #73aeff;
+}
+.text-bad{
+  color: #ff4000
+}
+.bg-free{
+  background: #ff4200;
+  color: #fff;
+}
+.text-yellow{
+  color: #f39b48;
+}
+.text-bluemagi{
+  color: #6ec3ff;
+}
+.text-graymagi{
+  color: #adadad
+}
+.response .cu-btn{
+  flex: 1;
+  height: 90rpx;
+}
+.text-through{
+  text-decoration: line-through;
+}
+.text-199{
+  color: #c7c7c7;
+}
+

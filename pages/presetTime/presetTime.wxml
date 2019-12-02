@@ -1,0 +1,14 @@
+<radio-group bindchange="radioChange">
+  <view class="cu-list menu margin-top">
+    <label class="cu-item" wx:for="{{list}}" wx:key="*this">
+      <view class="content padding-tb">
+        <view>{{item.title}}</view>
+        <view class="text-gray text-sm">{{item.des}}</view>
+      </view>
+      <view class="action">
+        <radio class="magi" value="{{item.title}}" checked="{{item.checked}}"></radio>
+      </view>
+    </label>
+
+  </view>
+</radio-group>

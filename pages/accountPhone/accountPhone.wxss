@@ -1,0 +1,20 @@
+.account-input{
+  padding: 0 20rpx 0 0;
+  border: 1rpx solid rgb(206,206,206);
+  border-radius: 4rpx;
+  margin: 110rpx auto 90rpx;
+  background: rgb(241 ,241 ,241);
+  height: 80rpx;
+}
+.account-input image{
+  width: 24rpx;
+  height: auto;
+  margin: 0 20rpx;
+}
+
+.account-input input{
+  flex: 1;
+}
+.cu-btn{
+  height: 90rpx;
+}

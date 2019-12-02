@@ -1,0 +1,3 @@
+/* @import '../accountBind/accountBind.wxss'; */
+@import '../account/account.wxss';
+@import '../accountBind/accountBind.wxss';

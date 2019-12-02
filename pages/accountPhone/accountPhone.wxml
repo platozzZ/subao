@@ -1,0 +1,11 @@
+<form bindsubmit="formSubmit">
+  <view class="account-container padding">
+    <view class="account-input flex align-center">
+      <image src="/images/phone.png" mode="widthFix"></image>
+      <input name="account" placeholder="请输入手机号" maxlength="11"></input>
+    </view>
+
+    <input name="source" placeholder="" value="{{source}}" hidden></input>
+    <button class='cu-btn bg-magi response' form-type="submit">下一步</button>
+  </view>
+</form>

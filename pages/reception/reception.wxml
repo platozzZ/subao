@@ -1,0 +1,35 @@
+<form bindsubmit="formSubmit">
+  <view class="box">
+    <view class="cu-bar">
+      <view class="action">请勾选能接受的情况</view>
+    </view>
+    <checkbox-group bindchange="" name="reception">
+      <view class="cu-list menu">
+        <label class="cu-item" wx:for="{{list}}" wx:key="*this">
+          <view class="content">
+            {{item.title}}
+          </view>
+          <view class="action">
+            <checkbox class="magi" value="{{item.title}}" checked="{{item.checked}}"></checkbox>
+          </view>
+        </label>
+
+      </view>
+    </checkbox-group>
+
+    <view class="cu-bar">
+      <view class="action">其他要求</view>
+    </view>
+    <view class="cu-form-group">
+      <textarea maxlength="100" placeholder="非必填，100字以内" name="reception_textarea" value="{{textareaValue}}"></textarea>
+    </view>
+
+  </view>
+
+  <view class="cu-bar foot bg-magigray">
+    <view class="response flex padding">
+      <button class="cu-btn bg-magi" form-type="submit" data-target="hold">保存</button>
+      <!-- <button class="cu-btn bg-magi margin-left" form-type="submit" data-target="next">下一步</button> -->
+    </view>
+  </view>
+</form>

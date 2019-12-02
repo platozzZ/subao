@@ -1,0 +1,83 @@
+@import "../../wxParse/wxParse.wxss";
+
+page {
+  height: 100%;
+  background: #fff;
+}
+
+.share{
+  height: 100%;
+  
+ } 
+
+.title {
+  font-size: 38rpx;
+  color: #2b2b2b;
+}
+
+.smallTitle {
+  background: #f7f7f7;
+}
+
+.newtap {
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 19rpx;
+background: rgb(229, 240, 255) !important;
+  margin-bottom: 10rpx;
+}
+
+.wxtext{
+  margin-top:34rpx;
+}
+.shareTime {
+  color: rgb(199, 199, 199);
+}
+.exbot {
+  /* height: 98rpx; */
+  /* border-top: 1rpx solid #f2f2f2;
+  padding-top: 10rpx; */
+}
+
+.exShouye {
+  width: 54rpx;
+  height: 48.4rpx;
+  margin-top: 5.6rpx;
+}
+
+.exfenxiang {
+  width: 54rpx;
+  height: 54rpx;
+}
+
+.padding230 {
+  padding-left: 230rpx;
+  padding-right: 230rpx;
+}
+.shareBtn{
+  position: absolute;
+  bottom:0rpx;
+  right:230rpx;
+  opacity: 0;
+}
+.wxParse-p{
+  line-height: 50rpx;
+  margin: 20rpx 0;
+  font-size: 30rpx
+}
+.wxParse-img{
+  /* margin: 20rpx 0; */
+}
+.noShare{
+  height:100%;
+  background: rgb(247,247,247) !important;
+  color:rgb(153,153,153);
+}
+.noclass{
+   width: 166rpx;
+  height: 141rpx;
+  margin-bottom: 50rpx;
+}
+.noShare2{
+   margin-top:-100rpx;
+}

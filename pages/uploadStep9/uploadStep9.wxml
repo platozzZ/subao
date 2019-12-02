@@ -1,0 +1,58 @@
+<view class="box">
+  <view class="uploadStep-title margin-top bg-white padding">
+    <view>请上传：</view>
+    <view>1.房产证或营业执照或租赁合同</view>
+    <view>2.租赁房屋治安责任保证书</view>
+  </view>
+  <view class="cu-form-group">
+    <view class="grid grid-square flex-sub">
+			<view class="addImg" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="viewImage" data-url="{{imgList[index]}}">
+				<image src='{{imgList[index]}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="delImg" data-index="{{index}}">
+					<text class="icon-close"></text>
+				</view>
+			</view>
+			<view class="addImg" bindtap="chooseImage">
+				<image src="/images/add.png" mode="aspectFill"></image>
+			</view>
+		</view>
+  </view>
+  <view class="uploadStep-tips padding">
+    * 提示：房屋资质验证资料只会用于验证房屋的真实性和合法性，不会用于任何平台的展示、宣传。
+  </view>
+</view>
+
+
+<!-- <view class="container">
+  <view style="padding-top:30rpx;">
+    <view class="kongtiao">
+     
+      <view class="kongbot">
+        <view class="cor0 f28" style="margin-bottom:20rpx;">请上传</view>
+       <view class="cor0 f28" style="margin-bottom:12rpx;">1.房产证或营业执照或租赁合同</view>
+        <view class="cor0 f28" style="margin-bottom:30rpx;">2.租赁房屋治安责任保证书</view>
+        <view class="flexl imagelis">
+          <view wx:for="{{zizhi}}">
+             <view class="add">
+                <image src="{{item}}" class="wh100"  data-src="{{item}}" bindtap="previewImage"></image>
+                <image src="../../images/and/guanbi.png" class="close" catchtap='zizhiclose'></image>
+            </view>
+          </view>
+
+          <image src="../../images/and/add.png" class="add" bindtap="zizhiadd"></image>
+        </view>
+      </view>
+
+    </view>
+
+  </view>
+  <view class="adss">* 提示：房屋资质验证资料只会用于验证房屋的真实性和合法性，不会用于任何平台的展示、宣传。</view>
+
+</view> -->
+
+<view class="cu-bar foot bg-magigray">
+  <view class="response flex padding">
+    <button class="cu-btn line-magi" data-target="hold" bindtap="submit">保存</button>
+    <button class="cu-btn bg-magi margin-left" data-target="next" bindtap="submit">完成</button>
+  </view>
+</view>

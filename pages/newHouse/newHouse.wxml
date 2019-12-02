@@ -1,0 +1,77 @@
+<wxs module="filters" src="../../utils/sourceFilter.wxs"></wxs>
+<!-- <scroll-view scroll-x class="bg-white nav">
+    <view class='flex text-center'>
+        <view class="cu-item flex-sub {{item.id==TabCur?'text-magi cur':''}}" wx:for="{{SortMenu}}" wx:key="item.id" bindtap='tabSelect' data-id="{{item.id}}">
+            {{item.name}}
+        </view>
+    </view>
+</scroll-view> -->
+<!-- <form bindsubmit="formSubmit" bindreset='formReset'> -->
+<view class="emptyContainer" wx:if="{{emptyContainer}}">
+  <image src='/images/newHouseEmpty.png'></image>
+  <view class=''>所有房源已关联完成，可以管理房态啦</view>
+</view>
+<view class="nav text-center fixed bg-magigray2 align-center flex padding">
+  <view class='houseTips-text'>请选择不同民宿平台上的同一套房源</view>
+</view>
+<view class='container'>
+
+  <checkbox-group bindchange="checkChange" name="house_id">
+    <view class="cu-list menu menu-avatar" >
+      <view class="cu-item shadow" wx:for="{{houseList}}" wx:key="item.id">
+        <checkbox class="{{item.checked?'magi':''}}" checked="{{item.checked}}" disabled="{{item.disabled}}" value="{{item.id}}" data-id="{{item.id}}" data-source="{{item.source}}" data-checked="{{item.checked}}" data-disabled="{{item.disabled}}" data-index="{{index}}" bindtap="checkTap">
+          <view class="checkDisabled" wx:if="{{item.disabled}}" bindtap="showcheckMsg"></view>
+        </checkbox>
+        <view class="cu-avatar xl" style="{{'background-image:url(' + item.thumbnail_url + ');'}}"></view>
+        <view class='content'>
+            <view class='text-black defaultFlex'>
+              <view class='text-cut'>{{item.name}}</view>
+              <view class='count'>共<text class='text-magi'>{{item.instance_count}}</text>套</view>
+            </view>
+            <view class='text-gray text-sm house-address'>{{item.address}}</view>
+            <view class='house-bottom defaultFlex'>
+                <view class='cu-item-logo'>
+                  <image src="{{filters.sourceFilter(item.source)}}"></image>
+                </view>
+            </view>
+        </view>
+      </view>
+      
+      
+    </view>
+
+ </checkbox-group>
+    
+</view>
+<!-- <view class="emptyContainer" wx:if="{{emptyContainer}}">
+  <image src='/images/houseEmpty.png'></image>
+  <view class=''>您还没有房源</view>
+</view> -->
+<view class="cu-bar foot bg-magigray">
+  <view class="response flex padding">
+    <button class="cu-btn bg-magi" bindtap="toRelationHouse" disabled="{{nextBtnDisable}}">下一步</button>
+  </view>
+</view>
+<!-- <view class="cu-bar foot padding bg-magigray flex justify-around">
+    <button class="cu-btn bg-magi" bindtap="toRelationHouse" disabled="{{nextBtnDisable}}">下一步</button>
+</view> -->
+<!-- </form> -->
+
+<!-- checkbox tips -->
+<view class="cu-modal {{showcheckMsg?'show':''}}" >
+    <view class="cu-dialog">
+      <view class="cu-bar bg-white solid-bottom">
+        <view class="content">提示</view>
+      </view>
+      <view class="padding-lg">
+        无法关联相同渠道的房源
+      </view>
+      <view class="cu-bar bg-white addModal justify-center">
+        <view class="action">
+          <button class="cu-btn bg-magi" bindtap='hidecheckMsg'>确定</button>
+        </view>
+      </view>
+    </view>
+</view>
+
+<cu-custom></cu-custom>

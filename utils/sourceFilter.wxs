@@ -1,0 +1,20 @@
+var filters = {
+  sourceFilter: function (source) {
+    if (source == '01') {
+      return "/images/tujia.png";
+    } else if (source == '02') {
+      return "/images/airbnb.png";
+    } else if (source == '03') {
+      return "/images/bulu.png";
+    } else if (source == '04') {
+      return "/images/xiaozhu.png";
+    } else if (source == '05') {
+      return "/images/zhenguo.png";
+    } else if (source == '06') {
+      return "/images/muniao.png";
+    }
+  },
+}
+module.exports = {
+  sourceFilter: filters.sourceFilter,
+}

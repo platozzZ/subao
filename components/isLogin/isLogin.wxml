@@ -1,0 +1,5 @@
+<view class="loginMask" bindtap="" wx:if="{{!isLogin}}">
+  <view>请授权小程序登录后查看</view>
+  <!-- <view class="cu-btn" bindtap="toLogin">立即登录</view> -->
+  <button class="cu-btn bg-magi" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">去授权</button>
+</view>

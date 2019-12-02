@@ -1,0 +1,117 @@
+.container{
+  padding-bottom: 180rpx;
+}
+.calendar-left{
+  width: 88px;
+}
+.calendar-left-item{
+  width: 100%;
+  height: 60px;
+}
+.calendar-left-item.year{
+  height: 76px;
+}
+.icon-right{
+  padding-top: 5rpx;
+}
+.icon-right::after{
+  content: "\e6a3";
+}
+.icon-right::before {
+  content: " ";
+}
+.year-top{
+  position: relative;
+}
+.year-top image{
+  width: 26px;
+  height: auto;
+}
+.year-text{
+  position: absolute;
+  bottom: 6px;
+  width: 100%;
+}
+
+.calendar-scroll{
+  flex: 1;
+  width: calc(100vw - 88px);
+}
+.calendar-scroll-cells{
+  width: 750px;
+}
+.calendar-scroll-cells .calendar-scroll-item{
+  width: 75px;
+  height: 60px;
+}
+.calendar-scroll-cells.calendar-scroll-top .calendar-scroll-item{
+  height: 76px;
+}
+.today{
+  width: 45px;
+  margin: 0 auto;
+  border-radius: 4rpx;
+}
+.today.bg-magi{
+  font-size: 8px;
+  line-height: 16px;
+}
+
+.triangle-bottomright {
+  width: 0;
+  height: 0;
+  border-bottom: 17px solid #0060e4;
+  border-left: 17px solid transparent;
+  margin-right: 2rpx;
+  margin-bottom: 2rpx;
+}
+.calendar-scroll-item-img .calendarError{
+  height: 20rpx;
+  width: 20rpx;
+}
+.calendar-scroll-item-img .calendarClose{
+  height: 20rpx;
+  width: 17rpx;
+}
+.calendar-scroll-item-close{
+  /* border: 2rpx solid rgb(97,97,97,.5); */
+  background: #cecece;
+}
+.calendar-scroll-item.cur{
+  border: 1rpx solid #0060e4;
+}
+
+switch.magi[checked] .wx-switch-input,
+checkbox.magi[checked] .wx-checkbox-input,
+radio.magi[checked] .wx-radio-input {
+  border-color: #0060e4 !important;
+}
+switch.magi[checked] .wx-switch-input,
+checkbox.magi[checked] .wx-checkbox-input,
+radio.magi[checked] .wx-radio-input {
+  background-color: #0060e4 !important;
+  color: #fff !important;
+}
+.cu-btn.line-mc{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.cu-btn.line-mc::after{
+  border-width: 0;
+}
+
+.bottom-modal-flex{
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+	}
+	.hide-modal{
+		flex: 1;
+	}

@@ -1,0 +1,23 @@
+
+.cu-list.menu{
+  margin-top: 20rpx;
+}
+.cu-list.menu>.cu-item .content{
+  font-size: 28rpx;
+  font-weight: 600;
+}
+.cu-list.menu>.cu-item::after {
+  width: calc(100% - 30rpx);
+  height: 100%;
+  transform: scale(1);
+  left: 30rpx;
+}
+.cu-list.menu>.cu-item.arrow{
+  padding-right: 70rpx;
+}
+.text-173{
+  color: rgb(173, 173, 173);
+} 
+.text-228{
+  color: rgb(0,96,228);
+}

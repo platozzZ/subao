@@ -1,0 +1,185 @@
+@import "../house/house.wxss";
+.nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    box-sizing: border-box;
+}
+.nav .cu-item{
+  position: relative;
+  margin: 6rpx 5rpx;
+  padding: 0 30rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.nav .cu-item.cur{
+    border: 0;
+    color: #0060e4;
+}
+/* .nav .cu-item.cur::after {
+    content: "";
+    position: absolute;
+    bottom: 1px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+            transform: translateX(-50%);
+    width: 100%;
+    border-bottom: 1px solid #0060e4;
+    -webkit-animation: test ease 1 0.6s;
+            animation: test ease 1 0.6s;
+} */
+.cu-list.menu-avatar>.cu-item.order{
+  padding-top: 92rpx;
+}
+.header{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 30rpx 30rpx 20rpx;
+  height: 92rpx;
+}
+.order-name{
+  font-size: 38rpx;
+  color: rgb(43,43,43);
+}
+.order-status{
+  font-size: 28rpx;
+}
+.tbc{
+  color: rgb(70,205,0);
+}
+.accepted{
+  color: #0060e4;
+}
+.refused{
+  color: rgb(204,0,0);
+}
+.stayin{
+  color: rgb(0,190,203);
+}
+.supplement{
+  color: rgb(249,174,0);
+}
+.cancelled{
+  color: rgb(132,130,130);
+}
+.order-bottom .cu-btn:last-child{
+  margin-left: 20rpx;
+}
+.cu-item.order .cu-avatar image{
+  width: 100%;
+  height: 100%;
+}
+@-webkit-keyframes test {
+    0% {
+        width: 80%;
+    }
+    50% {
+        width: 50%;
+    }
+    100% {
+        width: 100%;
+    }
+}
+@keyframes test {
+    0% {
+        width: 80%;
+    }
+    50% {
+        width: 50%;
+    }
+    100% {
+        width: 100%;
+    }
+}
+.emptyContainer{
+  top: 375rpx;
+}
+.container{
+    padding-top: 110rpx;
+}
+.canui-card-order{
+    padding:0 20rpx;
+}
+.canui-card-order .canui-order-item{
+    position: relative;
+    margin-bottom:30rpx;
+    border-radius: 8rpx;
+    overflow: hidden;
+}
+.head-title-box,.body{
+    margin: 20rpx;
+}
+.head-title-box .icon-shop{
+    margin-right:10rpx;
+}
+.head-title-box .icon-right{
+    margin-left:5rpx;
+}
+.canui-order-item .cu-list.menu-avatar>.cu-item{
+    padding:0;
+    padding-left:110rpx;
+}
+.canui-order-item .cu-list.menu-avatar>.cu-item>.cu-avatar{
+    left:0rpx;
+}
+.canui-order-item .cu-list .cu-item .canui-xzwz{
+    -webkit-line-clamp:2;
+}
+.canui-order-item .cu-list.menu>.cu-item .content{
+    font-size:27rpx;
+    margin-right:40rpx;
+}
+.action image{
+    width: 20px;
+}
+.canui-order-item .cu-list.menu-avatar>.cu-item .action {
+    text-align:right;
+    margin-top:-10rpx;
+}
+.canui-order-item .cu-list.menu>.cu-item .action .text-price{
+    font-size:28rpx;
+}
+.canui-order-item .order-price-box{
+    text-align:right;
+    font-size:26rpx;
+}
+.order-btn-box{
+    border-top: 1rpx solid #eee;
+}
+.order-btn-box .cu-btn{
+    flex: 1;
+    height: 70rpx;
+    border-radius: 0px;
+}
+.order-btn-box .cu-btn::after {
+    display: none;
+    border-radius: 0px;
+}
+.order-btn-box .cu-btn:first-child{
+    border-right: 1rpx solid #eee;
+}
+.canui-order-item .order-btn-box .margin-tb-sm{
+    margin-bottom:0;
+}
+.canui-order-item .order-btn-box .margin-tb-sm .cu-btn{
+    font-size:24rpx;
+}
+.canui-order-item .order-btn-box .margin-tb-sm .cu-btn[class*="line"]::after {
+    /*按钮边框大小*/
+    border: 3rpx solid currentColor;
+}
+.canui-order-item .order-btn-box .margin-tb-sm .line-gray{
+    color: #666;
+}
+.canui-order-item .order-btn-box .margin-tb-sm + .margin-tb-sm{
+    margin-left: 10rpx;
+}
+
+.canui-text-right{
+    float: right;
+    text-align: right;
+}

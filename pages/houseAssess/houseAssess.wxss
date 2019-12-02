@@ -1,0 +1,5 @@
+@import "../house/house.wxss";
+
+.box{
+  padding-top: 170rpx;
+}

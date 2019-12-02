@@ -1,0 +1,96 @@
+<view class="mainTop padding-top-lg padding-left response">
+  <view class="flex align-center">
+    <view class="touxiang round margin-right">
+         <open-data type="userAvatarUrl" class="wh100"></open-data>
+    </view>
+    <view class="tel">{{user_mobile}}</view>
+  </view>
+  </view>
+
+  <view class="myPlat shadow bg-white padding-lg flex justify-between align-center">
+     <view class="flex align-center">
+         <view class="cu-avatar round toolicon margin-right-sm">
+          <view class="flex align-center justify-center">
+            <image src="/images/myPlat.png"></image>
+          </view>
+        </view>
+        <view class="text-22">
+           <view class="text-default text-26">我的民宿平台</view>
+         <view class="text-bad margin-top-xs" wx:if="{{online}}">请绑定民宿平台账号</view>
+           <view class="text-bad margin-top-xs"wx:if="{{onlineFlag}}">您有平台账号处于离线状态</view> 
+               <!-- <view class="text-best margin-top-xs">已绑定且在线的平台</view> -->
+        </view>
+     </view>
+      <navigator class="cu-item arrow" url='../account/account'>
+    <button class='line-magi padding-lr-sm cu-btn'>进入</button>
+   </navigator>
+  </view>
+
+  <view class="text-lg margin-top-xl margin-bottom-sm margin-left">经营参谋</view>
+
+  <view class="response bg-white flex flex-wrap padding-tb-lg solid-top solid-bottom">
+     <view class="toolitem text-center {{index<3?'margin-bottom-lg':''}}" wx:for="{{tools}}" data-index="{{index}}" bindtap="toolTap">
+         <view class="cu-avatar round toolicon2 {{item.disabled?'toolicongray':''}}">
+          <view class="flex align-center justify-center">
+            <image src="{{item.icon}}" class="tooliconimg"></image>
+          </view>
+          <view class=" cu-tag f14" wx:if="{{item.disabled}}">未开放</view>
+        </view>
+        <view class="text-rs text-sm margin-top-xs">{{item.title}}</view>
+     </view>
+  </view>
+  
+  <view class="text-lg margin-top-xl margin-bottom-sm margin-left">更多服务</view>
+
+  <view class="response bg-white flex flex-wrap padding-tb-lg solid-top solid-bottom">
+     <view class="toolitem text-center">
+         <view class="cu-avatar round toolicon2 {{item.disabled?'toolicongray':''}}">
+          <view class="flex align-center justify-center">
+            <image src="/images/kefu.png" class="tooliconimg2"></image>
+          </view>
+         
+        </view>
+        <view class="text-rs text-sm margin-top-xs">联系客服</view>
+         <button open-type="contact" bindcontact="handleContact" class='btnContact'>联系客服</button>
+     </view>
+     <view class="toolitem text-center" bindtap="wxCodeShow">
+         <view class="cu-avatar round toolicon2 {{item.disabled?'toolicongray':''}}">
+          <view class="flex align-center justify-center">
+            <image src="/images/codeicon.png" class="tooliconimg"></image>
+          </view>
+         
+        </view>
+        <view class="text-rs text-sm margin-top-xs">宿宝公众号</view>
+      
+     </view>
+  </view>
+
+<button class='cu-btn bg-magi block lg layout ' bindtap='showModal'>退出登录</button>
+
+<view class="cu-modal {{showModal?'show':''}}" >
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white solid-bottom">
+      <view class="content">提示</view>
+    </view>
+    <view class="padding-xl">
+      <view>确定退出登录吗？</view>
+    </view>
+    <view class="cu-bar bg-white addModal justify-center">
+      <view class="action">
+        <button class="cu-btn line-magi" bindtap='hideModal'>取消</button>
+        <button class="cu-btn bg-magi margin-left" bindtap='layout' data-source="1">确定</button>
+      </view>
+    </view>
+  </view>
+ 
+</view>
+ <view class="cu-modal {{codeModal?'show':''}}" >
+  <view class="cu-dialog con">
+      <image src="/images/updateError.png" class="closeing" catchtap='codeHide'></image>
+      <image src="https://magicdn.oss-cn-beijing.aliyuncs.com/pms/miniapp/static/wxCode.png" style="width:600rpx;"  mode="widthFix"></image>
+       <view class=" noSet bg-magi block" wx:if="{{!noSet}}" catchtap='getSetting'>保存图片到本地</view>
+      <button open-type="openSetting" class="bg-magi block " wx:else  catchtap='getSetting'>保存图片到本地</button>
+  </view>
+ 
+  </view>
+<is-login wx:if="{{!isLogin}}"></is-login>

@@ -1,0 +1,142 @@
+/* pages/uploadStep1/uploadStep1.wxss */
+.cu-bar{
+  color: rgb(136,136,136);
+  font-size: 26rpx;
+}
+.cu-bar.tips{
+  color: rgb(173, 173, 173);
+  font-size: 24rpx;
+}
+.cu-item{
+  font-size: 28rpx;
+}
+.action{
+  margin-right: 20rpx;
+}
+.cu-list.menu>.cu-item.arrow{
+  padding-right: 60rpx;
+}
+checkbox .wx-checkbox-input::before{
+  display: block;
+  content: ''
+}
+checkbox .wx-checkbox-input{
+  width: 38rpx;
+  height: 38rpx;
+}
+.checkbox checkbox .wx-checkbox-input.wx-checkbox-input-checked{
+  border-color:  #0060e4
+}
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
+  font-size: 36rpx;
+}
+checkbox[checked]::before {
+  content: ""!important;
+}
+/* checkbox[disabled]::before {
+  background-color: #888
+} */
+checkbox::before{
+  transition: none
+}
+
+radio .wx-radio-input::before{
+  display: block;
+  content: ''
+}
+radio .wx-radio-input{
+  width: 38rpx;
+  height: 38rpx;
+}
+radio .wx-radio-input.wx-radio-input-checked{
+  border-color:  #0060e4
+}
+radio .wx-radio-input.wx-radio-input-checked::before{
+  font-size: 32rpx;
+}
+radio[checked]::before {
+  content: ""!important;
+}
+radio::before{
+  transition: none
+}
+
+.cu-list.menu .action .cu-btn{
+  height: 60rpx;
+  line-height: 60rpx;
+}
+.action text{
+  line-height: 1
+}
+.bottom-modal-flex{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+.bottom-modal-container{
+  max-height: 500rpx;
+  overflow-y: auto;
+}
+
+.step1-textarea{
+  height: 180rpx;
+}
+.step1-textarea .house-textarea{
+  width: 100%;
+  height: 100%
+}
+.getUrl image{
+  width: 30rpx;
+  height: 30rpx;
+}
+.btn-pay{
+  width: 100%;
+}
+.btn-pay .cu-btn{
+  height: 110rpx;
+  border-radius: 0;
+  padding: 0 80rpx;
+  font-size: 30rpx;
+}
+.btn-pay .cu-btn::after{
+  border-radius: 0;
+}
+.geturlCotent{
+  max-height: 700rpx;
+}
+.menu-icon{
+  width: 12px;
+  height: 7px;
+  border-top: 1px solid #888888;
+  border-bottom: 1px solid #888888;
+  background-color: #888888;
+  padding: 2px 0;
+  background-clip: content-box;
+}
+.account-title{
+  font-size: 30rpx;
+  color: #888888;
+  /* padding: 90rpx 0 30rpx; */
+}
+.account-title view{
+  margin: 0 10rpx;
+}
+.account-step{
+  /* margin: 0 30rpx; */
+  background: rgb(237,237,237);
+  padding: 40rpx 30rpx;
+}
+.account-step-cell{
+  color: rgb(92,92,92);
+  padding-bottom: 50rpx;
+}
+.account-step-cell:last-child{
+  padding: 0;
+}
+.account-step-cell image{
+  width: 42rpx;
+  height: 42rpx;
+  /* margin-right: 34rpx; */
+}

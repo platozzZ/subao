@@ -1,0 +1,281 @@
+@import "../result/result.wxss";
+.house-vie-img image{
+  width: 32rpx;
+  height: auto;
+}
+
+.card-swiper {
+	height: 287rpx !important;
+}
+
+.card-swiper swiper-item {
+	width: calc(100vw - 120rpx) !important;
+	left: 30rpx;
+	box-sizing: border-box;
+	padding: 10rpx 0 30rpx;
+	overflow: initial;
+}
+
+.card-swiper swiper-item .swiper-item {
+	width: 100%;
+	display: block;
+	height: 100%;
+	border-radius: 10rpx;
+	transform: scale(0.9);
+	transition: all 0.2s ease-in 0s;
+	overflow: hidden;
+}
+
+.card-swiper swiper-item.cur .swiper-item {
+	transform: none;
+	transition: all 0.2s ease-in 0s;
+}
+.house-vie-content{
+  width: calc(100% - 170rpx);
+}
+.sourceLogo image{
+  width: 30rpx;
+  height: 30rpx;
+}
+.house-vie-btn{
+  width: 184rpx;
+  line-height: 50rpx;
+  border-radius: 4rpx;
+}
+.house-vie-btn-line{
+  border: 1rpx solid rgb(216,216,216);
+}
+.house-vie-btn-line.bg-read{
+  border-color: #ffc230;
+}
+.house-vie-avatar{
+  width: 150rpx;
+  height: 117rpx;
+}
+
+.house-vie-list-title image{
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.house-vie-capsule{
+  border: 1rpx solid rgb(229,229,229);
+  border-radius: 32rpx;
+  overflow: hidden;
+}
+.house-vie-capsule .house-vie-capsule-item{
+  height: 64rpx;
+  border-right: 1rpx solid rgb(229,229,229);
+}
+.house-vie-capsule .house-vie-capsule-item .picker{
+  height: 64rpx;
+}
+.house-vie-capsule .house-vie-capsule-item .icon-usefullfill{
+  transform: rotate(180deg);
+}
+.house-vie-chart-title image{
+  width: 24rpx;
+  height: auto;
+}
+.cu-list.menu>.cu-item::after{
+  border-bottom: 1rpx solid rgba(0, 0, 0, 0.1);
+}
+.cu-list.menu>.cu-item:last-child::after{
+  border-bottom: 1rpx solid rgba(0, 0, 0, 0.1);
+}
+/* .house-vie-chart-icon{
+  border: 1rpx solid rgb(0,248,255);
+  box-shadow: 0 0 4rpx rgb(0,248,255);
+  width: 16rpx;
+  height: 16rpx;
+
+}
+.house-vie-chart-icon view{
+  background: rgb(0,248,255);
+  width: 8rpx;
+  height: 8rpx;
+}
+.magi .house-vie-chart-icon{
+  border-color: rgb(0,96,228);
+  box-shadow: 0 0 4rpx rgb(0,96,228);
+}
+.magi .house-vie-chart-icon view{
+  background: rgb(0,96,228);
+} */
+.chartContainer{
+  width: 100%;
+  height: 300rpx;
+}
+
+.house-vie-comingsoon{
+  min-height: 350rpx;
+}
+.house-vie-comingsoon image{
+  width: 115rpx;
+  height: auto;
+
+}
+.house-vie-empty{
+  height: calc(100vh - 500rpx);
+}
+.house-vie-empty image{
+  width: 165rpx;
+  height: auto;
+}
+
+
+.calendar {
+  width: 100%;
+  background: #fff;
+}
+.calendar-item{
+  min-height: 124rpx;
+}
+.calendar-item-day{
+  padding: 10rpx;
+}
+
+/* 底部弹出modal 样式*/
+
+.cu-dialog .cu-bar .action{
+  width: auto;
+  padding: 0 30rpx;
+  font-size: 28rpx;
+}
+.cor8{
+  color:#888;
+}
+
+.cu-dialog .cu-bar .title{
+  font-size: 32rpx;
+  color:#000;
+}
+.cu-dialog .cu-item .content{
+    font-size: 28rpx;
+  text-align: left;
+   color:#888;
+}
+.f25{
+  font-size: 25rpx;
+}
+
+.confirmdate2{
+  border:1rpx solid  #0060e4;
+}
+
+checkbox .wx-checkbox-input::before{
+  display: block;
+  content: ''
+}
+checkbox .wx-checkbox-input{
+  width: 38rpx;
+  height: 38rpx;
+
+}
+.checkbox checkbox .wx-checkbox-input.wx-checkbox-input-checked{
+  border-color:  #0060e4
+}
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
+  font-size: 36rpx;
+}
+checkbox[checked]::before {
+  content: ""!important;
+}
+checkbox::before{
+  transition: none
+}
+.platIcon{
+  width:38rpx;
+  height: 38rpx;
+  margin-right: 6rpx;
+}
+.priceinput{
+  width:100rpx;
+}
+
+.platname{
+ color:#2b2b2b;
+ font-size: 28rpx;
+}
+.priceinp{
+  width:180rpx;
+}
+.rebtn{
+  height: 50rpx;
+  line-height: 50rpx;
+}
+.confirmbtn{
+    background: none;
+}
+.confirmbtn::after{
+  border:none;
+  outline: none;
+  background: none;
+}
+.text-34{
+  font-size: 34rpx;
+}
+.botint{
+  margin-top:65rpx;
+  margin-bottom: 40rpx;
+}
+.tPirce{
+  width:140rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  background: #f9f9f9;
+  border-radius: 4rpx;
+  border:1rpx solid rgb(206,206,206);
+  margin-left:10rpx;
+}
+.c7{
+  color:#c7c7c7;
+}
+.date-weight{
+  height: 34rpx;
+  line-height: 30rpx;
+  padding-left:5rpx;
+
+}
+
+
+.zhenguoItem{
+  color:rgb(255,164,0);
+   background: rgba(255,198,0,0.14);
+   border:1rpx solid rgb(255,198,0);
+}
+
+.tujiaItem{
+  color:rgb(235,75,0);
+ background: rgba(235,75,0,0.14);
+   border:1rpx solid rgb(235,75,0);
+}
+
+.xiaozhuItem{
+   color:rgb(255,139,152);
+   background: rgba(255,166,176,0.14);
+    border:1rpx solid rgb(255,166,176);
+}
+
+.muniaoItem{
+   color:rgb(192,127,74);
+    background: rgba(192,127,74,0.14);
+      border:1rpx solid rgb(192,127,74);
+}
+
+.aibiyingItem{
+   color:rgb(255,0,66);
+    background: rgba(255,0,66,0.14);
+     border:1rpx solid rgb(255,0,66);
+}
+.oldItem{
+  color:#dadada;
+    background: rgba(214,214,214,0.14);
+     border:1rpx solid rgb(214,214,214);
+}
+
+.sourceLogo image{
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 10rpx;
+}

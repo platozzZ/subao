@@ -1,0 +1,74 @@
+<wxs module="filters" src="../../utils/sourceFilter.wxs"></wxs>
+<block wx:if="{{art.canBetterList.length > 0}}">
+  <view class="padding padding-bottom-xs text-26 text-888">
+    待优化
+  </view>
+  <view class="cu-list menu menu-avatar">
+    <view class="cu-item" wx:for="{{art.canBetterList}}" wx:key="{{item.id}}">
+      <view class="cu-avatar xl" style="{{'background-image:url(' + item.thumbnail_url + ');'}}"></view>
+      <view class='content justify-between'>
+        <view class='text-black defaultFlex'>
+          <view class="text-cut" >{{item.name}}</view>
+        </view>
+        <view class='text-gray text-sm house-address margin-top-xs'>{{item.address}}</view>
+        <view class='instanceCount margin-top-xs flex justify-between align-center'>
+          <view class="flex  sourceLogo align-center">
+            <block wx:for="{{item.sources}}" wx:key="*this" wx:for-item="source">
+              <image src="{{filters.sourceFilter(source)}}" class=""></image>
+            </block>
+          </view>
+          <view class="text-rs">共<text class='text-magi'>{{item.instance_count}}</text>套</view>
+        
+        </view>
+        <view class='house-bottom flex justify-end margin-top-xs'>
+          <view class="flex ">
+            <button 
+              class='cu-btn bg-magi' 
+              catchtap='toUpdate' 
+              data-item="{{item}}"
+            >
+              一键上传
+            </button>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</block>
+<block wx:if="{{art.betterList.length > 0}}">
+  <view class="padding padding-bottom-xs text-26 text-888">
+    优化列表
+  </view>
+  <view class="cu-list menu menu-avatar">
+    <view class="cu-item" wx:for="{{art.betterList}}" wx:key="{{item.id}}">
+      <view class="cu-avatar xl" style="{{'background-image:url(' + item.thumbnail_url + ');'}}"></view>
+      <view class='content justify-between'>
+        <view class='text-black defaultFlex'>
+          <view class="text-cut" >{{item.name}}</view>
+        </view>
+        <view class='text-gray text-sm house-address margin-top-xs'>{{item.address}}</view>
+        <view class='instanceCount margin-top-xs flex  align-center'>
+          <view class="flex sourceLogo align-center">
+            <block wx:for="{{item.sources}}" wx:key="*this" wx:for-item="source">
+              <image src="{{filters.sourceFilter(source)}}" class=""></image>
+            </block>
+          </view>
+          <view class="text-rs">共<text class='text-magi'>{{item.instance_count}}</text>套</view>
+        </view>
+        <view class='house-bottom flex justify-end margin-top-xs'>
+          <view class="flex ">
+          <button 
+              class='cu-btn bg-magi' 
+              catchtap='toUpdate' 
+              data-item="{{item}}"
+            >
+              查看
+            </button>
+            <!-- <button class='cu-btn bg-magi' catchtap='toUpdate' data-id="{{item.upload_house_id}}">查看</button> -->
+            <!-- <button class='cu-btn line-magi margin-left-xs' catchtap='showModal' data-id="{{item.id}}" data-target="edit">设置库存</button> -->
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</block>

@@ -1,0 +1,25 @@
+.cu-list.menu>.cu-item{
+  padding: 30rpx 40rpx;
+  margin: 30rpx;
+  border-radius: 4rpx;
+}
+.cu-list.menu>.cu-item:first-child{
+  margin-top: 0;
+}
+.cu-list.menu>.cu-item::after{
+  border: 0;
+}
+.cu-list.menu>.cu-item image.cu-avatar{
+  width: 70rpx;
+  height: 70rpx;
+  margin-right: 20rpx;
+  border-radius: 20rpx;
+}
+.prgImg{
+  width: 40rpx;
+  height: auto;
+  margin-left: 20rpx;
+}
+.text-173{
+  color: rgb(173, 173, 173);
+} 

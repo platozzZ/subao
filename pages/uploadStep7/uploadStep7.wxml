@@ -1,0 +1,109 @@
+<form bindsubmit="formSubmit">
+  <view class="box cu-list menu margin-top">
+    <view class="cu-item">
+      <view class="action text-df">日租价格</view>
+      <view class="content">
+        <input type="digit" placeholder="" maxlength="5" name="day_price" value="{{art.day_price}}"></input>
+      </view>
+      <view class="action text-df tips">元</view>
+    </view>
+    <view class="cu-item">
+      <view class="action text-df">是否收取清洁费</view>
+      <view class="content">
+        <radio-group class="radioGroup block flex align-center justify-end" name="clean_price_flag" bindchange="radioChange">
+          <label class="flex algin-center"><radio class="magi" value="是" checked="{{art.clean_price_flag == '是'}}"></radio><text>是</text></label>
+          <label class="flex algin-center margin-left-lg"><radio class="magi" value="否" checked="{{art.clean_price_flag == '否'}}"></radio><text>否</text></label>
+        </radio-group>
+      </view>
+    </view>
+    
+    <view class="cu-item" wx:if="{{art.clean_price_flag == '是'}}">
+      <view class="action text-df">清洁费价格</view>
+      <view class="content">
+        <input type="digit" placeholder="" maxlength="5" name="clean_price" value="{{art.clean_price}}"></input>
+      </view>
+      <view class="action text-df tips">元</view>
+    </view>
+    <navigator class="cu-item arrow" url="../resetPolicy/resetPolicy?zhengce={{art.refund_rule}}">
+      <view class="action text-df">退订政策</view>
+      <view class="content">
+        {{art.refund_rule?art.refund_rule:'请选择'}}
+      </view>
+      <input name="refund_rule" value="{{art.refund_rule}}" hidden></input>
+    </navigator>
+    
+
+
+
+
+  </view>  
+  <view class="cu-bar foot bg-magigray">
+    <view class="response flex padding">
+      <button class="cu-btn line-magi" form-type="submit" data-target="hold">保存</button>
+      <button class="cu-btn bg-magi margin-left" form-type="submit" data-target="next">下一步</button>
+    </view>
+  </view>
+
+</form>
+
+  
+
+<!-- <form bindsubmit="formSubmit">
+  <view class="container">
+
+    <view class="feiyong">
+      <view class="feicon boxz pl30 ">
+        <view class="conitem flex pr30">
+          <view>日租价格</view>
+          <view class="flexl">
+            <input type="number" name="day_price" class="priceinp" value="{{rizuval}}" bindinput="rizu"></input>
+            <text class="b2">元</text>
+          </view>
+        </view>
+        <view class="conitem flex pr30" style="border-top:1rpx solid #e5e5e5;">
+          <view>是否收取清洁费</view>
+         
+
+              <radio-group bindchange="radioChange">
+               <view class="flexl">
+                <label wx:for="{{yesno}}" class="flexl margin-left">
+                  <radio value="{{item.title}}" type="radio" name="clean_price_flag"  class=" round  magi" checked="{{item.checked}}"></radio>
+                  
+                  <view style="margin-left:10rpx;{{index==0?'margin-right:10rpx;':''}}">{{item.title}}</view> 
+                </label>
+                  </view>
+                
+              </radio-group>
+           
+        
+        </view>
+        <view class="conitem flex pr30" style="border-top:1rpx solid #e5e5e5;">
+          <view>清洁费价格</view>
+          <view class="flexl">
+            <input type="number" class="priceinp" name="clean_price" value="{{qingjieval}}" bindinput="qingjie"></input>
+            <text class="b2">元</text>
+          </view>
+        </view>
+        <view class="conitem flex pr30" style="border-top:1rpx solid #e5e5e5;" bindtap="toding">
+          <view>退订政策</view>
+          <view class="flexl">
+            <text class="mr10"> {{zhengce}}</text>
+            <input hidden name="refund_rule" value="{{zhengce}}"></input>
+            <image src="../../images/and/toright.png" class="toright"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+   <input hidden name="clean_price_flag" value="{{clean_price_flag}}"></input>
+    <input hidden name="upload_house_id" value="{{house_id}}"></input>
+    <input hidden name="type" value="7"></input>
+ 
+<view class="cu-bar foot bg-magigray">
+    <view class="response flex padding">
+      <button class="cu-btn line-magi" form-type="submit" data-target="hold">保存</button>
+      <button class="cu-btn bg-magi margin-left" form-type="submit" data-target="next">下一步</button>
+    </view>
+  </view>
+  </view>
+
+</form> -->

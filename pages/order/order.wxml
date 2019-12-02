@@ -1,0 +1,89 @@
+<wxs module="filters" src="../../utils/sourceFilter.wxs"></wxs>
+<scroll-view scroll-x class="nav bg-magigray">
+    <view class='flex text-center'>
+        <view class="cu-item bg-white text-rs flex-sub {{item.order_status==TabCur?'text-magi cur':''}}" wx:for="{{SortMenu}}" wx:key="item.order_status" bindtap='tabSelect' data-id="{{item.order_status}}">
+            {{item.name}}
+        </view>
+    </view>
+</scroll-view>
+
+<view class='container' wx:if="{{total > 0}}">
+  <view class="houseList">
+    <view class="cu-list menu menu-avatar">
+      <view class="cu-item shadow order" wx:for="{{orderList}}" wx:key="{{item.id}}" bindtap='toDetail' data-id="{{item.id}}">
+        <view class='header defaultFlex'>
+          <view class='order-name'>{{item.guest_name}}</view>
+          <view class="order-status {{orderObj[item.order_status].orderColor}}">{{orderObj[item.order_status].order_text}}</view>
+        </view>
+         <!-- style="{{'background-image:url(' + item.thumbnail_url + ');'}}" -->
+          <view class="cu-avatar xl">
+            <image src="{{item.thumbnail_url}}"  mode="aspectFill"></image>
+          </view>
+          <view class='content'>
+              <view class='text-black'>
+                <view class='text-cut'>{{item.name}}</view>
+              </view>
+              <view class='text-gray text-sm house-address'>{{item.checkInDate + ' - ' + item.checkOutDate}}</view>
+              <view class='house-bottom defaultFlex'>
+                <view class='cu-item-logo'>
+                  <!-- <block wx:for="{{item.bind_source}}" wx:key="index" wx:for-item="source"> -->
+                    <image wx:if="{{filters.sourceFilter(item.source)}}" src="{{filters.sourceFilter(item.source)}}"></image>
+                  <!-- </block> -->
+                </view>
+                <view class='order-bottom' hidden="{{item.order_status != '1'}}">
+                  <button class='cu-btn line-magi' catchtap='showDeclineModal' data-id="{{item.id}}">拒绝</button>
+                  <button class='cu-btn bg-magi' catchtap='showConfirmModal' data-id="{{item.id}}">接受</button>
+                </view>
+              </view>
+          </view>
+          <!-- <view class='action'>
+              <button class='cu-btn bg-gradual-magi shadow-blur radius' bindtap='handle'>设置库存</button>
+          </view> -->
+      </view>
+    </view>
+
+  </view>
+</view>
+
+<view class="emptyContainer" wx:if="{{total == 0 && TabCur != 999}}">
+  <view class=''>您还没有订单</view>
+  <button class='cu-btn bg-magi margin-top' bindtap='manualSync'>手动同步</button>
+</view>
+
+<!-- 拒绝确认 -->
+<view class="cu-modal {{declineModal?'show':''}}" >
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white solid-bottom">
+      <view class="content">提示</view>
+    </view>
+    <view class="padding-xl">
+      <view>确定拒绝吗？</view>
+    </view>
+    <view class="cu-bar bg-white addModal justify-center">
+      <view class="action">
+        <button class="cu-btn line-magi" bindtap='hideDeclineModal'>取消</button>
+        <button class="cu-btn bg-magi margin-left" data-id="{{art.id}}" bindtap='orderDecline'>确定</button>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 接受确认 -->
+<view class="cu-modal {{confirmModal?'show':''}}" >
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white solid-bottom">
+      <view class="content">提示</view>
+    </view>
+    <view class="padding-xl">
+      <view>确定接受吗？</view>
+    </view>
+    <view class="cu-bar bg-white addModal justify-center">
+      <view class="action">
+        <button class="cu-btn line-magi" bindtap='hideConfirmModal'>取消</button>
+        <button class="cu-btn bg-magi margin-left" data-id="{{art.id}}" bindtap='orderConfirm'>确定</button>
+      </view>
+    </view>
+  </view>
+</view>
+
+<cu-custom></cu-custom>
+<is-login wx:if="{{!isLogin}}"></is-login>

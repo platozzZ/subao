@@ -1,0 +1,26 @@
+.addButton{
+  position: fixed;
+  right: 0;
+  bottom: 120px;
+  width: 110rpx;
+  height: 110rpx;
+  border-radius: 50%;
+  color: #0060e4;
+  z-index: 1109;
+}
+.view{
+  width: 100%;
+  height: 100%;
+}
+.view image{
+  width: 100%;
+  height: 100%;
+}
+.btnContact{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}

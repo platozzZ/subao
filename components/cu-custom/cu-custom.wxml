@@ -1,0 +1,10 @@
+
+<movable-area style="width:{{screenWidth}}px;height:{{screenHeight}}px;position: fixed;top:0;left:0;pointer-events: none;z-index:1109;">
+  <movable-view x="{{screenWidth}}" y="{{top}}" direction="all" class='addButton' hover-class='navigator-hover' style='pointer-events: auto;'>
+    <view class='view'>
+      <image src="/images/contact.svg" mode="widthFix"></image>
+      <!-- <view>联系客服</view> -->
+      <button open-type="contact" bindcontact="handleContact" class='btnContact'></button>
+    </view>
+  </movable-view>
+</movable-area>

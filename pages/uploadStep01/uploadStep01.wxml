@@ -1,0 +1,136 @@
+<wxs module="filters" src="../../utils/sourceFilter.wxs"></wxs>
+<form bindsubmit="formSubmit">
+  <view class="box">
+    <view class="cu-card">
+      <view class="cu-item shadow">
+        <view class="content flex padding-lg">
+          <image src="{{houseArt.thumbnail_url}}" class="houseImg margin-right-sm"></image>
+          <view class="flex flex-sub flex-direction justify-between houseContent">
+            <view class="text-26 text-cut">{{houseArt.name}}</view>
+            <view class="text-22 text-magigray text-cut">{{houseArt.address}}</view>
+            <view class="flex alig-center">
+              <block wx:for="{{houseArt.sources}}" wx:key="*this">
+                <image src="{{filters.sourceFilter(item)}}" class="margin-right-xs houseIcon"></image>
+              </block>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <input name="house_name" value="{{houseArt.name}}" hidden ></input>
+    <input name="upload_type" value="2" hidden ></input>
+    <view class="padding-top padding-bottom-sm padding-lr text-magigray text-26">请选择您希望发布的平台（建议全选）</view>
+    <checkbox-group bindchange="checkboxChange" name="sources">
+      <view class="cu-list menu">
+        <view class="cu-item" wx:for="{{checkList}}" wx:key="*this">
+          <view class="action"><checkbox value="{{item.source}}" checked="{{item.checked}}" bindtap="checkTap" data-target="{{'source' + item.source}}" data-source="{{item.source}}" /></view>
+          <view class="content">{{item.name}}</view>
+          <view class="flex align-center" wx:if="{{item.checked}}" bindtap="{{item.auth_status == '1' || item.auth_status == '3'?'toAccount' : ''}}"  data-source="{{item.source}}" data-id="{{item.account_id}}">
+            <view class="action text-magigray" wx:if="{{item.auth_status != 0}}">{{item.account}}</view>
+            <view class="{{item.auth_status == '1'?'text-yellow':item.auth_status == '2'?'text-best':'text-bad'}}">
+              <button class="cu-btn line-magi" data-source="{{item.source}}" data-target="{{'source' + item.source}}" bindtap="autHorize" wx:if="{{item.auth_status == 0}}">绑定</button>
+              <block wx:else>
+                {{item.auth_status == '1'?'绑定中':item.auth_status == '2'?'绑定成功':item.auth_status == '3'?'离线' : ''}}
+                <text class="{{item.auth_status == '1' || item.auth_status == '3' ?'icon-right':item.auth_status == '2'?'icon-check':''}}"></text>
+              </block>
+            </view>
+          </view>
+        </view>
+      </view>
+    </checkbox-group>
+    <view class="padding padding-top-sm text-magigray text-sm flex justify-between align-center">
+      <view class="">
+        <text class="text-magi">限时特惠：¥5/平台</text>
+        <text class="text-through text-bluemagi margin-left-sm">原价¥50</text>
+      </view>
+      <view class="getUrl flex text-graymagi align-center" bindtap="showModal" data-target="price">
+        <image src="/images/jifeiguize@2x.png" mode="widthFix" class="margin-right-xs"></image>
+        计费规则说明
+      </view>
+    </view>
+  </view>
+
+  <view class="cu-bar foot bg-magigray flex-direction" wx:if="{{houseArt.order_status == 1}}">
+    <view class="response padding-left padding-top" wx:if="{{!authStatus}}">成功绑定民俗平台账号并提交后，您可查看上传进度</view>
+    <view class="response flex padding">
+      <button class="cu-btn bg-magi" bindtap="toProgress" data-id="{{houseArt.upload_house_id}}" wx:if="{{authStatus}}">查看进度</button>
+      <!-- <button class="cu-btn bg-magi" bindtap="toProgress" data-id="{{art.id}}" wx:if="{{authStatus}}">查看进度</button> -->
+      <button class="cu-btn bg-magi" form-type="submit" data-target="next" wx:else>提交</button>
+    </view>
+  </view>
+  <view class="cu-bar foot bg-magigray" wx:else>
+    <view class="flex btn-pay justify-between align-center">
+      <view class="text-rs padding-lr flex-sub">合计：<text class="text-magi text-price text-xl">{{curSource * 5}}</text></view>
+      <button class="cu-btn bg-magi" form-type="submit" data-target="next" disabled="{{curSource == 0}}">去支付</button>
+    </view>
+  </view>
+</form>
+<view class="cu-modal bottom-modal {{modalName=='source'?'show':''}}">
+  <view class='flex flex-direction bottom-modal-flex'>
+    <view class='hide-modal flex-sub' bindtap="hideModal"></view>
+    <view class="cu-dialog">
+      <view class="bg-white padding solid-bottom">
+        <view class="text-rs text-df">您有多个{{sourceObj[source].source_text}}账号，请选择希望发布的账号</view> 
+      </view>
+      <form bindsubmit="modalConfirm">
+        <view class="bottom-modal-container">
+          <view class="cu-list menu">
+            <view class="cu-item" wx:for="{{accountList[source]}}" bindtap="radioTap" data-index="{{index}}" data-target="{{'source' + source}}" wx:key="*this">
+              <radio class="magi" value="{{item.account}}" checked="{{item.checked}}"></radio>
+              <view class="content text-left margin-left-sm">
+                {{item.account}}
+              </view>
+              <view class="action {{item.login_status == '00'?'text-best':item.login_status == '01'||item.login_status == '04'?'text-bad':'text-yellow'}}">
+                {{item.login_status == '00'?'在线':item.login_status == '01'||item.login_status == '04'?'离线':'登录中'}}
+              </view>
+              <block wx:if="{{index == accountIndex}}">
+                <input name="login_status" value="{{item.login_status}}" hidden></input>
+                <input name="account" value="{{item.account}}" hidden></input>
+                <input name="id" value="{{item.id}}" hidden></input>
+              </block>
+            </view>
+          </view>
+        </view>
+        <view class="response flex padding solid-top">
+          <button class="cu-btn bg-magi" form-type="submit" bindtap="">确认</button>
+        </view>
+      </form>
+    </view>
+  </view>
+</view>
+
+<view class="cu-modal {{modalName == 'tips'?'show':''}}" >
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white solid-bottom">
+      <view class="content">提示</view>
+    </view>
+    <view class="padding-xl">
+      您需要绑定对应的民宿平台，否则将无法帮您顺利上传
+    </view>
+    <view class="cu-bar bg-white addModal justify-center">
+      <view class="action">
+        <button class="cu-btn line-magi" bindtap='toNext'>先跳过</button>
+        <button class="cu-btn bg-magi margin-left" bindtap='hideModal'>继续绑定</button>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="cu-modal {{modalName == 'price'?'show':''}}" >
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white solid-bottom">
+      <view class="content text-default">计费规则说明</view>
+    </view>
+    <view class="padding-xl text-26 text-rs text-left">
+      <view class="">1.一个房源上传一个平台收费为5元（限时特惠）；上传n个平台收费为5*n元；</view>
+      <view class="margin-top-sm">2.支付完成并提交后，宿宝会在5个工作日内将房源上传至您所提交的平台，请留意平台审核信息；</view>
+      <view class="margin-top-sm">3.有些平台需要您完善房源资质信息；</view>
+      <view class="margin-top-sm">4.有问题请联系客服。</view>
+    </view>
+    <view class="cu-bar bg-white addModal justify-center">
+      <view class="action">
+        <!-- <button class="cu-btn line-magi" bindtap='toNext'>先跳过</button> -->
+        <button class="cu-btn bg-magi" bindtap='hideModal'>确定</button>
+      </view>
+    </view>
+  </view>
+</view>

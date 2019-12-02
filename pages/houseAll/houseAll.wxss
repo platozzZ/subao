@@ -1,0 +1,35 @@
+@import "../house/house.wxss";
+
+.cu-list.menu>.cu-item .content {
+  width: calc(100vw - 320rpx);
+}
+
+radio .wx-radio-input::before{
+  display: block;
+  content: ''
+}
+radio .wx-radio-input{
+  width: 38rpx;
+  height: 38rpx;
+}
+radio .wx-radio-input.wx-radio-input-checked{
+  border-color:  #0060e4
+}
+radio .wx-radio-input.wx-radio-input-checked::before{
+  font-size: 32rpx;
+}
+radio[checked]::before {
+  content: ""!important;
+}
+radio::before{
+  transition: none
+}
+
+.action{
+  width: 70rpx;
+}
+.house-all-radio{
+  position: absolute;
+  top: 30rpx;
+  right: 30rpx;
+}

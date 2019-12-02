@@ -1,0 +1,118 @@
+.box{
+  padding-bottom: 170rpx;
+}
+.cu-form-group picker .picker{
+  height: 100%;
+}
+.box.cu-list.menu>.cu-item .content{
+  font-size: 28rpx;
+  text-align: right;
+  height: 100rpx;
+  line-height: 100rpx;
+  /* font-weight: 600; */
+}
+.box.cu-list.menu>.cu-item.arrow .content{
+  padding-right: 70rpx;
+}
+.cu-list.menu>.cu-item::after {
+  width: calc(100% - 30rpx);
+  height: 100%;
+  left: 30rpx;
+  transform: scale(1);
+  border-bottom: 0.5rpx solid rgba(221, 221, 221,.5);
+
+}
+.cu-list.menu>.cu-item.no-border::after {
+  display: none;
+}
+.cu-list.menu>.cu-item.arrow{
+  padding-right: 0;
+}
+.cu-list.menu>.cu-item .action{
+  color: rgb(92,92,92);
+}
+.text-173{
+  color: rgb(173, 173, 173);
+} 
+.cu-dialog .cu-bar{
+  border-bottom: 0.5rpx solid rgba(221, 221, 221,.5);
+}
+.cu-dialog .cu-bar .action{
+  width: auto;
+  padding: 0 30rpx;
+}
+.cu-dialog .cu-bar .title{
+  font-size: 38rpx;
+}
+.cu-dialog .cu-item .content{
+  text-align: left;
+  font-size: 28rpx;
+  color: rgb(92,92,92);
+}
+.stepperNum{
+  margin: 0 30rpx;
+  min-width: 30rpx;
+  text-align: center;
+  line-height: 34rpx;
+}
+.stepperHanel image{
+  width: 34rpx;
+  height: 34rpx;
+}
+/* radio .wx-radio-input {
+  width: 30rpx;
+  height: 30rpx;
+}
+radio::before{
+  font-size: 20rpx;
+  right: 3px;
+} */
+
+radio .wx-radio-input::before{
+  display: block;
+  content: ''
+}
+radio .wx-radio-input{
+  width: 30rpx;
+  height: 30rpx;
+}
+radio .wx-radio-input.wx-radio-input-checked{
+  border-color:  #0060e4
+}
+radio .wx-radio-input.wx-radio-input-checked::before{
+  font-size: 22rpx;
+}
+radio[checked]::before {
+  content: ""!important;
+}
+radio::before{
+  transition: none
+}
+
+.content label{
+  line-height: 30rpx;
+}
+.content label text{
+  line-height: 32rpx;
+}
+.content label radio{
+  margin-right: 10rpx;
+}
+.radioGroup{
+  height: 100%;
+}
+.content input{
+  width: 100%;
+  height: 100%;
+  padding-right: 20rpx;
+}
+.tips{
+  color: rgb(178,178,178)
+}
+
+.textarea{
+  padding: 20rpx 0;
+  height: 140rpx;
+  width: 100%;
+}
+

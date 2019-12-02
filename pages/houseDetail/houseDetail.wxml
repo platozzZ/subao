@@ -1,0 +1,163 @@
+<wxs module="filters" src="../../utils/sourceFilter.wxs"></wxs>
+<view class="fixed">
+  <view class="cu-list menu menu-avatar">
+    <view class="cu-item shadow">
+        <view class="cu-avatar xl" style="{{'background-image:url(' + art.thumbnail_url + ');'}}"></view>
+        <!-- <image class="cu-avatar xl" src='{{art.thumbnail_url}}'></image> -->
+        <view class='content'>
+            <view class='text-black defaultFlex'>
+              <view class='text-cut'>{{art.name}}</view>
+            </view>
+            <view class='text-gray text-sm house-address'>{{art.address}}</view>
+            <view class='house-bottom defaultFlex'>
+              <view class='cu-item-logo'>
+                <!-- <image src="{{filters.sourceFilter(art.source)}}"></image> -->
+                  <block wx:for="{{art.bind_source}}" wx:key="index" wx:for-item="source">
+                    <image src="{{filters.sourceFilter(source)}}"></image>
+                  </block>
+                <!-- <image src='/images/tujia.png'></image> -->
+              </view>
+              <button class='cu-btn bg-magi' catchtap='showModal' data-houseid="{{art.id}}" data-target="changeName">修改房源名称</button>
+            </view>
+        </view>
+    </view>
+  </view>
+  <scroll-view scroll-x class="bg-white nav margin-top solid-bottom">
+    <view class='flex text-center'>
+      <view class="cu-item flex-sub {{TabCur == 0?'text-magi cur':''}}" bindtap='tabSelect' data-id="0">
+          未绑定房源
+      </view>
+      <view class="cu-item flex-sub {{TabCur == 1?'text-magi cur':''}}" bindtap='tabSelect' data-id="1">
+          已绑定房源
+      </view>
+    </view>
+  </scroll-view>
+</view>
+<view class="cu-list menu menu-avatar" wx:if="{{TabCur == 0}}">
+  <view class="cu-item" wx:for="{{unBindList}}" wx:key="{{item.id}}">
+      <image class="cu-avatar xl" src='{{item.thumbnail_url}}'></image>
+      <view class='content'>
+          <view class='text-black defaultFlex'>
+            <view class='text-cut'>{{item.name}}</view>
+            <view class="text-rs">共<text class='text-magi'>{{item.instance_count}}</text>套</view>
+          </view>
+          <view class='text-gray text-sm house-address'>{{item.address}}</view>
+          <view class='house-bottom defaultFlex'>
+            <view class='cu-item-logo'>
+              <!-- <block wx:for="{{item.bind_source}}" wx:key="index" wx:for-item="source"> -->
+                <image src="{{filters.sourceFilter(item.source)}}"></image>
+              <!-- </block> -->
+            </view>
+            <button class='cu-btn bg-magi' data-thirdid="{{item.id}}" data-houseid="{{art.id}}" data-target="bind" bindtap="showModal">关联</button>
+          </view>
+      </view>
+  </view>
+</view>
+
+<view class="cu-list menu menu-avatar" wx:if="{{TabCur == 1}}">
+  <view class="cu-item" wx:for="{{bindList}}" wx:key="{{item.id}}">
+      <image class="cu-avatar xl" src='{{item.thumbnail_url}}'></image>
+      <view class='content'>
+          <view class='text-black defaultFlex'>
+            <view class='text-cut'>{{item.name}}</view>
+            <view>共<text class='text-magi'>{{item.instance_count}}</text>套</view>
+          </view>
+          <view class='text-gray text-sm house-address'>{{item.address}}</view>
+          <view class='house-bottom defaultFlex'>
+            <view class='cu-item-logo'>
+              <!-- <block wx:for="{{item.bind_source}}" wx:key="index" wx:for-item="source"> -->
+                <image src="{{filters.sourceFilter(item.source)}}"></image>
+              <!-- </block> -->
+            </view>
+            <button class='cu-btn line-magi' data-thirdid="{{item.id}}" data-houseid="{{art.id}}" bindtap="showModal" data-target="unbind">取消关联</button>
+          </view>
+      </view>
+  </view>
+</view>
+
+
+<!-- <view class="cu-modal {{showModal?'show':''}}" > -->
+<view class="cu-modal {{modalName == 'bind'?'show':''}}" >
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white solid-bottom">
+      <view class="content">提示</view>
+    </view>
+    <view class="padding-xl">
+      <view>是否确认关联此房源？</view>
+    </view>
+    <view class="cu-bar bg-white addModal justify-center">
+      <view class="action">
+        <button class="cu-btn line-magi" bindtap='hideModal'>取消</button>
+        <button class="cu-btn bg-magi margin-left" bindtap='bindHouse'>确定</button>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- <view class="cu-modal {{showModal1?'show':''}}" > -->
+<view class="cu-modal {{modalName == 'unbind'?'show':''}}" >
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white solid-bottom">
+      <view class="content">提示</view>
+    </view>
+    <view class="padding-xl">
+      <view>是否确认取消关联此房源？</view>
+    </view>
+    <view class="cu-bar bg-white addModal justify-center">
+      <view class="action">
+        <button class="cu-btn line-magi" bindtap='hideModal'>取消</button>
+        <button class="cu-btn bg-magi margin-left" bindtap='unBindHouse'>确定</button>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 修改房源名称 -->
+<!-- <view class="cu-modal {{showChangeNameModal?'show':''}}" > -->
+<view class="cu-modal {{modalName == 'changeName'?'show':''}}" >
+  <form bindsubmit="changeNameSubmit">
+    <view class="cu-dialog">
+      <view class="cu-bar bg-white solid-bottom">
+        <view class="content">提示</view>
+      </view>
+      <view class="padding-lg">
+        <view class='modal-input only'>
+          <!-- <image src='/images/mima.png'></image> -->
+          <input placeholder='请输入房源名称' name="name" bindinput='changeHouseValue' value='{{changeHouseValue}}'></input>
+        </view>
+        <input name="house_id" hidden='true' value='{{houseId}}'></input>
+      </view>
+      <view class="cu-bar bg-white addModal justify-center">
+        <view class="action">
+          <button class="cu-btn line-magi" bindtap='hideModal'>取消</button>
+          <button class="cu-btn bg-magi margin-left" form-type="submit">确定</button>
+        </view>
+        <!-- <view class="flex-sub text-lg" bindtap='hideEditModal'>取消</view>
+        <view class="flex-sub text-magi text-lg solid-left" bindtap=''>
+        确定
+          <button form-type="submit" class="flex-sub text-magi text-lg solid-left"></button>
+        </view> -->
+      </view>
+    </view>
+  </form>
+</view>
+
+<!-- <view class="cu-modal {{showErrorModal?'show':''}}" > -->
+<view class="cu-modal {{modalName == 'error'?'show':''}}" >
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white solid-bottom">
+      <view class="content">提示</view>
+    </view>
+    <view class="padding-xl">
+      <view>无法将相同渠道的房源进行关联，请确认后重试</view>
+    </view>
+    <view class="cu-bar bg-white addModal justify-center">
+      <view class="action">
+        <!-- <button class="cu-btn line-magi" bindtap='hideErrorModal'>取消</button> -->
+        <button class="cu-btn bg-magi" bindtap='hideModal'>确定</button>
+      </view>
+    </view>
+  </view>
+</view>
+
+<cu-custom></cu-custom>

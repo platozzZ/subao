@@ -1,0 +1,5 @@
+@import '../uploadStep1/uploadStep1.wxss';
+
+.box{
+  padding-bottom:170rpx;
+}

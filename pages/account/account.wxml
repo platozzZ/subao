@@ -1,0 +1,119 @@
+<wxs module="filters" src="../../utils/sourceFilter.wxs"></wxs>
+<view class="emptyContainer" wx:if="{{emptyList}}">
+  <image src='https://magicdn.oss-cn-beijing.aliyuncs.com/pms/miniapp/static/accountEmpty.png'></image>
+  <view class='account-padding'>请先绑定民宿平台账号，之后您可进行房态管理、订单管理、房源评估</view>
+  <view class="flex justify-center account-image">
+    <view><image src="/images/tujia@3x.png"></image></view>
+    <view><image src="/images/xiaozhu@3x.png"></image></view>
+    <view><image src="/images/zhenguo@3x.png"></image></view>
+    <view><image src="/images/aibiying@3x.png"></image></view>
+    <!-- <view><image src="/images/muniao@3x.png"></image></view> -->
+  </view>
+</view>
+
+<view class='box'>
+  <view class="cu-list menu solid-top" wx:if="{{showList}}">
+    <!-- <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{channelList}}" wx:key="{{item.id}}" bind:touchstart="listTouchStart" bind:touchmove="listTouchMove" bind:touchend="listTouchEnd" data-target="{{'move-box-' + index}}"> -->
+    <view class="cu-item" wx:for="{{channelList}}" wx:key="{{item.id}}">
+      <view class='content'>
+          <view class="text-lg flex">
+            <image class='accountImage' src="{{filters.sourceFilter(item.source)}}"></image>
+            {{item.account}}
+            <view class="text-df margin-left-xs {{item.login_status == '00'?'text-best':item.login_status == '02'||item.login_status == '03'?'text-yellow':'text-bad'}}">
+              {{item.login_text}}
+            </view>
+          </view>
+          <view class="text-22 text-magigray margin-top-sm logintime" wx:if="{{item.last_login_time}}">
+            {{'上次绑定时间：' + item.lastLoginTime}}
+          </view>
+      </view>
+      <view class='action' wx:if="{{item.source!='06'}}">
+        <button 
+          class="cu-btn line-magi" 
+          bindtap='toAccountdetail' 
+          data-id="{{item.id}}" 
+          data-source="{{item.source}}" 
+          data-type="{{item.last_login_type}}"
+          data-status="{{item.login_status}}"
+          data-account="{{item.account}}"
+          wx:if="{{item.login_status == '00' || item.login_status == '02' || item.login_status == '03'}}"
+        >
+          查看
+        </button>
+        <!-- data-target = "{{item.source=='01'?'tujia':item.source=='02'?'airbnb':item.source=='04'? 'xiaozhu':item.source=='05'?'zhenguo':'muniao'}}" -->
+        <button 
+          class="cu-btn bg-magi" 
+          bindtap="bindActionSheet" 
+          data-source="{{item.source}}" 
+          data-id="{{item.id}}" 
+          data-houseurl="{{item.remote_house_url}}"
+          data-account="{{item.account}}"
+          wx:else
+        >
+          请绑定
+        </button>
+      </view>
+      <view class="move">
+        <button class='cu-btn bg-red' catchtap='showCancelModal' data-id='{{item.id}}'>取消关联</button>
+      </view>
+    </view>
+    
+  </view>
+</view>
+ <!-- wx:if="{{showList}}" -->
+<view class="canui-foor-fixed bg-magigray">
+    <view class="order-btn-box padding text-center">
+        <button class='cu-btn bg-magi block' bindtap='addActionSheet'>绑定民宿平台账号</button>
+        <view class="btn-status" wx:if="{{showBtn}}">
+          <view  wx:if="{{!showNext}}" bindtap="showModal" data-target="next" data-status="0" data-id="{{accountId}}">稍后绑定<text class="icon-right"></text></view>
+          <view class="line-magi" wx:if="{{showNext}}" bindtap="{{isshowModal?'showModal':'toHouse'}}" data-target="next" data-status="1" data-id="{{accountId}}">绑定完毕,下一步<text class="icon-right"></text></view>
+        </view>
+    </view>
+</view>
+
+<!--  -->
+<view class="cu-modal {{modalName == 'next'?'show':''}}" >
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white solid-bottom">
+      <view class="content">提示</view>
+    </view>
+    <view class="padding-xl">
+      <view wx:if="{{nextStatus == 0}}"><view>只有绑定民宿平台账号</view><view>才能进行平台操作哦</view></view>
+      <view wx:else>您还有未绑定成功的平台账号，建议继续绑定</view>
+    </view>
+    <view class="cu-bar bg-white addModal justify-center">
+      <view class="action">
+        <block wx:if="{{nextStatus == 0}}">
+          <button class="cu-btn line-magi" bindtap='toMain'>暂时不</button>
+          <button class="cu-btn bg-magi margin-left" bindtap='hideModal'>去绑定</button>
+        </block>
+        <block wx:else>
+          <button class="cu-btn line-magi" bindtap='toHouse'>跳过</button>
+          <button class="cu-btn bg-magi margin-left" bindtap='hideModal'>继续绑定</button>
+        </block>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<!-- 取消关联 -->
+<view class="cu-modal {{cancelModal?'show':''}}" >
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white solid-bottom">
+      <view class="content">提示</view>
+    </view>
+    <view class="padding-lg">
+      <view>【取消关联】 </view>
+      <view>会清除该渠道账号下的房态和订单</view>
+    </view>
+    <view class="cu-bar bg-white addModal justify-center">
+      <view class="action">
+        <button class="cu-btn line-magi" bindtap='hideCancelModal'>取消</button>
+        <button class="cu-btn bg-magi margin-left" data-id='{{accountId}}' bindtap="cancelAssociation">确定</button>
+      </view>
+    </view>
+  </view>
+</view>
+
+<cu-custom></cu-custom>

@@ -1,0 +1,10 @@
+@import "../house/house.wxss";
+
+.container{
+  padding-top: 100rpx;
+  padding-bottom: 144rpx;
+}
+.cu-btn{
+  font-size: 26rpx;
+  padding: 0 20rpx;
+}

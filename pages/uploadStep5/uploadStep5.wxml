@@ -1,0 +1,38 @@
+
+<form bindsubmit="formSubmit">
+  <view class="box">
+    <block wx:for="{{list}}" wx:key="*this">
+      <view class="cu-bar">
+        <view class="action">{{item.title}}</view>
+      </view>
+      
+      <radio-group wx:if="{{item.radio}}" name="{{item.key}}">
+        <view class="cu-list menu">
+          <block wx:for="{{item.list}}" wx:for-item="l">
+            <label class="cu-item">
+              <radio class="magi" value="{{l.title}}" checked="{{l.checked}}"></radio>
+              {{l.title}}
+            </label>
+          </block>
+        </view>
+      </radio-group>
+      <checkbox-group wx:else name="{{item.key}}">
+        <view class="cu-list menu">
+          <block wx:for="{{item.list}}" wx:for-item="l">
+            <label class="cu-item">
+              <checkbox class="magi" value="{{l.title}}" checked="{{l.checked}}"></checkbox>
+              {{l.title}}
+            </label>
+          </block>
+        </view>
+      </checkbox-group>
+    </block>
+  </view>
+
+  <view class="cu-bar foot bg-magigray">
+    <view class="response flex padding">
+      <button class="cu-btn line-magi" form-type="submit" data-target="hold">保存</button>
+      <button class="cu-btn bg-magi margin-left" form-type="submit" data-target="next">下一步</button>
+    </view>
+  </view>
+</form>

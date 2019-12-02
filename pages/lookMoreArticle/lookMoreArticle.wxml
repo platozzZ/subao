@@ -1,0 +1,37 @@
+<view class="{{double?'lookcon':''}}">
+
+  <view class="fixtop response bg-white" wx:if="{{double}}">
+    <view class="house-tab padding flex text-center solid-top ">
+      <view class="flex-sub {{tabCur==1?'cur':''}}" bindtap='tabSelect' data-id="1">经验分享</view>
+      <view class="flex-sub {{tabCur==2?'cur':''}}" bindtap='tabSelect' data-id="2">短篇科普</view>
+    </view>
+  </view>
+
+
+  <view class="cu-card article no-card">
+      <view class="cu-item shadow" wx:for="{{lookList}}" wx:key="*this"  data-id="{{item.id}}" bindtap="lookDetail">
+        <view class="title flex align-center">
+          <image src="/images/lookiconx.png" class="lookicon"></image>
+          <view class="text-default text-22">
+            {{item.type==1?'经验分享':'短篇科普'}}
+          </view>
+        </view>
+        <view class="content">
+          <image src="{{item.thumbnail}}" mode="aspectFill" class="lookimg margin-right-sm"></image>
+          <view class="desc">
+            <view class="text-rs flex">
+              <view class="{{item.tags==''?'cutline2':'text-cut'}} ">{{item.title}}</view> 
+            </view>
+            <view class="text-sm text-magigray flex">
+              <view class="text-cut">{{item.subtitle}}</view> 
+            </view>
+            <view class="flex align-center" wx:if="{{item.tags.length > 0}}">
+              <view class="cu-tag round bg-blue light newtap text-magi"  wx:for="{{item.tags}}">{{item}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+
+</view>

@@ -1,0 +1,39 @@
+@import "../uploadStep1/uploadStep1.wxss";
+/* @import "../updateDetail/updateDetail.wxss"; */
+.box .box{
+  padding: 0;
+}
+.box{
+  padding-bottom: 170rpx;
+}
+.cu-form-group picker .picker{
+  height: 100%;
+}
+.box.cu-list.menu>.cu-item .content{
+  font-size: 28rpx;
+  text-align: right;
+  height: 100rpx;
+  line-height: 100rpx;
+  /* font-weight: 600; */
+}
+.box.cu-list.menu>.cu-item.arrow .content{
+  padding-right: 70rpx;
+}
+
+.cu-list.menu>.cu-item.arrow{
+  padding-right: 0;
+}
+.cu-list.menu>.cu-item .action{
+  color: rgb(92,92,92);
+}
+.text-173{
+  color: rgb(173, 173, 173);
+} 
+
+.content input{
+  width: 100%;
+  height: 100%;
+  padding-right: 20rpx;
+}
+
+

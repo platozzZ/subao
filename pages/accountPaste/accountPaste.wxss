@@ -1,0 +1,57 @@
+
+@import '../accountBind/accountBind.wxss';
+.formContainer{
+  padding-top: 70rpx;
+}
+.link{
+  width:700rpx;
+  height: 180rpx;
+  border:1rpx solid rgb(206,206,206);
+  background: #f1f1f1;
+  margin-bottom: 90rpx;
+}
+.b2{
+  color:#b2b2b2;
+}
+.account-detail-tips{
+  padding: 20rpx 30rpx;
+  font-size: 24rpx;
+  color: #999999;
+  line-height: 30rpx;
+}
+.account-title{
+  font-size: 30rpx;
+  color: #888888;
+  padding: 90rpx 0 30rpx;
+}
+.account-title view{
+  margin: 0 10rpx;
+}
+.account-step{
+  margin: 0 30rpx;
+  background: rgb(237,237,237);
+  padding: 40rpx 30rpx 40rpx 50rpx;
+}
+.account-step-cell{
+  color: rgb(92,92,92);
+  padding-bottom: 50rpx;
+}
+.account-step-cell:last-child{
+  padding: 0;
+}
+.account-step-cell image{
+  width: 42rpx;
+  height: 42rpx;
+  margin-right: 34rpx;
+}
+.accounnt-js{
+  margin: 0 30rpx 40rpx;
+  background: rgb(237,237,237);
+  padding: 90rpx 96rpx;
+}
+.accounnt-js image{
+  width: 100%;
+  height: auto;
+}
+
+

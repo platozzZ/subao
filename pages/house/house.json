@@ -1,0 +1,7 @@
+{
+  "usingComponents": {},
+  "navigationBarTitleText": "我的房源",
+  "enablePullDownRefresh": true,
+  "backgroundColor": "#f9f9f9",
+  "backgroundTextStyle": "dark"
+}

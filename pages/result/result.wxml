@@ -1,0 +1,423 @@
+<view class="result-container bg-gradual-result">
+  <image src="https://magicdn.oss-cn-beijing.aliyuncs.com/pms/miniapp/static/rs-bg.png" mode="widthFix" bindload="bgLoad" style="" id="bg" hidden></image>
+  <image src="https://magicdn.oss-cn-beijing.aliyuncs.com/pms/miniapp/static/rs-text-bg.png" mode="widthFix" bindload="bgLoad" style="" id="textbg" hidden></image>
+  <view class="bg-img rs-top" style="background-image: url('https://magicdn.oss-cn-beijing.aliyuncs.com/pms/miniapp/static/rs-bg.png');height: {{bgHeight}}px">
+    <view class="rs-top-text bg-img text-center flex flex-direction justify-center " style="background-image: url('https://magicdn.oss-cn-beijing.aliyuncs.com/pms/miniapp/static/rs-text-bg.png');height: {{textbgHeight}}px">
+      <view class="flex align-center">
+        <view class="rs-border"></view>
+        <view class="text-xl flex align-center padding-right-xs padding-left-xs">
+          <text class="icon-title"></text>
+          <text class="padding-right-xs padding-left-xs">评估结果分析</text>
+          <text class="icon-title"></text>
+        </view>
+        <view class="rs-border transform-180"></view>
+      </view>
+      <view class="rs-time">最新评估时间：{{art.createTime}}</view>
+    </view>
+  </view>
+  <view class="rs-list" style="margin-top: {{'-' + (bgHeight - textbgHeight - 20) + 'px'}}">
+    <view class="cu-card"> <!-- 位置 -->
+      <view class="cu-item shadow">
+        <view class="rs-item-top flex padding solid-bottom">
+          <view class="flex flex-direction margin-right-sm">
+            <image class="rs-avatar" src="https://magicdn.oss-cn-beijing.aliyuncs.com/pms/miniapp/static/rs-weizhi.png" mode="widthFix"></image>
+            <view class="text-df text-magi text-center margin-top-xs">位置</view>
+          </view>
+          <view class="rs-content flex flex-direction">
+
+            <view class="rs-status flex flex-direction justify-center margin-lr-xs">
+              <view class="rs-steps flex rs-location">
+                <view class="rs-steps-item {{index==0?'text-left':index==3?'text-right':'text-center'}} {{index==3?'flex-sub':''}}" wx:for="{{rsStatus}}" wx:key="*this">
+                  <view class="rs-steps-top text-xs text-magigray" wx:if="{{index == 0 ||index == 3}}">{{index == 0?'0':'200'}}</view>
+                  <view class="rs-steps-bot text-sm text-magigray">{{item}}</view>
+                </view>
+                <view class="rs-tips text-xs" style="left:{{art.location_score/200 * 100}}%">
+                  <view class="bg-magi">{{art.location_score + '分'}}</view>
+                  <view class="triangle-down"></view>
+                </view>
+              </view>
+              
+            </view>
+            <view class="rs-text">
+              <view class="text-df text-black">您的房源位置：<text class="text-lg {{art.location_level == 0?'text-bad':art.location_level == 1?'text-well':art.location_level == 2?'text-magi':'text-best'}}">{{art.location_level == 0?'较差':art.location_level == 1?'良好':art.location_level == 2?'优秀':'极好'}}</text></view>
+              <view class="text-xs text-magigray margin-top-xs">建议您关注房源周边情况，提炼民宿卖点哦～</view>
+
+            </view>
+
+          </view>
+        </view>
+        <view class="cu-list menu-avatar comment">
+          <view class="cu-item">
+            <image class="cu-avatar" src="/images/step01.png"></image>
+            <view class="content">
+              <view class="text-rs text-26">您的房源附近<text class="text-magi">1km</text>有<text class="text-magi">{{art.near_1km_house_count}}+</text>间民宿</view>
+              <view class="text-rs text-26">您周边民宿密度：<text class="text-magi">{{art.near_1km_house_count >= 30?'密集':art.near_1km_house_count < 10?'稀少':'中等'}}</text></view>
+            </view>
+          </view>
+          <view class="cu-item">
+            <image class="cu-avatar" src="/images/step02.png"></image>
+            <view class="content text-26 text-rs">
+              <view class=" flex">
+                <view class="rs-capsule text-xs flex">
+                  <view class="rs-capsule-item text-magi {{wzIndex == 0?'bg-magi':''}}" bindtap="tabSelect" data-target="wz" data-id="0">500米以内</view>
+                  <view class="rs-capsule-item text-magi {{wzIndex == 1?'bg-magi':''}}" bindtap="tabSelect" data-target="wz" data-id="1">1公里以内</view>
+                </view>
+              </view>
+              <view class="flex justify-between margin-top-sm">
+                <view>您的房源附近有：</view>
+                <view class="text-magigray rs-more" wx:if="{{showMore}}" bindtap="bindFold">{{fold?'更多详情':'收起'}}<text class="{{fold?'icon-unfold':'icon-fold'}}"></text> </view>
+              </view>
+              <block wx:if="{{wzIndex == 0}}">
+                <view class="flex margin-top-xs rs-item-cell location align-start" wx:if="{{art.near_500m_basic_position.type_4.length>0}}">
+                  <view class="rs-item-title">景点：</view>
+                  <view class="text-magi {{fold?'text-cut':''}}">
+                    <block wx:for="{{art.near_500m_basic_position.type_4}}" wx:key="*this">
+                      {{item + '  '}}
+                    </block>
+                  </view>
+                </view>
+                <view class="flex margin-top-xs rs-item-cell location align-start" wx:if="{{art.near_500m_basic_position.type_3.length>0}}">
+                  <view class="rs-item-title">医院：</view>
+                  <view class="text-magi {{fold?'text-cut':''}}">
+                    <block wx:for="{{art.near_500m_basic_position.type_3}}" wx:key="*this">
+                      {{item + '  '}}
+                    </block>
+                  </view>
+                </view>
+                <view class="flex margin-top-xs rs-item-cell location align-start" wx:if="{{art.near_500m_basic_position.type_2.length>0}}">
+                  <view class="rs-item-title">学校：</view>
+                  <view class="text-magi {{fold?'text-cut':''}}">
+                    <block wx:for="{{art.near_500m_basic_position.type_2}}" wx:key="*this">
+                      {{item + '  '}}
+                    </block>
+                  </view>
+                </view>
+                <view class="flex margin-top-xs rs-item-cell location align-start" wx:if="{{art.near_500m_basic_position.type_1.length>0}}">
+                  <view class="rs-item-title">交通：</view>
+                  <view class="text-magi {{fold?'text-cut':''}}">
+                    <block wx:for="{{art.near_500m_basic_position.type_1}}" wx:key="*this">
+                      {{item + '  '}}
+                    </block>
+                  </view>
+                </view>
+              </block>
+
+
+              <block wx:if="{{wzIndex == 1}}">
+                <view class="flex margin-top-xs rs-item-cell location align-start" wx:if="{{art.near_1000m_basic_position.type_4.length>0}}">
+                  <view class="rs-item-title">景点：</view>
+                  <view class="text-magi {{fold?'text-cut':''}}">
+                    <block wx:for="{{art.near_1000m_basic_position.type_4}}" wx:key="*this">
+                      {{item + '  '}}
+                    </block>
+                  </view>
+                </view>
+                <view class="flex margin-top-xs rs-item-cell location align-start" wx:if="{{art.near_1000m_basic_position.type_3.length>0}}">
+                  <view class="rs-item-title">医院：</view>
+                  <view class="text-magi {{fold?'text-cut':''}}">
+                    <block wx:for="{{art.near_1000m_basic_position.type_3}}" wx:key="*this">
+                      {{item + '  '}}
+                    </block>
+                  </view>
+                </view>
+                <view class="flex margin-top-xs rs-item-cell location align-start" wx:if="{{art.near_1000m_basic_position.type_2.length>0}}">
+                  <view class="rs-item-title">学校：</view>
+                  <view class="text-magi {{fold?'text-cut':''}}">
+                    <block wx:for="{{art.near_1000m_basic_position.type_2}}" wx:key="*this">
+                      {{item + '  '}}
+                    </block>
+                  </view>
+                </view>
+                <view class="flex margin-top-xs rs-item-cell location align-start" wx:if="{{art.near_1000m_basic_position.type_1.length>0}}">
+                  <view class="rs-item-title">交通：</view>
+                  <view class="text-magi {{fold?'text-cut':''}}">
+                    <block wx:for="{{art.near_1000m_basic_position.type_1}}" wx:key="*this">
+                      {{item + '  '}}
+                    </block>
+                  </view>
+                </view>
+              </block>
+
+
+            </view>
+          </view>
+        </view>
+        <block wx:if="{{wzIndex == 0}}">
+          <view class="text-22 text-magigray margin-top-xs padding-lr padding-bottom" wx:if="{{art.near500Index == 3}}">您的房源靠近景点区域，旅游客源较多，建议您为房客多提供周边景点游玩攻略，提供舒适的睡眠环境，提升房客出游体验。</view>
+          <view class="text-22 text-magigray margin-top-xs padding-lr padding-bottom" wx:if="{{art.near500Index == 2}}">您的房源位于医院周边，价格敏感型房客较多，建议提供简单厨具及就医指南。</view>
+          <view class="text-22 text-magigray margin-top-xs padding-lr padding-bottom" wx:if="{{art.near500Index == 1}}">您的房源靠近校园，价格敏感型房客较多，高性价比房源更受欢迎，建议合理定价。</view>
+          <view class="text-22 text-magigray margin-top-xs padding-lr padding-bottom" wx:if="{{art.near500Index == 0}}">您的房源交通便利，对比周围房源有极大优势，在房源介绍中请重点突出。</view>
+        </block>
+        <block wx:if="{{wzIndex == 1}}">
+          <view class="text-22 text-magigray margin-top-xs padding-lr padding-bottom" wx:if="{{art.near1000Index == 3}}">您的房源靠近景点区域，旅游客源较多，建议您为房客多提供周边景点游玩攻略，提供舒适的睡眠环境，提升房客出游体验。</view>
+          <view class="text-22 text-magigray margin-top-xs padding-lr padding-bottom" wx:if="{{art.near1000Index == 2}}">您的房源位于医院周边，价格敏感型房客较多，建议提供简单厨具及就医指南。</view>
+          <view class="text-22 text-magigray margin-top-xs padding-lr padding-bottom" wx:if="{{art.near1000Index == 1}}">您的房源靠近校园，价格敏感型房客较多，高性价比房源更受欢迎，建议合理定价。</view>
+          <view class="text-22 text-magigray margin-top-xs padding-lr padding-bottom" wx:if="{{art.near1000Index == 0}}">您的房源交通便利，对比周围房源有极大优势，在房源介绍中请重点突出。</view>
+        </block>
+      </view>
+    </view>
+
+    <view class="cu-card"> <!-- 价格 -->
+      <view class="cu-item shadow">
+        <view class="rs-item-top flex padding solid-bottom">
+          <view class="flex flex-direction margin-right-sm">
+            <image class="rs-avatar" src="https://magicdn.oss-cn-beijing.aliyuncs.com/pms/miniapp/static/rs-jiage.png" mode="widthFix"></image>
+            <view class="text-df text-magi text-center margin-top-xs">价格</view>
+          </view>
+          <view class="rs-content flex flex-direction">
+
+            <view class="rs-status flex flex-direction justify-center margin-lr-xs">
+              <view class="rs-steps flex rs-price">
+                <view class="rs-steps-item {{index==0?'text-left':index==3?'text-right':'text-center'}} {{index==3?'flex-sub':''}}" wx:for="{{rsStatus}}" wx:key="*this">
+                  <view class="rs-steps-top text-xs text-magigray" wx:if="{{index == 0 ||index == 3}}">{{index == 0?'0':'300'}}</view>
+                  <view class="rs-steps-bot text-sm text-magigray">{{item}}</view>
+                </view>
+                <view class="rs-tips text-xs" style="left:{{art.price_score/300 * 100}}%">
+                  <view class="bg-magi">{{art.price_score + '分'}}</view>
+                  <view class="triangle-down"></view>
+                </view>
+              </view>
+            </view>
+            <view class="rs-text">
+              <view class="text-df text-black">您的房源价格：<text class="text-lg {{art.price_level == 0?'text-bad':art.price_level == 1?'text-well':art.price_level == 2?'text-magi':'text-best'}}">{{art.price_level == 0?'较差':art.price_level == 1?'良好':art.price_level == 2?'优秀':'极好'}}</text></view>
+              <view class="text-xs text-magigray margin-top-xs">建议您关注价格趋势，合理调整价格哦～</view>
+            </view>
+
+          </view>
+        </view>
+        <view class="cu-list menu-avatar comment">
+          <view class="cu-item">
+            <image class="cu-avatar" src="/images/step01.png"></image>
+            <view class="content text-26 text-rs">
+              <view class=" flex">
+                <view class="rs-capsule text-xs flex">
+                  <view 
+                    class="rs-capsule-item text-magi {{jg1Index == index?'bg-magi':''}}" 
+                    bindtap="tabSelect" 
+                    data-target="jg1" 
+                    data-id="{{index}}"
+                    data-month="{{item.month}}"
+                    wx:for="{{art.month_avg_price_distance[jlIndex]}}"
+                    wx:key="*this"
+                  >
+                    {{item.month + '月'}}
+                  
+                  </view>
+                  <!-- <view class="rs-capsule-item text-magi {{jg1Index == 1?'bg-magi':''}}" bindtap="tabSelect" data-target="jg1" data-id="1">11月</view>
+                  <view class="rs-capsule-item text-magi {{jg1Index == 2?'bg-magi':''}}" bindtap="tabSelect" data-target="jg1" data-id="2">12月</view> -->
+                </view>
+              </view>
+              <view class="flex justify-between align-center margin-top-sm">
+                <view>附近民宿日均价(元)：</view>
+                <view class="text-magigray text-sm flex rs-jl">
+                  <view class="padding-lr-xs solid-right {{jlIndex == 0?'text-magi':''}}" bindtap="tabSelect" data-target="jl" data-id="0">500米</view>
+                  <view class="padding-lr-xs {{jlIndex == 1?'text-magi':''}}" bindtap="tabSelect" data-target="jl" data-id="1">1公里</view>
+                </view>
+              </view>
+              <view class="chartContainer">
+                <ec-canvas class="chartContainer-chart" id="chart00" canvas-id="chart00" ec="{{ ecLine }}"></ec-canvas>
+              </view>
+
+            </view>
+          </view>
+          <view class="cu-item">
+            <image class="cu-avatar" src="/images/step02.png"></image>
+            <view class="content text-26 text-rs">
+              <view class=" flex">
+                <view class="rs-capsule text-xs flex">
+                <view 
+                    class="rs-capsule-item text-magi {{jg2Index == index?'bg-magi':''}}" 
+                    bindtap="tabSelect" 
+                    data-target="jg2" 
+                    data-id="{{index}}"
+                    data-month="{{item.month}}"
+                    wx:for="{{art.month_avg_price_layout}}"
+                    wx:key="*this"
+                  >
+                    {{item.month + '月'}}
+                  
+                  </view>
+                  <!-- <view class="rs-capsule-item text-magi {{jg2Index == 0?'bg-magi':''}}" bindtap="tabSelect" data-target="jg2" data-id="0">10月</view>
+                  <view class="rs-capsule-item text-magi {{jg2Index == 1?'bg-magi':''}}" bindtap="tabSelect" data-target="jg2" data-id="1">11月</view>
+                  <view class="rs-capsule-item text-magi {{jg2Index == 2?'bg-magi':''}}" bindtap="tabSelect" data-target="jg2" data-id="2">12月</view> -->
+                </view>
+              </view>
+              <view class="flex justify-between align-center margin-top-sm">
+                <view>{{art.city}}户型日均价(元)：</view>
+              </view>
+              <view class="chartContainer">
+                <ec-canvas class="chartContainer-chart" id="chart2" canvas-id="chart2" ec="{{ ecLine2 }}"></ec-canvas>
+              </view>
+
+            </view>
+          </view>
+          <view class="cu-item">
+            <image class="cu-avatar" src="/images/step03.png"></image>
+            <view class="content text-26 text-rs">
+              <view class=" flex">
+                <view class="rs-capsule text-xs flex">
+                  <view 
+                    class="rs-capsule-item text-magi {{jg3Index == index?'bg-magi':''}}" 
+                    bindtap="tabSelect" 
+                    data-target="jg3" 
+                    data-id="{{index}}"
+                    data-month="{{item.month}}"
+                    wx:for="{{art.month_avg_price_type}}"
+                    wx:key="*this"
+                  >
+                    {{item.month + '月'}}
+                  
+                  </view>
+                  <!-- <view class="rs-capsule-item text-magi {{jg3Index == 0?'bg-magi':''}}" bindtap="tabSelect" data-target="jg3" data-id="0">10月</view>
+                  <view class="rs-capsule-item text-magi {{jg3Index == 1?'bg-magi':''}}" bindtap="tabSelect" data-target="jg3" data-id="1">11月</view>
+                  <view class="rs-capsule-item text-magi {{jg3Index == 2?'bg-magi':''}}" bindtap="tabSelect" data-target="jg3" data-id="2">12月</view> -->
+                </view>
+              </view>
+              <view class="flex justify-between align-center margin-top-sm">
+                <view>{{art.city}}房源类型日均价(元)：</view>
+              </view>
+              <view class="chartContainer">
+                <ec-canvas class="chartContainer-chart" id="chart3" canvas-id="chart3" ec="{{ ecBar }}"></ec-canvas>
+              </view>
+
+            </view>
+          </view>
+        </view>
+
+      </view>
+    </view>
+
+    <view class="cu-card"> <!-- 装修 -->
+      <view class="cu-item shadow">
+        <view class="rs-item-top flex padding solid-bottom">
+          <view class="flex flex-direction margin-right-sm">
+            <image class="rs-avatar" src="https://magicdn.oss-cn-beijing.aliyuncs.com/pms/miniapp/static/rs-zhuangxiu.png" mode="widthFix"></image>
+            <view class="text-df text-magi text-center margin-top-xs">装修</view>
+          </view>
+          <view class="rs-content flex flex-direction">
+
+            <view class="rs-status flex flex-direction justify-center margin-lr-xs">
+              <view class="rs-steps flex rs-fitment">
+                <view class="rs-steps-item {{index==0?'text-left':index==3?'text-right':'text-center'}} {{index==3?'flex-sub':''}}" wx:for="{{rsStatus}}" wx:key="*this">
+                  <view class="rs-steps-top text-xs text-magigray" wx:if="{{index == 0 ||index == 3}}">{{index == 0?'0':'200'}}</view>
+                  <view class="rs-steps-bot text-sm text-magigray">{{item}}</view>
+                </view>
+                <view class="rs-tips text-xs" style="left:{{art.fitment_score/200 * 100}}%">
+                  <view class="bg-magi">{{art.fitment_score + '分'}}</view>
+                  <view class="triangle-down"></view>
+                </view>
+              </view>
+              
+            </view>
+            <view class="rs-text">
+              <view class="text-df text-black">您的房源装修：<text class="text-lg {{art.fitment_level == 0?'text-bad':art.fitment_level == 1?'text-well':art.fitment_level == 2?'text-magi':'text-best'}}">{{art.fitment_level == 0?'较差':art.fitment_level == 1?'良好':art.fitment_level == 2?'优秀':'极好'}}</text></view>
+              <view class="text-xs text-magigray margin-top-xs">建议您关注用户需求，提升服务品质哦～</view>
+
+            </view>
+
+          </view>
+        </view>
+        <view class="cu-list menu-avatar comment">
+          <view class="cu-item">
+            <image class="cu-avatar" src="/images/step01.png"></image>
+            <view class="content text-26 text-rs">
+              <view>用户喜爱的装修风格<text class="text-magi">TOP3：</text></view>
+              <view class=" flex margin-tb-sm">
+                <view class="rs-capsule text-xs flex">
+                  <view class="rs-capsule-item text-magi {{zxIndex == 0?'bg-magi':''}}" bindtap="tabSelect" data-target="zx" data-id="0">网红ins风</view>
+                  <view class="rs-capsule-item text-magi {{zxIndex == 1?'bg-magi':''}}" bindtap="tabSelect" data-target="zx" data-id="1">北欧风</view>
+                  <view class="rs-capsule-item text-magi {{zxIndex == 2?'bg-magi':''}}" bindtap="tabSelect" data-target="zx" data-id="2">小清新风</view>
+                </view>
+              </view>
+              <view class="flex ">
+                <view class="rs-style-item rs-style-item1">
+                  <view class="cu-avatar" style="background-image:url(https://magicdn.oss-cn-beijing.aliyuncs.com/pms/miniapp/housestyle/ins1.png);" wx:if="{{zxIndex == 0}}"></view>
+                  <view class="cu-avatar" style="background-image:url(https://magicdn.oss-cn-beijing.aliyuncs.com/pms/miniapp/housestyle/beiou1.png);" wx:if="{{zxIndex == 1}}"></view>
+                  <view class="cu-avatar" style="background-image:url(https://magicdn.oss-cn-beijing.aliyuncs.com/pms/miniapp/housestyle/qingxin1.png);" wx:if="{{zxIndex == 2}}"></view>
+                </view>
+                <view class="rs-style-item rs-style-item2 flex flex-direction">
+                  <view>
+                    <view class="cu-avatar" style="background-image:url(https://magicdn.oss-cn-beijing.aliyuncs.com/pms/miniapp/housestyle/ins2.png);" wx:if="{{zxIndex == 0}}"></view>
+                    <view class="cu-avatar" style="background-image:url(https://magicdn.oss-cn-beijing.aliyuncs.com/pms/miniapp/housestyle/beiou2.png);" wx:if="{{zxIndex == 1}}"></view>
+                    <view class="cu-avatar" style="background-image:url(https://magicdn.oss-cn-beijing.aliyuncs.com/pms/miniapp/housestyle/qingxin2.png);" wx:if="{{zxIndex == 2}}"></view>
+                  </view>
+                  <view>
+                    <view class="cu-avatar" style="background-image:url(https://magicdn.oss-cn-beijing.aliyuncs.com/pms/miniapp/housestyle/ins3.png);" wx:if="{{zxIndex == 0}}"></view>
+                    <view class="cu-avatar" style="background-image:url(https://magicdn.oss-cn-beijing.aliyuncs.com/pms/miniapp/housestyle/beiou3.png);" wx:if="{{zxIndex == 1}}"></view>
+                    <view class="cu-avatar" style="background-image:url(https://magicdn.oss-cn-beijing.aliyuncs.com/pms/miniapp/housestyle/qingxin3.png);" wx:if="{{zxIndex == 2}}"></view>
+                  </view>
+                </view>
+              </view>
+
+
+            </view>
+          </view>
+          
+          <view class="cu-item">
+            <image class="cu-avatar" src="/images/step02.png"></image>
+            <view class="content text-26 text-rs">
+              <view>用户最受欢迎配套设施<text class="text-magi">TOP30：</text></view>
+              <view class="flex margin-top-xs rs-item-cell align-start" wx:for="{{tagList}}" wx:key="*this">
+                <view class="rs-item-title text-magigray rs-tag-title flex"><image src="{{'/images/rstag_0' + (index+1) + '.png'}}"></image>{{item.name}}：</view>
+                <view class="rs-tag flex flex-wrap">
+                  <view class="{{l.disabled?'disabled':''}}" wx:for="{{item.list}}" wx:key="*this" wx:for-item = "l">{{l.name}}</view>
+                  
+                </view>
+              </view>
+              <view class="text-22 text-magigray margin-top-xs" wx:if="{{art.fitmentLength>0}}">您有<text class="text-magi">{{art.fitmentLength}}</text>件缺少的设施，建议多关注～</view>
+
+            </view>
+          </view>
+
+
+
+
+        </view>
+
+      </view>
+    </view>
+
+    <view class="cu-card"> <!-- 客源 -->
+      <view class="cu-item shadow">
+        <view class="rs-item-top flex padding solid-bottom">
+          <view class="flex flex-direction margin-right-sm">
+            <image class="rs-avatar" src="https://magicdn.oss-cn-beijing.aliyuncs.com/pms/miniapp/static/rs-keyuan.png" mode="widthFix"></image>
+            <view class="text-df text-magi text-center margin-top-xs">客源</view>
+          </view>
+          <view class="rs-content flex flex-direction">
+
+            <view class="rs-status flex flex-direction justify-center margin-lr-xs">
+              <view class="rs-steps flex rs-customer">
+                <view class="rs-steps-item {{index==0?'text-left':index==3?'text-right':'text-center'}} {{index==3?'flex-sub':''}}" wx:for="{{rsStatus}}" wx:key="*this">
+                  <view class="rs-steps-top text-xs text-magigray" wx:if="{{index == 0 ||index == 3}}">{{index == 0?'0':'300'}}</view>
+                  <view class="rs-steps-bot text-sm text-magigray">{{item}}</view>
+                </view>
+                <view class="rs-tips text-xs" style="left:{{art.customer_score/300 * 100}}%">
+                  <view class="bg-magi">{{art.customer_score + '分'}}</view>
+                  <view class="triangle-down"></view>
+                </view>
+              </view>
+              
+            </view>
+            <view class="rs-text">
+              <view class="text-df text-black">您的房源客源：<text class="text-lg {{art.customer_level == 0?'text-bad':art.customer_level == 1?'text-well':art.customer_level == 2?'text-magi':'text-best'}}">{{art.customer_level == 0?'较差':art.customer_level == 1?'良好':art.customer_level == 2?'优秀':'极好'}}</text></view>
+              <view class="text-xs text-magigray margin-top-xs">建议您关注客源变化，提升服务品质哦～</view>
+
+            </view>
+
+          </view>
+        </view>
+        <view class="cu-list menu-avatar comment">
+          <view class="cu-item" wx:for="{{art.customer_advice}}">
+            <image class="cu-avatar" src="{{'/images/step0' + (index+1) +'.png'}}"></image>
+            <view class="content">
+              <view class="text-rs text-26">{{item}}</view>
+            </view>
+          </view>
+        </view>
+
+      </view>
+    </view>
+
+  </view>
+</view>

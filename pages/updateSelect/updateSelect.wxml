@@ -1,0 +1,5 @@
+<view class="fle flex-direction align-center padding-lr solid-top">
+   <image src="https://magicdn.oss-cn-beijing.aliyuncs.com/pms/miniapp/static/uploadNewHouse.png" class="response" data-selectIndex="0" bindtap="uploadSelct"></image>
+    <image src="https://magicdn.oss-cn-beijing.aliyuncs.com/pms/miniapp/static/morePlat.png"  class="response margin-top"   data-selectIndex="1"  bindtap="uploadSelct"></image>
+</view>
+

@@ -1,0 +1,116 @@
+<wxs module="filters" src="../../utils/sourceFilter.wxs"></wxs>
+<view class="emptyContainer" wx:if="{{emptyContainer}}">
+  <image src='/images/houseEmpty.png'></image>
+  <view class=''>您还没有创建宿宝房源</view>
+  <view class="text-22 margin-top-xs" style="color: rgb(199,199,199)">
+    <view>使用提升房源收益工具前：</view>
+    <view>第一步：添加民宿平台    第二步：创建宿宝房源。</view>
+  </view>
+</view>
+<view class="box">
+  <view class="nav text-center fixed bg-white houseTips">
+    <view class="house-tab padding flex text-center">
+      <view class="flex-sub {{tabCur==0?'cur':''}}" bindtap='tabSelect' data-id="0">全部</view>
+      <view class="flex-sub {{tabCur==1?'cur':''}}" bindtap='tabSelect' data-id="1">待评估</view>
+      <view class="flex-sub {{tabCur==2?'cur':''}}" bindtap='tabSelect' data-id="2">已评估</view>
+    </view>
+  </view>
+  
+  <view class="houseList" wx:if="{{showContainer}}">
+    <view class="cu-list menu menu-avatar">
+      <view class="cu-item shadow" wx:for="{{houseList}}" wx:key="{{item.id}}">
+          <view class="cu-avatar xl" style="{{'background-image:url(' + item.thumbnail_url + ');'}}"></view>
+          <view class='content justify-between'>
+              <view class='text-black defaultFlex'>
+                <view class="text-cut" >{{item.name}}</view>
+                <view class="assess margin-left {{item.assess_status == 0 || item.assess_status == 1 || !item.assess_status?'text-bad':'text-magi'}}">
+                  {{item.assess_status != 2?'待评估':!item.whole_score?'':item.whole_score + '分'}}
+                
+                </view>
+              </view>
+              <view class='text-gray text-sm house-address margin-top-xs'>{{item.address}}</view>
+              <view class="houseTag text-sm margin-top-xs" wx:if="{{item.assess_status == 2}}">
+                <text class="{{item.location_level == 0?'text-bad':item.location_level == 1?'text-well':item.location_level == 2?'text-magi':'text-best'}}">“位置{{item.location_level == 0?'较差':item.location_level == 1?'良好':item.location_level == 2?'优秀':'极好'}}·</text>
+                <text class="{{item.fitment_level == 0?'text-bad':item.fitment_level == 1?'text-well':item.fitment_level == 2?'text-magi':'text-best'}}">装修{{item.fitment_level == 0?'较差':item.fitment_level == 1?'良好':item.fitment_level == 2?'优秀':'极好'}}·</text>
+                <text class="{{item.price_level == 0?'text-bad':item.price_level == 1?'text-well':item.price_level == 2?'text-magi':'text-best'}}">价格{{item.price_level == 0?'较差':item.price_level == 1?'良好':item.price_level == 2?'优秀':'极好'}}·</text>
+                <text class="{{item.customer_level == 0?'text-bad':item.customer_level == 1?'text-well':item.customer_level == 2?'text-magi':'text-best'}}">客流{{item.customer_level == 0?'较差':item.customer_level == 1?'良好':item.customer_level == 2?'优秀':'极好'}}”</text>
+              </view>
+              <view class='instanceCount margin-top-xs flex justify-between align-center'>
+                <view class="flex sourceLogo align-center">
+                  <block wx:for="{{item.bind_source}}" wx:key="*this" wx:for-item="source">
+                    <image src="{{filters.sourceFilter(source)}}" class=""></image>
+                  </block>
+                </view>
+                <view class="text-rs">共<text class='text-magi'>{{item.instance_count}}</text>套</view>
+              
+              </view>
+              <view class='house-bottom defaultFlex margin-top-xs'>
+                <view>
+                  <view class="text-sm text-bad text-content margin-top-xs" wx:if="{{item.city_flag == 1}}">此地区暂时无法评估,敬请期待~</view>
+                </view>
+                <view class="flex ">
+                  <button class='cu-btn line-magi' catchtap='toHouseEvaluation' data-id="{{item.id}}" wx:if="{{item.assess_status == 2}}">评估详情</button>
+                  <button class='cu-btn bg-magi' catchtap="{{item.tujia_flag == 1?'showModal':'starAssess'}}" data-id="{{item.id}}" data-target="assess" wx:if="{{item.city_flag == 0 && item.assess_status != 2}}">开始评估</button>
+                </view>
+              </view>
+          </view>
+      </view>
+    </view>
+
+  </view>
+</view>
+
+<view class="cu-modal {{modalName=='tips'?'show':''}}" >
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white solid-bottom">
+      <view class="content">提示</view>
+    </view>
+    <view class="padding-xl">
+      <block wx:if="{{!onlineNum}}">
+        <view>您还没有添加民宿平台</view>
+        <view>请添加后再读取房源</view>
+      </block>
+      <block wx:else>
+        <view>您的民宿平台未登录成功</view>
+        <view>请登录后再读取房源</view>
+      </block>
+    </view>
+    <view class="cu-bar bg-white addModal justify-center">
+      <view class="action">
+        <button class="cu-btn line-magi" bindtap='hideModal'>取消</button>
+        <button class="cu-btn bg-magi margin-left" bindtap='toAccount'>{{onlineNum?'去登录':'去添加'}}</button>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="cu-modal {{modalName=='assess'?'show':''}}" >
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white solid-bottom">
+      <view class="content">提示</view>
+    </view>
+    <view class="padding-xl">
+      您的房源信息较少，建议关联多个平台
+    </view>
+    <view class="cu-bar bg-white addModal justify-center">
+      <view class="action">
+        <button class="cu-btn line-magi" bindtap='hideModal'>我再想想</button>
+        <button class="cu-btn bg-magi margin-left" bindtap='toAccount'>关联途家账号</button>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="cu-modal {{modalName=='assessloading'?'show':''}}">
+  <view class="cu-dialog assess">
+    <view class="bg-img" style="background-image: url('https://magicdn.oss-cn-beijing.aliyuncs.com/pms/miniapp/static/subao.gif');">
+      <view class="cu-bar justify-center text-white">
+        <view class="action">
+          正在评估中
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<cu-custom></cu-custom>
+<!-- <is-login wx:if="{{!isLogin}}"></is-login> -->

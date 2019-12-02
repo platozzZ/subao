@@ -1,0 +1,31 @@
+<view class="fle flex-direction account-detail-container">
+
+  <view class=" padding-tb-100 bg-white solid-top">
+    <view class="flex flex-direction align-center text-rs f34">
+      <view class="margin-bottom-xs">您的{{title}}账号
+        <text class="text-magi">{{account}}</text>已绑定</view>
+
+      <view class="text-magigray text-sm  margin-bottom-sm" wx:if="{{loginTime}}">
+        上次绑定时间：{{loginTime}}
+      </view>
+      <button class="cu-btn bg-magi margin-top-sm rebtn" bindtap="reConfirm">重新绑定</button>
+    </view>
+  </view>
+  <scroll-view class="account-detail-scroll" scroll-y style="height:calc(100vh - 420rpx)">
+
+    <view class="account-title flex justify-center align-center">
+      <view class="menu-icon"></view>
+      <view>平台介绍</view>
+      <view class="menu-icon"></view>
+    </view>
+    <view class="accounnt-js">
+      <image src="https://magicdn.oss-cn-beijing.aliyuncs.com/pms/miniapp/static/js1.png" mode="widthFix"></image>
+    </view>
+
+  </scroll-view>
+</view>
+
+
+
+<cu-custom></cu-custom>
+

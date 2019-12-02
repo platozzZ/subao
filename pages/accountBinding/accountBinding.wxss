@@ -1,0 +1,17 @@
+
+@import '../accountPaste/accountPaste.wxss';
+.f34{
+  font-size: 34rpx;
+}
+.padding-tb-100{
+  padding-top:100rpx;
+  padding-bottom: 100rpx;
+}
+/* 178 b2 */
+.rebtn{
+  padding: 0 76rpx;
+  height: 80rpx;
+}
+
+
+

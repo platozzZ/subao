@@ -1,0 +1,158 @@
+.box {
+  padding-bottom: 230rpx;
+}
+.account-padding{
+  padding: 0 96rpx;
+  line-height: 36rpx;
+  color: rgb(153,153,153);
+}
+.account-image view,.account-image view image{
+  width: 40rpx;
+  height: 40rpx;
+}
+.account-image view{
+  margin: 20rpx 17rpx;
+}
+.logintime{
+  line-height: 24rpx;
+}
+.modal-input{
+  display: flex;
+  align-items: center;
+  text-align: left;
+  padding: 0 20rpx 0 0;
+  border: 1rpx solid rgb(206,206,206);
+  border-radius: 4rpx;
+  margin: 0 auto 40rpx;
+  background: rgb(249 ,249 ,249);
+  height: 70rpx;
+}
+.modal-input image{
+  width: 30rpx;
+  height: 30rpx;
+  margin: 0 20rpx;
+}
+.modal-input input{
+  flex: 1;
+}
+.modal-input.only{
+  margin-bottom: 0
+}
+.verifyImage{
+  text-align: center;
+  font-size: 26rpx;
+  margin-bottom: 40rpx;
+}
+.verifyImage image{
+  width: 100%;
+  max-width: 420rpx;
+  height: auto;
+  max-height: 120rpx;
+}
+.verifyImage.text-magi{
+  line-height: 60rpx;
+  /* background: rgb(237,237,237); */
+  border-radius: 4rpx;
+}
+.verifyImage.text-magi .icon-refresh{
+  margin: 0 20rpx;
+}
+.verifyImage+.modal-input{
+  padding: 0 20rpx;
+}
+.cu-list.menu{
+  /* border-top: 0.5rpx solid #ddd; */
+}
+.cu-list.menu>.cu-item{
+  padding: 30rpx;
+  min-height: 153rpx;
+}
+.cu-list.menu>.cu-item .action .cu-btn{
+  margin-left: 20rpx;
+}
+.cu-list.menu>.cu-item .content .flex{
+  display: flex;
+  align-items: center;
+}
+.cu-list.menu>.cu-item .content .flex .accountImage{
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 10rpx;
+}
+.cu-list.menu>.cu-item .action .cu-btn{
+  height: 50rpx;
+} 
+/* .addModal{
+  height: 100rpx;
+  align-items: stretch;
+}
+.addModal view{
+  line-height: 100rpx;
+  position: relative;
+}
+.addModal view button{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1111;
+  opacity: 0;
+} */
+
+
+/* .addModal .cu-btn{
+  margin: 10px 20px;
+} */
+.radio-btn{
+  width: 100%;
+  height: 80rpx;
+  border-radius: 4rpx;
+}
+.bottom-modal-flex{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.hide-modal{
+  flex: 1;
+}
+.cu-modal.bottom-modal .action{
+  font-size: 38rpx;
+  color: rgb(43 ,43 ,43 );
+}
+/* .flex-sub{
+  font-size: 32rpx;
+  color: rgb(92 ,92 ,92 );
+} */
+
+.cu-list>.cu-item .move {
+  width: 200rpx;
+}
+.cu-list>.cu-item.move-cur {
+  transform: translateX(-200rpx);
+}
+.cu-list>.cu-item .move button {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:100%;
+}
+
+.order-btn-box{
+  color: #adadad;
+}
+.btn-status{
+  margin-top: 30rpx;
+}
+.btn-status navigator{
+  display: inline;
+}
+.btn-status navigator text{
+  margin-left: 5rpx;
+}

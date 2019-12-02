@@ -1,0 +1,54 @@
+@import '../accountBind/accountBind.wxss';
+@import '../account/account.wxss';
+@import '../accountPhone/accountPhone.wxss';
+
+.account-input{
+  margin-top: 30rpx;
+}
+.account-input image{
+  width: 26rpx;
+  height: auto;
+  margin: 0 20rpx;
+}
+.account-bindtips{
+  color: #999;
+}
+
+.account-detail-scroll{
+  flex: 1;
+  height: calc(100vh - 630rpx);
+}
+.menu-icon{
+  width: 12px;
+  height: 7px;
+  border-top: 1px solid #888888;
+  border-bottom: 1px solid #888888;
+  background-color: #888888;
+  padding: 2px 0;
+  background-clip: content-box;
+}
+.account-title{
+  font-size: 30rpx;
+  color: #888888;
+  padding: 90rpx 0 30rpx;
+}
+.account-title view{
+  margin: 0 10rpx;
+}
+.account-step{
+  margin: 0 30rpx;
+  background: rgb(237,237,237);
+  padding: 40rpx 20rpx 40rpx 50rpx;
+}
+.account-step-cell{
+  color: rgb(92,92,92);
+  padding-bottom: 50rpx;
+}
+.account-step-cell:last-child{
+  padding: 0;
+}
+.account-step-cell image{
+  width: 42rpx;
+  height: 42rpx;
+  margin-right: 20rpx;
+}

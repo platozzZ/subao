@@ -1,0 +1,71 @@
+<form bindsubmit="{{btnDisabled?'':'formSubmit'}}">
+  <view class="account-container padding">
+    <view class="padding-top-lg">手机号: {{account}}</view>
+    
+    <view class="account-input flex align-center">
+      <image src="/images/mima.png" mode="widthFix"></image>
+      <input name="password" maxlength='16' placeholder="请输入密码" maxlength="11"></input>
+    </view>
+    <input placeholder='' name="account_id" hidden value='{{accountId}}'></input>
+    <input placeholder='' name="login_type" hidden value='{{loginType}}'></input>
+
+    <button class='cu-btn bg-magi response' form-type="submit" disabled="{{btnDisabled}}">{{btnText}}</button>
+    <view class="margin-top text-sm account-bindtips">* 首次绑定平台账号需要几分钟时间，请耐心等待...</view>
+  </view>
+</form>
+<view class="account-title flex justify-center align-center">
+  <view class="menu-icon"></view>
+  <view>绑定流程</view>
+  <view class="menu-icon"></view>
+</view>
+<view class="account-step">
+  <view class="account-step-cell flex align-end">
+    <view> 
+      <image src="/images/step01.png"></image>
+    </view>
+    <view class="text-26">输入密码</view>
+  </view>
+  <view class="account-step-cell flex align-end">
+    <view> 
+      <image src="/images/step02.png"></image>
+    </view>
+    <view class="text-26">{{source == '02'?'点击“登录并绑定”，等待爱彼迎短信验证码':'点击“登录并绑定”'}}</view>
+  </view>
+  <view class="account-step-cell flex align-end">
+    <view> 
+      <image src="/images/step03.png"></image>
+    </view>
+    <view class="text-26">{{source == '02'?'弹窗中输入验证码':'绑定成功！'}}</view>
+  </view>
+  <view class="account-step-cell flex align-end" wx:if="{{source == '02'}}">
+    <view> 
+      <image src="/images/step04.png"></image>
+    </view>
+    <view>绑定成功！</view>
+  </view>
+</view>
+
+<!-- Airbnb登录 -->
+<view class="cu-modal {{modalName == 'code'?'show':''}}" >
+  <form bindsubmit="codeLogin">
+    <view class="cu-dialog">
+      <view class="cu-bar bg-white solid-bottom">
+        <view class="content">{{sourceTitle}}短信验证码</view>
+      </view>
+      <view class="padding-lg">
+        <view class='modal-input'>
+          <image src='/images/yanzhengma.png'></image>
+          <input placeholder='请输入短信验证码' name="code" bindinput="codePhone" value="{{codePhone}}" maxlength='8'></input>
+        </view>
+        <input name="account_id" hidden value='{{accountId}}'></input>
+        <!-- <input name="login_type" hidden value='{{loginType}}'></input> -->
+      </view>
+      <view class="cu-bar bg-white addModal justify-center">
+        <view class="action">
+          <button class="cu-btn line-magi" bindtap='hideModal'>取消</button>
+          <button class="cu-btn bg-magi margin-left" form-type="submit" data-target="0">确定</button>
+        </view>
+      </view>
+    </view>
+  </form>
+</view>

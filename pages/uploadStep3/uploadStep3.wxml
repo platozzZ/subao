@@ -1,0 +1,163 @@
+<form bindsubmit="formSubmit">
+  <view class="box cu-list menu">
+    <navigator class="cu-item arrow margin-top" url="../houseType/houseType?name={{houseType}}">
+      <view class="action text-df">房屋类型</view>
+      <view class="content">
+        {{houseType?houseType:'请选择'}}
+      </view>
+      <input name="house_type" value="{{houseType}}" hidden></input>
+    </navigator>
+    
+    <view class="cu-item arrow">
+      <view class="action text-df">出租方式</view>
+      <view class="content">
+        <picker bindchange="pickChange" value="{{czArr[czIndex]}}" range="{{czArr}}" data-target="cz" name="rent_type">
+          <view class="picker">
+            {{czIndex > 0 || czIndex == 0?czArr[czIndex]:'请选择'}}
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="cu-item arrow">
+      <view class="action text-df">景观</view>
+      <view class="content">
+        <picker bindchange="pickChange" value="{{jgArr[jgIndex]}}" range="{{jgArr}}" data-target="jg" name="landscape">
+          <view class="picker">
+            {{jgIndex > 0 || jgIndex == 0?jgArr[jgIndex]:'请选择'}}
+          </view>
+        </picker>
+      </view>
+      
+    </view>
+    <view class="cu-item arrow">
+      <view class="action text-df">房屋户型</view>
+      <view class="content" disabled="{{modalName!=null}}" bindtap="showModal" data-target="housetype">
+        {{!art.bedroom_count?'请选择' : art.bedroom_count + '室,' +  art.livingroom_count + '厅,' +  art.bathroom_count + '卫'}}
+      </view>
+    </view>
+    <view class="cu-item">
+      <view class="action text-df">卫生间类型</view>
+      <view class="content">
+        <radio-group class="radioGroup block flex align-center justify-end" name="bathroom_type">
+          <label class="flex algin-center"><radio class="magi" value="独卫" checked="{{art.bathroom_type == '独卫'}}"></radio><text>独卫</text></label>
+          <label class="flex algin-center margin-left-lg"><radio class="magi" value="公卫" checked="{{art.bathroom_type == '公卫'}}"></radio><text>公卫</text></label>
+        </radio-group>
+      </view>
+    </view>
+    <view class="cu-item no-border">
+      <view class="action text-df">房屋面积</view>
+      <view class="content">
+        <input type="digit" placeholder="" maxlength="5" name="house_area" value="{{art.house_area}}"></input>
+      </view>
+      <view class="action text-df tips">平米</view>
+    </view>
+    <view class="cu-bar"><view class="action">床型</view></view>
+    <view class="cu-item no-border">
+      <!-- <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaInput" placeholder="请输入床型/尺寸/数量" class="textarea" name="bed_type" value="{{art.bed_type}}"></textarea> -->
+      <textarea wx:if='{{!multiShow}}' class="textarea" placeholder="请输入床型/尺寸/数量" value='{{art.bed_type}}' maxlength='-1' bindinput='textareaInput' bindblur="ifshowArea" data-show="yes" focus="true" ></textarea>
+      <view wx:if="{{multiShow}}" class="textarea" style='color:{{!art.bed_type?"#999":"#353535"}};' data-show="no" bindtap="ifshowArea">{{!art.bed_type?'请输入床型/尺寸/数量':art.bed_type}}</view>
+      <input name="bed_type" value="{{art.bed_type}}" hidden></input>
+    </view>
+  <!-- 新增 -->
+    <view class="cu-item margin-top">
+      <view class="action text-df">公共空间床铺</view>
+      <view class="content">
+        <input type="number" placeholder="" name="space_bed_num" value="{{art.space_bed_num}}"></input>
+      </view>
+      <view class="action text-df tips">张</view>
+    </view>
+    <view class="cu-item">
+      <view class="action text-df">是否额外加床</view>
+      <view class="content">
+        <radio-group class="radioGroup block flex align-center justify-end" name="addbed_flag">
+          <label class="flex algin-center"><radio class="magi" value="是" checked="{{art.addbed_flag == '是'}}"></radio><text>是</text></label>
+          <label class="flex algin-center margin-left-lg"><radio class="magi" value="否" checked="{{art.addbed_flag == '否'}}"></radio><text>否</text></label>
+        </radio-group>
+      </view>
+    </view>
+    <view class="cu-item">
+      <view class="action text-df">宜居人数</view>
+      <view class="content">
+        <input type="number" placeholder="" maxlength="4" name="live_num" value="{{art.live_num}}"></input>
+      </view>
+      <view class="action text-df tips">人</view>
+    </view>
+    <view class="cu-item">
+      <view class="action text-df">房东是否住在该房源</view>
+      <view class="content">
+        <radio-group class="radioGroup block flex align-center justify-end" name="landlord_flag">
+          <label class="flex algin-center"><radio class="magi" value="是" checked="{{art.landlord_flag == '是'}}"></radio><text>是</text></label>
+          <label class="flex algin-center margin-left-lg"><radio class="magi" value="否" checked="{{art.landlord_flag == '否'}}"></radio><text>否</text></label>
+        </radio-group>
+      </view>
+    </view>
+    <view class="cu-item">
+      <view class="action text-df">同类型房屋数量</view>
+      <view class="content">
+        <input type="number" placeholder="" maxlength="4" name="sametype_num" value="{{art.sametype_num}}"></input>
+      </view>
+      <view class="action text-df tips">套</view>
+    </view>
+
+
+
+
+  </view>  
+  <view class="cu-bar foot bg-magigray">
+    <view class="response flex padding">
+      <button class="cu-btn line-magi" form-type="submit" data-target="hold">保存</button>
+      <button class="cu-btn bg-magi margin-left" form-type="submit" data-target="next">下一步</button>
+    </view>
+  </view>
+  <!-- <block wx:for="{{copyList}}" wx:key="*this"> -->
+    <input name="bedroom_count" value="{{art.bedroom_count}}" hidden></input>
+    <input name="livingroom_count" value="{{art.livingroom_count}}" hidden></input>
+    <input name="bathroom_count" value="{{art.bathroom_count}}" hidden></input>
+    <input name="kitchen_count" value="{{art.kitchen_count}}" hidden></input>
+    <input name="study_count" value="{{art.study_count}}" hidden></input>
+    <input name="balcony_count" value="{{art.balcony_count}}" hidden></input>
+  <!-- </block> -->
+
+</form>
+
+  <!-- 房屋户型 -->
+  <view class="cu-modal bottom-modal {{modalName=='housetype'?'show':''}}" bindtap="hideModal">
+    <view class="cu-dialog" catchtap>
+      <view class="cu-bar bg-white">
+        <view class="action text-magigray" bindtap="hideModal">取消</view>
+        <view class="title">房屋户型</view>
+        <view class="action text-magi" bindtap="confirmModal">确定</view>
+      </view>
+      <view class="cu-list menu">
+        <view class="cu-item" wx:for="{{houseTypeList}}" wx:key="*this">
+          <view class="content">{{item.name}}</view>
+          <view class="action">
+            <view class="stepper flex">
+              <!-- 减号 -->
+              <block wx:if="{{index == 0 || index == 2}}">
+                <view class="stepperHanel " data-index="{{index}}" bindtap="{{item.num > 1?'bindMinus':''}}">
+                  <image src="/images/minus.png" wx:if="{{item.num > 1}}"></image>
+                  <image src="/images/minusno.png" wx:else></image>
+                </view>
+              </block>
+              <block wx:else>
+                <view class="stepperHanel " data-index="{{index}}" bindtap="{{item.num > 0?'bindMinus':''}}">
+                  <image src="/images/minus.png" wx:if="{{item.num > 0}}"></image>
+                  <image src="/images/minusno.png" wx:else></image>
+                </view>
+              </block>
+              <!-- 数值 -->
+              <view class="stepperHanel stepperNum" >{{item.num}}</view>
+              <!-- 加号 -->
+              <view class="stepperHanel" data-index="{{index}}" bindtap="bindPlus">
+                <image src="/images/plus.png"></image>
+              </view>
+            </view>
+          </view>
+          <!-- <input name="{{item.type}}" value="{{item.num}}" hidden></input> -->
+        </view>
+      </view>
+    </view>
+  </view>
+
+  

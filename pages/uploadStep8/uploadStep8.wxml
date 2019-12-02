@@ -1,0 +1,256 @@
+<view class="box">
+  <view class="cu-bar">
+    <view class="action">封面({{coverList.length}}/1)</view>
+  </view>
+  <view class="cu-bar bg-white">
+    <view class="action">请上传一张横图作为封面，建议使用客厅或卧室横图。</view>
+  </view>
+  <view class="cu-form-group">
+    <view class="grid grid-square flex-sub">
+			<view class="addImg" wx:for="{{coverList}}" wx:key="{{index}}" bindtap="viewImage" data-url="{{coverList[index]}}">
+				<image src='{{coverList[index]}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="delImg" data-item="{{index}}" data-index="0">
+					<text class="icon-close"></text>
+				</view>
+			</view>
+			<view class="addImg" bindtap="chooseImage" data-index="0" wx:if="{{coverList.length == 0}}">
+				<image src="/images/add.png" mode="aspectFill"></image>
+			</view>
+		</view>
+  </view>
+
+  <view class="cu-bar">
+    <view class="action">卧室({{bedroomList.length}}/10)</view>
+  </view>
+  <view class="cu-bar bg-white">
+    <view class="action">请为每间卧室上传至少一张照片。</view>
+  </view>
+  <view class="cu-form-group">
+    <view class="grid grid-square flex-sub">
+			<view class="addImg" wx:for="{{bedroomList}}" wx:key="{{index}}" bindtap="viewImage" data-url="{{bedroomList[index]}}">
+				<image src='{{bedroomList[index]}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="delImg" data-item="{{index}}" data-index="1">
+					<text class="icon-close"></text>
+				</view>
+			</view>
+			<view class="addImg" bindtap="chooseImage" data-index="1" wx:if="{{bedroomList.length < 10}}">
+				<image src="/images/add.png" mode="aspectFill"></image>
+			</view>
+		</view>
+  </view>
+
+  <view class="cu-bar">
+    <view class="action">客厅({{livroomList.length}}/10)</view>
+  </view>
+  <view class="cu-bar bg-white">
+    <view class="action">建议上传横图，尽量展示全景，没有客厅可不传。</view>
+  </view>
+  <view class="cu-form-group">
+    <view class="grid grid-square flex-sub">
+			<view class="addImg" wx:for="{{livroomList}}" wx:key="{{index}}" bindtap="viewImage" data-url="{{livroomList[index]}}">
+				<image src='{{livroomList[index]}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="delImg" data-item="{{index}}" data-index="2">
+					<text class="icon-close"></text>
+				</view>
+			</view>
+			<view class="addImg" bindtap="chooseImage" data-index="2" wx:if="{{livroomList.length < 10}}">
+				<image src="/images/add.png" mode="aspectFill"></image>
+			</view>
+		</view>
+  </view>
+
+  <view class="cu-bar">
+    <view class="action">厨房({{kitchenList.length}}/10)</view>
+  </view>
+  <view class="cu-bar bg-white">
+    <view class="action">请上传包含厨具设施的照片，没有厨房可不传。</view>
+  </view>
+  <view class="cu-form-group">
+    <view class="grid grid-square flex-sub">
+			<view class="addImg" wx:for="{{kitchenList}}" wx:key="{{index}}" bindtap="viewImage" data-url="{{kitchenList[index]}}">
+				<image src='{{kitchenList[index]}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="delImg" data-item="{{index}}" data-index="3">
+					<text class="icon-close"></text>
+				</view>
+			</view>
+			<view class="addImg" bindtap="chooseImage" data-index="3" wx:if="{{kitchenList.length < 10}}">
+				<image src="/images/add.png" mode="aspectFill"></image>
+			</view>
+		</view>
+  </view>
+
+  <view class="cu-bar">
+    <view class="action">卫浴({{bathroomList.length}}/10)</view>
+  </view>
+  <view class="cu-bar bg-white">
+    <view class="action">请至少上传一张卫生间照片，需包含完整的卫浴设施。</view>
+  </view>
+  <view class="cu-form-group">
+    <view class="grid grid-square flex-sub">
+			<view class="addImg" wx:for="{{bathroomList}}" wx:key="{{index}}" bindtap="viewImage" data-url="{{bathroomList[index]}}">
+				<image src='{{bathroomList[index]}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="delImg" data-item="{{index}}" data-index="4">
+					<text class="icon-close"></text>
+				</view>
+			</view>
+			<view class="addImg" bindtap="chooseImage" data-index="4" wx:if="{{bathroomList.length < 10}}">
+				<image src="/images/add.png" mode="aspectFill"></image>
+			</view>
+		</view>
+  </view>
+
+  <view class="cu-bar">
+    <view class="action">其他({{otherList.length}}/10)</view>
+  </view>
+  <view class="cu-bar bg-white">
+    <view class="action">建议上传房源周边环境或房源布局细节图。</view>
+  </view>
+  <view class="cu-form-group">
+    <view class="grid grid-square flex-sub">
+			<view class="addImg" wx:for="{{otherList}}" wx:key="{{index}}" bindtap="viewImage" data-url="{{otherList[index]}}">
+				<image src='{{otherList[index]}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="delImg" data-item="{{index}}" data-index="5">
+					<text class="icon-close"></text>
+				</view>
+			</view>
+			<view class="addImg" bindtap="chooseImage" data-index="5" wx:if="{{otherList.length < 10}}">
+				<image src="/images/add.png" mode="aspectFill"></image>
+			</view>
+		</view>
+  </view>
+  <!-- coverList: [],
+    bedroomList: [],
+    livroomList: [],
+    kitchenList: [],
+    bathroomList: [],
+    otherList: []
+     -->
+</view>
+
+
+
+<!-- <view class="container">
+  <view>
+    <view class="kongtiao">
+      <view class="kongtop">封面({{fengmian.length}}/1)</view>
+      <view class="kongbot">
+        <view class="cor0 f28" style="margin-bottom:30rpx;">请上传一张横图作为封面，建议使用客厅或卧室横图。</view>
+        <view class="flexl imagelis">
+          <view wx:for="{{fengmian}}">
+            <view class="add"> 
+                <image src="{{item}}" class="wh100"  data-addIndex="1" data-src="{{item}}" catchtap="previewImage"></image>
+                <image src="../../images/and/guanbi.png" class="close" data-addIndex="1"  data-index="{{index}}" catchtap='close'></image>
+            </view> 
+          
+          </view>
+
+          <image src="../../images/add.png" class="add" data-addIndex="1" bindtap="add" wx:if="{{fengmian.length == 0}}"></image>
+        </view>
+      </view>
+
+    </view>
+
+    <view class="kongtiao">
+      <view class="kongtop">卧室({{woshi.length}}/10)</view>
+      <view class="kongbot">
+        <view class="cor0 f28" style="margin-bottom:30rpx;">请为每间卧室上传至少一张照片。</view>
+        <view class="flexl imagelis">
+          <view wx:for="{{woshi}}">
+            <view class="add">
+                <image src="{{item}}" class="wh100"  data-addIndex="2" data-src="{{item}}" catchtap="previewImage"></image>
+                <image src="../../images/and/guanbi.png" class="close"   data-index="{{index}}"  data-addIndex="2" catchtap='close'></image>
+            </view>
+          </view>
+
+          <image src="../../images/add.png" class="add"  data-addIndex="2" bindtap="add" wx:if="{{woshi.length < 10}}"></image>
+        </view>
+      </view>
+
+    </view>
+
+    <view class="kongtiao">
+      <view class="kongtop">客厅({{keting.length}}/10)</view>
+      <view class="kongbot">
+        <view class="cor0 f28" style="margin-bottom:30rpx;">建议上传横图，尽量展示全景，没有客厅可不传。</view>
+        <view class="flexl imagelis">
+          <view wx:for="{{keting}}">
+            <view class="add">
+                <image src="{{item}}" class="wh100"  data-addIndex="3" data-src="{{item}}" catchtap="previewImage"></image>
+                <image src="../../images/and/guanbi.png" class="close"  data-index="{{index}}"  data-addIndex="3" catchtap='close'></image>
+            </view>
+          </view>
+
+          <image src="../../images/add.png" class="add"  data-addIndex="3" bindtap="add" wx:if="{{keting.length < 10}}"></image>
+        </view>
+      </view>
+
+    </view>
+
+    <view class="kongtiao">
+      <view class="kongtop">厨房({{chufang.length}}/10)</view>
+      <view class="kongbot">
+        <view class="cor0 f28" style="margin-bottom:30rpx;">请上传包含厨具设施的照片，没有厨房可不传。</view>
+        <view class="flexl imagelis">
+          <view wx:for="{{chufang}}">
+           <view class="add">
+                <image src="{{item}}" class="wh100"  data-addIndex="4"data-src="{{item}}" catchtap="previewImage"></image>
+                <image src="../../images/and/guanbi.png" class="close"  data-addIndex="4"  data-index="{{index}}" catchtap='close'></image>
+            </view>
+          </view>
+
+          <image src="../../images/add.png" class="add" data-addIndex="4" bindtap="add" wx:if="{{chufang.length < 10}}"></image>
+        </view>
+      </view>
+
+    </view>
+
+
+    <view class="kongtiao">
+      <view class="kongtop">卫浴({{weiyu.length}}/10)</view>
+      <view class="kongbot">
+        <view class="cor0 f28" style="margin-bottom:30rpx;">请至少上传一张卫生间照片，需包含完整的卫浴设施。</view>
+        <view class="flexl imagelis">
+          <view wx:for="{{weiyu}}">
+            <view class="add">
+                <image src="{{item}}" class="wh100" data-addIndex="5" data-src="{{item}}" catchtap="previewImage"></image>
+                <image src="../../images/and/guanbi.png" class="close" data-addIndex="5"  data-index="{{index}}" catchtap='close'></image>
+            </view>
+          </view>
+
+          <image src="../../images/add.png" class="add"  data-addIndex="5" bindtap="add" wx:if="{{weiyu.length < 10}}"></image>
+        </view> 
+      </view>
+
+    </view>
+
+    
+    <view class="kongtiao">
+      <view class="kongtop">其他({{qita.length}}/10)</view>
+      <view class="kongbot">
+        <view class="cor0 f28" style="margin-bottom:30rpx;">建议上传房源周边环境或房源布局细节图。</view>
+        <view class="flexl imagelis">
+          <view wx:for="{{qita}}">
+           <view class="add">
+                <image src="{{item}}" class="wh100" data-addIndex="6"data-src="{{item}}" catchtap="previewImage"></image>
+                <image src="../../images/and/guanbi.png" class="close" data-addIndex="6"   data-index="{{index}}" catchtap='close'></image>
+            </view>
+          </view>
+
+          <image src="../../images/add.png" class="add"  data-addIndex="6" bindtap="add" wx:if="{{qita.length < 10}}"></image>
+        </view>
+      </view>
+
+    </view>
+
+  </view> -->
+  <!-- <cover-view class="tonext flex center">
+    <cover-view class="botbtn ta" bindtap="save" data-save="1">保存</cover-view>
+    <cover-view class="botbtn2 next ta {{ woshi !='' && weiyu!='' ?'botbtnac':''}}" data-save="2" bindtap="save">下一步</cover-view>
+  </cover-view> -->
+  <view class="cu-bar foot bg-magigray">
+    <view class="response flex padding">
+      <button class="cu-btn line-magi" data-target="hold" bindtap="submit">保存</button>
+      <button class="cu-btn bg-magi margin-left" data-target="next" bindtap="submit">下一步</button>
+    </view>
+  </view>
+<!-- </view> -->

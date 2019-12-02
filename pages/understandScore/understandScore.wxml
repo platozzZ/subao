@@ -1,0 +1,58 @@
+<view class="contaner">
+  <view class="topnav response  ">
+    <image src="https://magicdn.oss-cn-beijing.aliyuncs.com/pms/miniapp/static/scorebg.png" class="topbg"></image>
+    <view class=" text-center text-xl">
+
+      <view class="scoredes margin-bottom-sm">
+        提升房源分数需要找到好的方法
+
+      </view>
+      <view>
+        请继续加油～
+      </view>
+    </view>
+
+    
+
+  </view>
+  <view class="scoreprogress text-magigray">
+       <view class="defaultFlex">
+        
+         <view>200</view>
+         <view>400</view>
+         <view>600</view>
+         <view style="margin-right:-20rpx;">800</view>
+         <view>1000</view>
+       </view>
+     
+         <image src="https://magicdn.oss-cn-beijing.aliyuncs.com/pms/miniapp/static/z-progress.png" ></image>
+       
+       <view class="defaultFlex text-sm">
+        
+         <view>较差</view>
+         <view>良好</view>
+         <view>优秀</view>
+         <view>极好</view>
+        
+       </view>
+     
+  </view>
+  <view class="text-lg padding-left cor0">
+    以下是历史消息
+  </view>
+  <view class="padding-left" style="background:#fff;">
+    <view class="cu-list menu">
+      <view class="cu-item" style="padding-left:0rpx;" wx:for="{{history}}" wx:key="index" data-index="{{index}}" >
+        <view class="content padding-tb flex">
+         
+            <view class="color-5c">{{item.create_time}} 评估</view>
+          
+        </view>
+        <view class="action color-5c">
+          本次结果<text class="text-magi">{{item.whole_score}}</text>分
+        </view>
+      </view>
+
+    </view>
+  </view>
+</view>

@@ -1,0 +1,130 @@
+<wxs module="filters" src="../../utils/sourceFilter.wxs"></wxs>
+<checkbox-group bindchange="checkChange" name="house_id">
+  <view class="cu-list menu menu-avatar">
+    <view class="cu-item shadow" wx:for="{{thirdList}}" wx:key="{{item.id}}">
+        <checkbox class="" checked="{{item.checked}}" disabled="{{item.disabled}}" value="{{item.id}}" data-id="{{item.id}}" data-source="{{item.source}}" data-checked="{{item.checked}}" data-disabled="{{item.disabled}}" data-index="{{index}}" bindtap="checkTap">
+          <view class="checkDisabled" wx:if="{{item.disabled}}" bindtap="showcheckMsg"></view>
+        </checkbox>
+        <image class="cu-avatar xl" src='{{item.thumbnail_url}}'></image>
+        <view class='content'>
+            <view class='text-black defaultFlex'>
+              <view class='text-cut'>{{item.name}}</view>
+              <view>共<text class='text-magi'>{{item.instance_count}}</text>套</view>
+            </view>
+            <view class='text-gray text-sm house-address'>{{item.address}}</view>
+            <view class='house-bottom defaultFlex'>
+              <view class='cu-item-logo'>
+                <image src="{{filters.sourceFilter(item.source)}}"></image>
+                <!-- <image src='/images/tujia.png'></image> -->
+              </view>
+            </view>
+        </view>
+    </view>
+  </view>
+</checkbox-group>
+<view class="subao-container" wx:if="{{showHouseList}}">
+  <view class="cu-bar">
+    <view class="action">宿宝房源</view>
+  </view>
+  <view class="cu-list menu menu-avatar">
+    <!-- <view class="cu-item" wx:for="{{unBindList}}" wx:key="{{item.id}}"> -->
+    <view class="cu-item" wx:for="{{houseList}}" wx:key="{{item.id}}">
+        <image class="cu-avatar xl" src='{{item.thumbnail_url}}'></image>
+        <view class='content'>
+            <view class='text-black defaultFlex'>
+              <view class='text-cut'>{{item.name}}</view>
+              <view>共<text class='text-magi'>{{item.instance_count}}</text>套</view>
+            </view>
+            <view class='text-gray text-sm house-address'>{{item.address}}</view>
+            <view class='house-bottom defaultFlex'>
+              <view class='cu-item-logo'>
+                <block wx:for="{{item.bind_source}}" wx:key="index" wx:for-item="source">
+                  <image src="{{filters.sourceFilter(source)}}"></image>
+                </block>
+                <!-- <image src="{{filters.sourceFilter(item.source)}}"></image> -->
+                <!-- <image src='/images/tujia.png'></image> -->
+              </view>
+              <button class='cu-btn bg-magi' data-houseid="{{item.id}}" bindtap="showModal" data-target="bind">关联</button>
+            </view>
+        </view>
+    </view>
+  </view>
+  <!-- <view class="emptyContainerHouse" wx:if="{{emptyContainer}}">
+    <image src='/images/houseEmpty.png'></image>
+    <view class=''>您还没有已有房源</view>
+    <view class=''>请返回创建新房源</view>
+  </view> -->
+</view>
+<view class="cu-bar foot padding bg-magigray flex-direction" wx:if="{{!showHouseList}}">
+  <view class="flex justify-around house-bottom">
+    <button class="cu-btn flex flex-direction flex-sub line-magi" bindtap="showModal" data-target="new">
+      <image src="/images/newhouse.png"></image>
+      <view>设为新宿宝房源</view>
+    </button>
+    <button class="cu-btn flex flex-direction flex-sub line-magi margin-left" bindtap="showHouseList" disabled="{{houseList.length == 0}}">
+      <image src="/images/bindhousedisable.png" wx:if="{{houseList.length == 0}}"></image>
+      <image src="/images/bindhouse.png" wx:else></image>
+      <view>与已有宿宝房源关联</view>
+    </button>
+  </view>
+  <view class="house-bottom-tips margin-top-sm">* 宿宝房源会把不同民宿平台上同一房源进行关联管理</view>
+</view>
+<view class="placeholder" wx:if="{{!showHouseList}}"></view>
+
+
+
+<!-- 设置新房源 -->
+<view class="cu-modal {{modalName == 'new'?'show':''}}" >
+    <view class="cu-dialog">
+      <view class="cu-bar bg-white solid-bottom">
+        <view class="content">提示</view>
+      </view>
+      <view class="padding-lg">
+        <view wx:if="{{thirdids.length == 1}}">确定将此房源设置为新宿宝房源？</view>
+        <block wx:if="{{thirdids.length > 1}}">
+          <view>确定将已选房源合并？</view>
+          <view>合并后会判定为这是在不同平台上的同一房源</view>
+        </block>
+      </view>
+      <view class="cu-bar bg-white addModal justify-center">
+        <view class="action">
+          <button class="cu-btn line-magi" bindtap='hideModal'>取消</button>
+          <button class="cu-btn bg-magi margin-left" bindtap='createNewHouse' data-id="{{thirdHouseId}}">确定</button>
+        </view>
+      </view>
+    </view>
+</view>
+<view class="cu-modal {{modalName == 'bind'?'show':''}}" >
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white solid-bottom">
+      <view class="content">提示</view>
+    </view>
+    <view class="padding-xl">
+      <view>是否确认关联此房源？</view>
+    </view>
+    <view class="cu-bar bg-white addModal justify-center">
+      <view class="action">
+        <button class="cu-btn line-magi" bindtap='hideModal'>取消</button>
+        <button class="cu-btn bg-magi margin-left" bindtap='bindHouse'>确定</button>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="cu-modal {{modalName == 'error'?'show':''}}" >
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white solid-bottom">
+      <view class="content">提示</view>
+    </view>
+    <view class="padding-xl">
+      <view>无法将相同民宿平台的房源进行关联，请确认后重试</view>
+    </view>
+    <view class="cu-bar bg-white addModal justify-center">
+      <view class="action">
+        <!-- <button class="cu-btn line-magi" bindtap='hideErrorModal'>取消</button> -->
+        <button class="cu-btn bg-magi" bindtap='hideModal'>确定</button>
+      </view>
+    </view>
+  </view>
+</view>
+
+<cu-custom></cu-custom>

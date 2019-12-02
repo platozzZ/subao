@@ -1,0 +1,91 @@
+@import "../account/account.wxss";
+.box.pad0{
+  padding-bottom: 40rpx;
+}
+.cu-bar{
+  min-height: 77rpx;
+}
+.cu-bar .action{
+  color: #888;
+  font-size: 26rpx!important;
+}
+.order-detail .cu-item{
+  justify-content: flex-start;
+  font-size: 28rpx;
+}
+.order-detail .cu-item .item-title{
+  width: 150rpx;
+  color: rgb(92,92,92);
+}
+.order-detail .cu-item .item-content{
+  flex: 1;
+}
+.order-detail .cu-avatar{
+  width: 160rpx;
+  height: 160rpx;
+  margin-right: 20rpx;
+}
+.order-detail .cu-avatar image{
+  width: 100%;
+  height: 100%;
+}
+.cu-list.menu>.cu-item.order-avatar{
+  align-items: flex-start;
+}
+.title{
+    padding: 30rpx 30rpx 0;
+}
+.reserve{
+    margin: 30rpx 0 0;
+    overflow: hidden;
+}
+.reserve .cu-avatar{
+    float: left;
+    margin-right: 10px;
+}
+
+.item-content.tbc{
+  color: rgb(70,205,0);
+}
+.item-content.accepted{
+  color: #0060e4;
+}
+.item-content.supplement{
+  color: rgb(249,174,0);
+}
+.item-content.cancelled{
+  color: rgb(132,130,130);
+}
+
+
+.order-details-log{
+    padding:0 30rpx;
+}
+.order-details-log .order-menu-list{
+    padding:10rpx 0;
+}
+.order-details-log .order-menu-list .log-list{
+    padding:10rpx 0;
+}
+.order-details-log .order-menu-list .log-list text + text{
+    margin-left:20rpx;
+}
+
+
+.order-btn-box .cu-btn{
+    flex: 1;
+    height: 90rpx;
+    border-radius: 0px;
+}
+.order-btn-box .cu-btn::after {
+    display: none;
+    border-radius: 0px;
+}
+
+.order-contact-box .contact-table{
+    text-align:center;
+    padding:20rpx 0;
+}
+.order-contact-box .contact-table text{
+    font-size:34rpx;
+}

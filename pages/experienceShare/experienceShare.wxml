@@ -1,0 +1,42 @@
+<import src="../../wxParse/wxParse.wxml" />
+<view class="share box solid-top" style="{{detail.online_status==1?'padding-bottom:0rpx;':''}}" wx:if="{{showContainer}}">
+  <view class="padding" wx:if="{{detail.online_status!=1}}">
+    <view class="text-default title margin-bottom-sm">{{detail.title}}</view>
+    <view wx:if="{{detail.subtitle}}" class="smallTitle padding-sm text-magigray margin-bottom-sm">{{detail.subtitle}}</view>
+    <view class="flex flex-wrap align-center">
+      <view class="cu-tag round bg-blue light newtap text-magi" wx:for="{{detail.tags}}">{{item}}</view>
+    </view>
+    <image src="{{detail.thumbnail}}" class="response margin-top" mode="widthFix"></image>
+    <view class="margin-top">
+      <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+    </view>
+    <view class="text-26 shareTime margin-top ">
+      {{detail.create_time}} 作者：{{detail.author}}
+    </view>
+  </view>
+
+  <view class="cu-bar foot bg-white solid-top padding-top-xs padding-bottom-xs" style="padding-bottom: {{isIphoneX ? '68rpx' : '0rpx'}};">
+    <view class="response flex  padding230 text-xs  text-center justify-between">
+      <view bindtap="toNewIndex">
+        <image src="/images/index_cur.png" class="exShouye"></image>
+        <view>首页</view>
+      </view>
+      <view>
+        <image src="/images/ex-fengxiang.png" class="exfenxiang" wx:if="{{detail.online_status!=1}}"></image>
+          <image src="/images/noshare.png" class="exfenxiang" wx:else></image>
+        <view>分享</view>
+        <button open-type='share' class="shareBtn" wx:if="{{detail.online_status!=1}}">分享</button>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{detail.online_status==1}}" class="noShare align-center cu-chat justify-center text-sm">
+         <view class="text-center noShare2">
+    
+           <image src="/images/noclass.png" class="noclass"></image>
+           <view class="margin-bottom-sm ">文章已下线</view>
+           <button class="cu-btn bg-magi padding-left-sm padding-right-sm" bindtap='toMore'>查看更多精彩内容</button>
+            </view>
+       
+  </view>
+</view>

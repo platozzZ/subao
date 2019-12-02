@@ -1,0 +1,23 @@
+<view class='box'>
+  <view class="read-title">{{title}}</view>
+  <scroll-view scroll-y class="read-scroll" scroll-top="{{scrollTop}}">
+  <view class="cu-timeline" wx:for="{{list}}" wx:key="*this">
+    <view class="cu-item {{item.type=='01'?'text-magierr':item.type=='02'?'text-grays':item.type=='03'?'text-magi':'text-green'}}">
+      <view class="">
+        {{item.message}}
+        <text class="icon-check" wx:if="{{item.type=='03'}}"></text>
+        <text class="icon-close" wx:elif="{{item.type=='01'}}"></text>
+        <text wx:else>...</text>
+      </view>
+    </view>
+  </view>
+  </scroll-view>
+</view>
+
+<view class="canui-foor-fixed bg-magigray">
+  <view class="read-tips">房源读取需要几分钟时间，请耐心等待...</view>
+  <!-- <view>房源读取需要几分钟时间，请耐心等待...</view> -->
+  <view class="flex justify-between order-btn-box padding">
+      <button class='cu-btn bg-magi' bindtap='toNewhouse' disabled="{{disabled}}">去关联</button>
+  </view>
+</view>

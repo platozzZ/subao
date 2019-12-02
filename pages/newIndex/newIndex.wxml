@@ -1,0 +1,202 @@
+
+<view class="contaner">
+  <view class="topnav bg-white" data-index="0" bindtap="{{isLogin?'toolTap':''}}">
+      <image src="https://magicdn.oss-cn-beijing.aliyuncs.com/pms/miniapp/static/indexTopBanner.png" class="response topnavimg" mode="widthFix"></image>
+      <button class="cu-btn line-transparent" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!isLogin}}" data-target="updateHouse" data-index="0"></button>
+  </view>
+  <!-- <view class="topnav response bg-gradual-index flex flex-direction">
+    <view class="flex justify-between padding-top padding-bottom">
+      <view class="margin-left flex align-center new-dw text-df">
+        <image src="/images/index-dw.png" mode="widthFix"></image>
+    
+          <picker bindchange="pickerChange" value="{{index}}" range="{{cityArr}}">
+            <view class="picker">
+              {{cityIndex >= 0?cityArr[cityIndex]:'请选择'}}
+            </view>
+          </picker>
+      
+      </view>
+      <view class="flex new-tabs ">
+        <view class="text-sm margin-right new-tabs-item {{typeValue == item?'cur':''}}" data-id="{{index}}" data-value="{{item}}" wx:for="{{typeList}}" wx:key="*this" bindtap="tabSelect">{{item}}</view>
+       
+      </view>
+    </view>
+
+    <view class="chartContainer">
+      <ec-canvas class="chartContainer-chart" id="indexChart" canvas-id="indexChart" ec="{{ indexLine }}"></ec-canvas>
+    </view>
+
+    <view class="text-sm text-center padding-bottom padding-top-xs index-time">
+      {{chartData.date.startDate?chartData.date.startDate + ' - ' + chartData.date.endDate:''}}  日均价
+    </view>
+  </view> -->
+
+  <view class="text-lg margin-top-xl margin-bottom-sm margin-left">提升房源收益工具</view>
+  
+
+  <view class="cu-list menu">
+    <view class="cu-item padding-tb" wx:for="{{tools}}" data-index="{{index}}" wx:key="*this">
+      <view class="cu-avatar round toolicon margin-right-sm">
+        <view class="flex align-center justify-center">
+          <image src="{{item.icon}}" class="tooliconimg"></image>
+        </view>
+      </view>
+      <view class="content">
+          <view class="text-rs text-df flex align-center">
+            {{item.title}}
+            <view class="cu-tag bg-free new-free margin-left-xs" wx:if="{{item.isFree}}">限时免费</view>
+          </view>
+          <view class="flex new-tag">
+            <view class="cu-tag text-22" style="color:{{sitem.color}}" wx:for="{{item.des}}" wx:for-item="sitem">{{sitem.title}}</view>
+          </view>
+      </view>
+      <view class="action" data-index="{{index}}" bindtap="{{isLogin?'toolTap':''}}">
+        <view class="kaifang {{!item.disabled?'bg-magi':'d6'}}">{{item.disabled?'即将开放':item.btntext}}</view>
+        <button class="cu-btn line-transparent" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!isLogin}}" data-target="updateHouse" data-index="{{index}}"></button>
+      </view>
+    </view>
+
+  </view>
+
+  <view class="text-lg margin-top-xl margin-bottom-sm margin-left margin-right flex justify-between">
+    <view>大家都在看</view>
+    <view class="text-magigray text-df" bindtap="toMore">
+      <text class="">查看更多</text>
+      <text class="icon-right"></text>
+    </view>
+  </view>
+  <!-- <view class="cu-bar text-default margin-top-xs">
+    <view class="action text-lg">大家都在看</view>
+    <view class="action flex align-center text-magigray" bindtap="toMore">
+      <text class="margin-right-xs">查看更多</text>
+      <text class="icon-right"></text>
+    </view>
+  </view> -->
+
+  <view class="cu-card article">
+    <view class="cu-item shadow" wx:for="{{lookList}}" wx:key="*this"  data-id="{{item.id}}" bindtap="lookDetail">
+      <view class="title flex align-center">
+        <image src="/images/lookiconx.png" class="lookicon"></image>
+        <view class="text-default text-22">
+          {{item.type==1?'经验分享':'短篇科普'}}
+        </view>
+      </view>
+      <view class="content">
+        <image src="{{item.thumbnail}}" mode="aspectFill" class="lookimg margin-right-sm"></image>
+        <view class="desc">
+          <view class="text-rs flex">
+            <view class="{{item.tags==''?'cutline2':'text-cut'}} ">{{item.title}}</view> 
+          </view>
+          <view class="text-sm text-magigray flex">
+            <view class="text-cut">{{item.subtitle}}</view> 
+          </view>
+          <view class="flex align-center" wx:if="{{item.tags.length > 0}}">
+            <view class="cu-tag round bg-blue light newtap text-magi"  wx:for="{{item.tags}}">{{item}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>
+
+<!-- <is-login></is-login> -->
+
+
+<!-- <view class="topnav response">
+   <image src="https://magicdn.oss-cn-beijing.aliyuncs.com/pms/miniapp/static/topbg.png" class="topbg"></image>
+   <view class="navone round fcolumncenter" bindtap="{{isLogin?'topnav':''}}" data-index="1">
+        <button class="cu-btn line-transparent" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!isLogin}}" data-target="house"></button>
+      <image src="https://magicdn.oss-cn-beijing.aliyuncs.com/pms/miniapp/static/top1.png" class="wh100"></image>
+      <block wx:if="{{!isLogin || (unHouseNum == 0 && !art)}}">
+        <image src="/images/topnav1.png" class="topnav1"></image>
+        <view class="">装修</view>
+      </block>
+      <block wx:else>
+        <block wx:if="{{unHouseNum > 0}}">
+          <view class="">{{unHouseNum}}个装修</view>
+          <view class="">待评估</view>
+        </block>
+        <block wx:else>
+          <view class="">装修</view>
+          <view class="">
+            {{art.fitment_level == 3?'超完美':art.fitment_level == 2?'继续保持':art.fitment_level == 1?'需提升':'尽快优化'}}
+          </view>
+        </block>
+      </block>
+   </view>
+    <view class="navtwo br50 fcolumncenter" bindtap="{{isLogin?'topnav':''}}" data-index="2">
+        <button class="cu-btn line-transparent" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!isLogin}}" data-target="house"></button>
+        <image src="https://magicdn.oss-cn-beijing.aliyuncs.com/pms/miniapp/static/top2.png" class="wh100"></image>
+
+        <block wx:if="{{!isLogin || (unHouseNum == 0 && !art)}}">
+          <image src="/images/topnav2.png" class="topnav2"></image>
+          <view class="">位置</view>
+        </block>
+        <block wx:else>
+          <block wx:if="{{unHouseNum > 0}}">
+            <view class="">{{unHouseNum}}个位置</view>
+            <view class="">待评估</view>
+          </block>
+          <block wx:else>
+            <view class="">位置</view>
+            <view class="">
+              {{art.location_level == 3?'超完美':art.location_level == 2?'继续保持':art.location_level == 1?'需提升':'尽快优化'}}
+            </view>
+          </block>
+        </block>
+
+    </view>
+    <view class="navthree br50 fcolumncenter" bindtap="{{isLogin?'topnav':''}}" data-index="3">
+        <button class="cu-btn line-transparent" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!isLogin}}" data-target="house"></button>
+      <image src="https://magicdn.oss-cn-beijing.aliyuncs.com/pms/miniapp/static/top3.png" class="wh100"></image>
+      <block wx:if="{{!isLogin || (unHouseNum == 0 && !art)}}">
+        <image src="/images/topnav3.png" class="topnav3"></image>
+        <view class="">客源</view>
+      </block>
+      <block wx:else>
+        <block wx:if="{{unHouseNum > 0}}">
+          <view class="">{{unHouseNum}}个客源</view>
+          <view class="">待评估</view>
+        </block>
+        <block wx:else>
+          <view class="">客源</view>
+          <view class="">
+            {{art.customer_level == 3?'超完美':art.customer_level == 2?'继续保持':art.customer_level == 1?'需提升':'尽快优化'}}
+          </view>
+        </block>
+      </block>
+    </view>
+    <view class="navfour br50 fcolumncenter" bindtap="{{isLogin?'topnav':''}}" data-index="4">
+        <button class="cu-btn line-transparent" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!isLogin}}" data-target="house"></button>
+        <image src="https://magicdn.oss-cn-beijing.aliyuncs.com/pms/miniapp/static/top4.png" class="wh100"></image>
+        <block wx:if="{{!isLogin || (unHouseNum == 0 && !art)}}">
+          <image src="/images/topnav4.png" class="topnav4"></image>
+          <view class="">价格</view>
+        </block>
+        <block wx:else>
+          <block wx:if="{{unHouseNum > 0}}">
+            <view class="">{{unHouseNum}}个价格</view>
+            <view class="">待评估</view>
+          </block>
+          <block wx:else>
+            <view class="">价格</view>
+            <view class="">
+              {{art.price_level == 3?'超完美':art.price_level == 2?'继续保持':art.price_level == 1?'需提升':'尽快优化'}}
+            </view>
+          </block>
+        </block>  
+    </view>
+    <view class="navfive br50 fcolumncenter" bindtap="{{isLogin?'topnav':''}}" data-index="5"> 
+        <button class="cu-btn line-transparent" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!isLogin}}" data-target="house"></button>
+      <image src="https://magicdn.oss-cn-beijing.aliyuncs.com/pms/miniapp/static/top5.png" class="wh100"></image>
+      <view>我的民宿</view>
+      <view>房源评估</view>
+    </view>
+    <block>
+      <view class="bot20 text-sm text-center" wx:if="{{!art}}">累计超过{{totalNum}}个房屋测评</view>
+      <view class="bot20 text-sm text-center"  wx:else>最新评估时间：{{lastTime}}</view>
+    </block>
+</view> -->
+
+<cu-custom></cu-custom>

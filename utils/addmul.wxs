@@ -1,0 +1,23 @@
+var filters = {
+  toFix: function (value) {
+    if (value) {
+      return value.toFixed(4)
+    }
+  },
+  toFixs: function (value){
+    if (value){
+      return value.toFixed(2)
+    }
+  },
+  toFixss: function (value) {
+    var values = value.toFixed(6)
+    return values.toString()
+    // return parseFloat(value.toString())
+    console.log(values)
+  }
+}
+module.exports = {
+  toFix: filters.toFix,
+  toFixs: filters.toFixs,
+  toFixss: filters.toFixss
+}
